@@ -2,8 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-image: url(../imgs/background_entrada.jpg);
-    background-size: cover;
+    background-image: url(../imgs/background_entrada.png);
+    background-size: 1920px 1080px;
 }
 
 :root {
@@ -32,7 +32,7 @@ body {
     height: 100%;
     align-items: center;
     margin: 120px auto;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
 }
 
 .container {
@@ -98,6 +98,10 @@ body {
     font-weight: bolder;
     font-size: 16px;
     border-style: none;
+}
+
+.botao:hover {
+    background-color: #222222;
 }
 
 #SemConta {
