@@ -2,14 +2,16 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;/*Vai pegar os valores padding e o margin adicionados e aplicara em em toda a página, apenas nas bordas */
+    box-sizing: border-box;
+    /*Vai pegar os valores padding e o margin adicionados e aplicara em em toda a página, apenas nas bordas */
 }
 
 body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    font-family: Arial, Helvetica, sans-serif;/*Quando tem mais de uma fonte significa que se o computador não reconhecer a primeira fonte Arial, vai passa para a próxima que seria a Helvetica e se o caso persistir será declarada a sans-serif que é uma padrão que todos os navegadores reconhecem*/
+    font-family: Arial, Helvetica, sans-serif;
+    /*Quando tem mais de uma fonte significa que se o computador não reconhecer a primeira fonte Arial, vai passa para a próxima que seria a Helvetica e se o caso persistir será declarada a sans-serif que é uma padrão que todos os navegadores reconhecem*/
     width: 100%;
     background: #EEDDCC;
 }
@@ -58,13 +60,16 @@ body {
     font-size: 16px;
     border-radius: 5px;
 }
+
 .btn_cadastro {
     background: transparent;
 }
+
 .btn_login {
     font-weight: bolder;
     background: #E0B298;
 }
+
 /*Fim da parte de navegação navbar*/
 
 /*É o corpo onde está todo o centeudo essa é a main 1 */
@@ -82,8 +87,10 @@ body {
     align-items: center;
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;/*Permique que quando a página chegar em um tamanho especifico a linha passe para coluna*/
-    gap: 30px;/*Esse gap que dizer quando a página chegar em um tamanho especifico e o conteúdo passar de linha para coluna então entre eles vai ter um espassamento de 30px*/
+    flex-wrap: wrap;
+    /*Permique que quando a página chegar em um tamanho especifico a linha passe para coluna*/
+    gap: 2%;
+    /*Esse gap que dizer quando a página chegar em um tamanho especifico e o conteúdo passar de linha para coluna então entre eles vai ter um espassamento de 30px*/
 }
 
 /*Pontos de decoração na página*/
@@ -161,19 +168,124 @@ body {
     width: 350px;
     height: 428px;
     border-bottom-left-radius: 100px;
-    background-image: url(../img/img-1.jpeg);
+    background-image: url(../imgs/img-1.jpeg);
     background-size: cover;
 }
+
 /*fim do estilo das parte de imagem e suas decorações*/
 
 /*linhas onduladas*/
 .linha-ondulada {
-    background-image: url(../img/ondas.png);
+    background-image: url(../imgs/ondas.png);
     background-size: cover;
     z-index: -1;
     width: 100%;
     height: 150px;
     position: absolute;
     bottom: 0;
-  }
-  
+}
+
+/*Segunda parte da main conteudo do scroll*/
+.main2 {
+    margin-top: 5%;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main2 .container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100vh;
+}
+
+.container .box-pai {
+    border-radius: 5px;
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10%;
+}
+
+.box-pai .box-filho {
+    background: #ECECEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    flex-direction: column;
+}
+
+.box-pai .box-filho .img img {
+    width: 180px;
+    height: 170px;
+}
+
+.box-pai .box-filho .rotulos {
+    display: flex;
+    width: 80%;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffff;
+    background-color: #0A0908;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/*pontos de decoração de valor absoluto marcada ao topo da main 2*/
+.container .pat {
+    z-index: -1;
+    margin-top: -50px;
+}
+
+/**/
+
+.main2 .apresentacao {
+    margin-top: 10%;
+    width: 80%;
+    height: 428px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main2 .apresentacao .container-img{
+    width: 30%;
+    height: 428px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main2 .apresentacao .img {
+    background-image: url(../imgs/img-sobre.png);
+    width: 350px;
+    height: 428px;
+    border-bottom-right-radius: 100px;
+    background-size: cover;
+
+}
+
+.main2 .apresentacao .sobre-nos {
+    width: 30%;
+}
+
+.main2 .apresentacao .container-img  .pat {
+    display: flex;
+    justify-self: flex-start;
+    z-index: -1;
+    margin-bottom: -70px;
+    margin-left: 100%;
+}
