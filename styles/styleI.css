@@ -16,6 +16,11 @@ body {
     background: #EEDDCC;
 }
 
+h1 {
+    font-size: 50px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -58,7 +63,13 @@ body {
     width: 120px;
     height: 35px;
     font-size: 16px;
+    cursor: pointer;
     border-radius: 5px;
+}
+
+.btn_cadastro:hover,
+.btn_login:hover {
+   background-color: #e0b29888;
 }
 
 .btn_cadastro {
@@ -124,10 +135,6 @@ body {
     flex-direction: column;
 }
 
-.apresentacao .titulo h1 {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 50px;
-}
 
 .apresentacao .sub_titulo p {
     font-family: 'Times New Roman', Times, serif;
@@ -141,6 +148,11 @@ body {
     background: #0A0908;
     width: 150px;
     height: 35px;
+    cursor: pointer;
+}
+
+.apresentacao .calculadora:hover {
+    background: #0a0908c2;
 }
 
 /*Fim da estilização de escritão e botão de calculadora*/
@@ -171,7 +183,6 @@ body {
     background-image: url(../imgs/img-1.jpeg);
     background-size: cover;
 }
-
 /*fim do estilo das parte de imagem e suas decorações*/
 
 /*linhas onduladas*/
@@ -189,30 +200,35 @@ body {
 .main2 {
     margin-top: 5%;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #ffff;
+}
+
+.main2 h1 {
+    margin-top: 2%;
 }
 
 .main2 .container {
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 100vh;
+    height: 40vh;
+    margin-bottom: 10%;
 }
 
 .container .box-pai {
     border-radius: 5px;
     margin-top: 5%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 2%;
+    flex-wrap: wrap;/*Quando a tela chegar em um determinado tamanho, vai ter uma quebra de linha entre os elementos filhos*/
+    gap: 2%;/*Significa o espaçamento entre os elementos que filhos desse pai*/
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100px;
-    margin-bottom: 10%;
 }
 
 .box-pai .box-filho {
@@ -250,11 +266,9 @@ body {
     margin-top: -50px;
 }
 
-/**/
-
 .main2 .apresentacao {
-    margin-top: 10%;
     width: 80%;
+    margin-bottom: 5%;
     height: 428px;
     display: flex;
     flex-direction: row;
@@ -262,7 +276,7 @@ body {
     align-items: center;
 }
 
-.main2 .apresentacao .container-img{
+.main2 .apresentacao .container-img {
     width: 30%;
     height: 428px;
     display: flex;
@@ -278,14 +292,197 @@ body {
 
 }
 
-.main2 .apresentacao .sobre-nos {
-    width: 30%;
-}
+.main2 .apresentacao .sobre-nos {width: 30%;}
 
-.main2 .apresentacao .container-img  .pat {
+
+.main2 .apresentacao .container-img .pat {
     display: flex;
     justify-self: flex-start;
-    z-index: -1;
+    z-index: -1;/*Esse comando faz a teg ir para traz */
     margin-bottom: -70px;
     margin-left: 100%;
+}
+/*Fim da parte main2*/
+
+
+/*Parte main3*/
+.main3 {
+    margin-top: 5%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main3 .container-diagrama {
+    width: 80%;
+    height: 50vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.main3 .container-diagrama .titulo {
+    width: 30%;
+
+}
+
+.slider {
+    width: 680px;
+    height: 350px;
+    position: relative;
+    overflow-x: hidden;/*aplica uma barra de scroll no eixo x, mas nesse caso esta escondida(hidden)*/
+}
+
+.slides {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;/*Vai aplicar uma trnsição de 5s de forma suave(ease)*/
+}
+
+.slide {
+    width: 100%;
+    height: 250px;
+    flex-shrink: 0;/*Esse item não pode encolher mesmo que o espaço seja apertado*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+/* Inputs escondidos */
+input[name="slide"] {/*Seleciona o input onde o nome = slide*/
+    display: none;/*vai retirar esse elemento da tela mas suas propiedades podem ser acessadas*/
+}
+
+/* Navegação */
+.navigation {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);/*Significa que vai se mover para direita no eixo x(horizontal)*/
+    display: flex;
+    gap: 10px;
+}
+
+.navigation label {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;/*Quando o cursor do mause passa por cima dessas lebel vai se transformar na mãozinha ou o ponteiro
+    trazendo a identificação que o objeto é clicavel*/
+    transition: background 0.3s;/*vai aplicar uma transição de backgroun em 0.3 segundos*/
+}
+
+input#s1:checked~.slides {
+    transform: translateX(0%);/*Se o input com ID s1 estiver marcado (checked), então mova o contêiner .slides para a posição 0%, ou seja, mostre o primeiro slide.*/
+}
+
+input#s2:checked~.slides {
+    transform: translateX(-106%);/*Se o input com ID s1 estiver marcado (checked), então mova o contêiner .slides para a posição 106%, ou seja, mostre o primeiro slide.*/
+}
+
+input#s1:checked~.navigation label[for="s1"],
+/*O ~ significa que vai selecionar tudo o que vier apaitir do #s1*/
+/*Se o input #s1 estiver selecionado (ou seja, checked), então o CSS vai aplicar um background: #333 no label que tem for="s1" (o botão do slide 1)*/
+input#s2:checked~.navigation label[for="s2"] {
+    background: #333;
+}
+
+.main3 .container-diagrama .slides .box1, .box2, .box3, .box4, .box5,.box6{/*As virgualas entre as classes declaradas,significa que as condições declaradas servem para todas que estão separadas pela virgula*/
+    width: 200px;
+    height: 200px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px; 
+    background-size: cover;
+}   
+
+.main3 .container-diagrama .slides .box1:hover,.box2:hover,.box3:hover,.box4:hover, .box5:hover, .box6:hover{
+    width: 210px;
+    height: 210px;
+}
+
+.main3 .container-diagrama .slides .box1 {
+    background-image: url(../imgs/1.png);
+}
+
+.main3 .container-diagrama .slides .box2 {
+    background-image: url(../imgs/2.png);
+}
+
+.main3 .container-diagrama .slides .box3 {
+    background-image: url(../imgs/3.png);
+}
+
+.main3 .container-diagrama .slides .box4 {
+    background-image: url(../imgs/1.png);
+}
+
+.main3 .container-diagrama .slides .box5 {
+    background-image: url(../imgs/1.png);
+}
+
+.main3 .container-diagrama .slides .box6 {
+    background-image: url(../imgs/1.png);
+}
+
+
+
+.main3 .container-diagrama .slides .conteudo{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-top: 150%;
+    background-color: #0A0908;
+    color: #ffff;
+    border-bottom-left-radius: 10px;/*bordar arredondada apenas no canto esquerdo e na parte inferior */
+    border-bottom-right-radius: 10px;/*bordar arredondada apenas no canto direito e na parte inferior */
+    padding: 10px;
+}
+/*Finalizada parte main3 diagrama*/
+
+/*Inicio parte main3 gráfico*/
+.main3 .container-grafico{
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    background: linear-gradient(360deg,  #8B6E5A,#EEDDCC );
+}
+
+.main3 .container-grafico .cont-2 {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+}
+
+.main3 .container-grafico .cont-2 .titulo{
+    width: 50%;
+}
+
+.main3 .container-grafico .cont-2 .grafico{
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main3 .container-grafico .grafico .img-grafico{
+    background-image: url(../imgs/grafico.png);
+    border-radius: 20px;
+    background-size: cover;
+    width: 400px;
+    height: 400px;
 }

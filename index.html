@@ -29,8 +29,8 @@
             </ul>
         </div>
         <div class="div_bnt">
-            <button class="btn_cadastro">Cadastro</button>
-            <button class="btn_login">Login</button>
+            <button class="btn_cadastro" onclick="cadastro()">Cadastro</button>
+            <button class="btn_login" onclick="login()">Login</button>
         </div>
     </nav>
 
@@ -171,45 +171,120 @@
             </div>
         </div>
         <div class="apresentacao">
-                <div class="container-img">
-                    <div class="decoracao pat">
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
-                            <div class="point"></div>
+            <div class="container-img">
+                <div class="decoracao pat">
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                    <div class="point"></div>
+                </div>
+                <div class="img">
+
+                </div>
+            </div>
+            <div class="sobre-nos">
+                <h1>Sobre nós</h1><br>
+                <p>Somos uma empresa focada em aumentar a conversão de vendas e lucros das lojas de roupas por meio
+                    de monitoramento em tempo real dos provadores. Nossa solução permite que as lojas acompanhem a
+                    presença e o tempo dos clientes dentro deles, identificando padrões de comportamento e
+                    otimizando o atendimento. Com dados e insights em tempo real, ajudamos as lojas a melhorar a
+                    experiência do cliente e a maximizar suas vendas de forma mais eficiente</p>
+            </div>
+
+        </div>
+    </main>
+
+    <main class="main3">
+        <div class="container-diagrama">
+            <div class="titulo">
+                <h1>Diagrama de visão de negócios</h1>
+            </div>
+            <div class="slider">
+                <!-- Radio buttons -->
+                <input type="radio" name="slide" id="s1" checked>
+                <input type="radio" name="slide" id="s2">
+
+                <!-- Slides -->
+                <div class="slides">
+                    <div class="slide box1">
+                        <div class="conteudo">
+                            O sensor HC-SR04 detecta a presença de pessoas dentro do provador.
                         </div>
-                    <div class="img">
-                        
+                    </div>
+                    <div class="slide box2">
+                        <div class="conteudo">
+                            Os dados capturados são enviados para o banco de dados, onde são armazenados.
+                        </div>
+                    </div>
+                    <div class="slide box3">
+                        <div class="conteudo">
+                            Os dados são processados por algoritmos que identificam a presença de pessoas.
+                        </div>
+                    </div>
+                    <div class="slide box4">
+                        <div class="conteudo">
+                            Os dados são enviados para um painel de controle (dashboard) com visualização em gráficos.
+                        </div>
+                    </div>
+                    <div class="slide box5">
+                        <div class="conteudo">
+                            Permite o monitoramento em tempo real do fluxo de pessoas.
+                        </div>
+                    </div>
+                    <div class="slide box6">
+                        <div class="conteudo">
+                            O cliente fica satisfeito e pode tomar melhores decisões para otimizar suas vendas.
+                        </div>
                     </div>
                 </div>
-                <div class="sobre-nos">
-                    
-                    <h1>Sobre nós</h1><br>
-                    <p>Somos uma empresa focada em aumentar a conversão de vendas e lucros das lojas de roupas por meio
-                        de monitoramento em tempo real dos provadores. Nossa solução permite que as lojas acompanhem a
-                        presença e o tempo dos clientes dentro deles, identificando padrões de comportamento e
-                        otimizando o atendimento. Com dados e insights em tempo real, ajudamos as lojas a melhorar a
-                        experiência do cliente e a maximizar suas vendas de forma mais eficiente</p>
+
+                <!-- Navegação -->
+                <div class="navigation">
+                    <label for="s1"></label>
+                    <label for="s2"></label>
                 </div>
-               
             </div>
+        </div>
+
+        <div class="container-grafico">
+            <div class="cont-2">
+                <div class="titulo">
+                    <h1>Gráfico de conversão</h1><br>
+                    <p>Fique ciente em tempo real sobre presença de clientes nos provadores ao longo dos dias da semana,
+                        identificando padrões de ocupação e fluxo de visitantes </p> 
+                </div>
+                <div class="grafico">
+                    <div class="img-grafico">
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 </body>
-
 </html>
+<script>
+    function login(){
+        window.location = 'loginP.html'
+    }
+    function cadastro(){
+        window.location = 'cadastroP.html'
+    }
+</script>
