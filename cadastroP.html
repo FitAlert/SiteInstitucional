@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./styles/styleP.css">
 </head>
 <body>
-    
+    <!-- =============
+         CARD
+    ============= -->
+    <div class="card">
+        <!-- =============
+          CARD CADASTRO
+        ============= -->
+        <div class="card card-cadastro">
+            <!-- ============= 
+               CONTAINER 
+            ============= -->
+            <div class="container">
+                <!-- =============
+                    LOGO 
+                ============= -->
+                <div class="logo">Your logo</div>
+                <!-- =============
+                    FORMULÁRIO
+                    ============= -->
+                <div class="formCadastro">
+                    <div class="formCadastro form1">
+                        <p class="title">Cadastro</p>
+                        <p>Nome de usuário</p>
+                        <input type="text" id="inputUser" placeholder="Nome">
+                        <p>Email</p>
+                        <input type="text" id="inputEmail" placeholder="exemplo@gmail.com">
+                        <p>Telefone</p>
+                        <input type="text" id="inputTelefone" placeholder="__ ____-____">
+                        <p>Nome da loja</p>
+                        <input type="text" id="inputLoja" placeholder="Loja">
+                        <p>CNPJ</p>
+                        <input type="text" id="inputCNPJ" placeholder="__.___.___/____-__">
+                        <p>UF</p>
+                        <input type="text" id="inputUF" placeholder="UF">
+                    </div>
+                    <div class="formCadastro form2">
+                        <p>Cidade</p>
+                        <input type="text" id="inputCidade" placeholder="Cidade">
+                        <p>Rua</p>
+                        <input type="text" id="inputRua" placeholder="Rua">
+                        <p>Número</p>
+                        <input type="text" id="inputNumero" placeholder="Número">
+                        <p>CEP</p>
+                        <input type="text" id="inputCEP" placeholder="_____-___">
+                        <p>Senha</p>
+                        <input type="text" id="inputSenha" placeholder="*****">
+                        <p>Confirmar senha</p>
+                        <input type="text" id="inputSenhaConfirm" placeholder="*****">
+                    </div>
+                </div>
+                <!-- =============
+                        BOTÃO
+                    ============= -->
+                    <button class="card botao" onclick="cadastro()">Cadastrar</button>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>
