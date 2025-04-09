@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./styles/styleP.css">
+</head>
+<body>
+    <!-- =============
+         CARD
+    ============= -->
+    <div class="card">
+        <!-- =============
+          CARD LOGIN
+        ============= -->
+        <div class="card card-login">
+        <!-- ============= 
+          CONTAINER 
+            ============= -->
+            <div class="container">
+                <!-- =============
+                    LOGO 
+                ============= -->
+                <div class="logo">Your logo</div>
+                    <!-- =============
+                    FORMULÁRIO
+                    ============= -->
+                    <div class="formLogin">
+                        <p class="title">Login</p>
+                        <p>Nome de usuário</p>
+                        <input type="text" id="inputUsuario" placeholder="Nome">
+                        <p>Email</p>
+                        <input type="text" id="inputEmail" placeholder="exemplo@gmail.com">
+                        <p>Senha</p>
+                        <input type="password" id="inputSenha" placeholder="*****">
+                        <br>
+                        <a href="">Esqueceu a senha?</a>
+                    </div>
+                    <!-- =============
+                        BOTÃO
+                    ============= -->
+                    <button class="card botao" onclick="login()">Entrar</button>
+                    <br>
+                    <a href="cadastroP.html" id="SemConta">Não tem conta ainda? Cadastre-se agora!</a>
+            </div>
+        
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function login() {
+        // Respostas do formulário
+        var usuario = inputUsuario.value;
+        var email = inputEmail.value;
+        var passwd = inputSenha.value;
+
+        // Validação Login
+        if (usuario == 'admin' && email == 'admin@gmail.com' && passwd == 'adm123') {
+            window.location.href = 'index.html';
+        } else {
+            alert ('Os dados informados estão incorretos.')
+        }
+    }
+</script>
