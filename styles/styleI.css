@@ -149,6 +149,7 @@ h1 {
     width: 150px;
     height: 35px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .apresentacao .calculadora:hover {
@@ -239,6 +240,7 @@ h1 {
     width: 250px;
     height: 250px;
     flex-direction: column;
+    border-radius: 10px;
 }
 
 .box-pai .box-filho .img img {
@@ -486,3 +488,84 @@ input#s2:checked~.navigation label[for="s2"] {
     width: 400px;
     height: 400px;
 }
+
+/*FOOTER*/
+
+.container-footer {
+    background-image: url(../imgs/footer.png);
+    background-size: cover;
+}
+
+.background {
+    position: relative;
+    background-color: rgba(203, 170, 157, 0.7); /* Cor CBAA9D com opacidade de 70% */
+    height: 400px;
+    width: 100%;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+
+}
+
+
+.background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%; /* centraliza */
+    transform: translateX(-50%);
+    width: 1900px;
+    height: 400px;
+    background-color: #333; /* cor do fundo */
+    z-index: -1; /* fica por trás do conteúdo */
+    border-radius: 10px;
+
+}
+
+.container-footer .footer-conteudo .links {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 100px;
+    
+
+}
+
+
+.container-footer .footer-conteudo .links ul li a {
+    color: #ffffff;
+    font-weight: bolder;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+.container-footer .footer-conteudo .background .links ul li a:hover {
+    color: #AB8E7F; /* ou outra cor de destaque */
+    transition: 0.3s;
+    
+}
+
+.direitos  {
+    color: white;
+    text-align: center;
+    margin-top: 400px;
+    font-size: 14px;
+    margin-top: 100px; 
+   
+}
+
+
+
+
+
+
+
+
+
