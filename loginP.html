@@ -5,8 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="./styles/styleP.css">
+    <link rel="stylesheet" href="styles/menu.css">
 </head>
 <body>
+
+     <!--Navbar barra de navegação-->
+     <nav class="navbar">
+        <div class="logo">
+            <h2>LOGO</h2>
+        </div>
+
+        <div class="links">
+            <ul>
+                    <li><a href="index.html">Home</a></li>
+                <li><a href="#">Serviços prestados</a></li>
+                <li><a href="#">Sobre nós</a></li>
+                <li><a href="#">Termos</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </div>
+        <div class="div_bnt">
+            <button class="btn_cadastro" onclick="cadastro()">Cadastro</button>
+            <button class="btn_login" onclick="login()">Login</button>
+        </div>
+    </nav>
+
     <!-- =============
          CARD
     ============= -->
@@ -19,10 +42,7 @@
           CONTAINER 
             ============= -->
             <div class="container">
-                <!-- =============
-                    LOGO 
-                ============= -->
-                <div class="logo">Your logo</div>
+               <br><br>
                     <!-- =============
                     FORMULÁRIO
                     ============= -->
@@ -63,5 +83,11 @@
         } else {
             alert ('Os dados informados estão incorretos.')
         }
+    }
+    function login(){
+        window.location = 'loginP.html'
+    }
+    function cadastro(){
+        window.location = 'cadastroP.html'
     }
 </script>

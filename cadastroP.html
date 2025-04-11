@@ -1,69 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="./styles/styleP.css">
+    <link rel="stylesheet" href="styles/menu.css">
 </head>
+
 <body>
-    <!-- =============
-         CARD
-    ============= -->
-    <div class="card">
-        <!-- =============
-          CARD CADASTRO
-        ============= -->
-        <div class="card card-cadastro">
-            <!-- ============= 
+ <!--Navbar barra de navegação-->
+ <nav class="navbar">
+    <div class="logo">
+        <h2>LOGO</h2>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Serviços prestados</a></li>
+            <li><a href="#">Sobre nós</a></li>
+            <li><a href="#">Termos</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </div>
+    <div class="div_bnt">
+        <button class="btn_cadastro" onclick="cadastro()">Cadastro</button>
+        <button class="btn_login" onclick="login()">Login</button>
+    </div>
+</nav>
+
+    <div class="card-cadastro">
+        <!-- ============= 
                CONTAINER 
             ============= -->
-            <div class="container">
-                <!-- =============
-                    LOGO 
-                ============= -->
-                <div class="logo">Your logo</div>
-                <!-- =============
+        <div class="container">
+            <!-- =============
                     FORMULÁRIO
                     ============= -->
+
+            <!-- Navegação -->
+        
+                <input type="radio" name="cad" id="c1" checked>
+                <input type="radio" name="cad" id="c2">
                 <div class="formCadastro">
-                    <div class="formCadastro form1">
-                        <p class="title">Cadastro</p>
-                        <p>Nome de usuário</p>
-                        <input type="text" id="inputUser" placeholder="Nome">
-                        <p>Email</p>
-                        <input type="text" id="inputEmail" placeholder="exemplo@gmail.com">
-                        <p>Telefone</p>
-                        <input type="text" id="inputTelefone" placeholder="__ ____-____">
-                        <p>Nome da loja</p>
-                        <input type="text" id="inputLoja" placeholder="Loja">
-                        <p>CNPJ</p>
-                        <input type="text" id="inputCNPJ" placeholder="__.___.___/____-__">
-                        <p>UF</p>
-                        <input type="text" id="inputUF" placeholder="UF">
+                    <div class="form1 cad">
+                        <h2>Cliente</h2>
+                        <div class="input_conjunto">
+                            <div class="input-separado">
+                                <p>Nome de usuário</p>
+                                <input type="text" id="inputUser" placeholder="Nome">
+                            </div>
+                            <div class="input-separado">
+                                <p>Email</p>
+                                <input type="email" id="inputEmail" placeholder="exemplo@gmail.com">
+                            </div>
+                        </div>
+                        <div class="input_conjunto">
+                            <div class="input-separado">
+                                <p>Telefone</p>
+                                <input type="tel" id="inputTelefone" placeholder="__ ____-____">
+                            </div>
+                            <div class="input-separado">
+                                <p>Nome da loja</p>
+                                <input type="text" id="inputLoja" placeholder="Loja">
+                            </div>
+                        </div>
+                        <div class="input_conjunto">
+                            <div class="input-separado">
+                                <p>CNPJ</p>
+                                <input type="text" id="inputCNPJ" placeholder="__.___.___/____-__">
+                            </div>
+                            <div class="input-separado">
+                                <p>UF</p>
+                                <input type="text" id="inputUF" placeholder="UF">
+                            </div>
+                        </div>
                     </div>
-                    <div class="formCadastro form2">
-                        <p>Cidade</p>
-                        <input type="text" id="inputCidade" placeholder="Cidade">
-                        <p>Rua</p>
-                        <input type="text" id="inputRua" placeholder="Rua">
-                        <p>Número</p>
-                        <input type="text" id="inputNumero" placeholder="Número">
-                        <p>CEP</p>
-                        <input type="text" id="inputCEP" placeholder="_____-___">
-                        <p>Senha</p>
-                        <input type="text" id="inputSenha" placeholder="*****">
-                        <p>Confirmar senha</p>
-                        <input type="text" id="inputSenhaConfirm" placeholder="*****">
+                    <div class="form2 cad">
+                        <h2>Loja</h2>
+                        <div class="input_conjunto">
+                            <div class="input-separado">
+                                <p>Cidade</p>
+                                <input type="text" id="inputCidade" placeholder="Cidade">
+                            </div>
+                            <div class="input-separado">
+                                <p>Rua</p>
+                                <input type="text" id="inputRua" placeholder="Rua">
+                            </div>
+                        </div>
+                        <div class="input_conjunto">
+                            <div class="input-separado">
+                                <p>Número</p>
+                                <input type="text" id="inputNumero" placeholder="Número">
+                            </div>
+                            <div class="input-separado">
+                                <p>CEP</p>
+                                <input type="text" id="inputCEP" placeholder="_____-___">
+                            </div>
+                        </div>
+                        <div class="input_conjunto">
+                            <div class="input-separado">
+                                <p>Senha</p>
+                                <input type="password" id="inputSenha" placeholder="*****">
+                            </div>
+                            <div class="input-separado">
+                                <p>Confirmar senha</p>
+                                <input type="password" id="inputSenhaConfirm" placeholder="*****">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- =============
+                </div> 
+                <div class="navigation">
+                <label for="c1">Cadastro Cliente</label>
+                <label for="c2">Cadastro Loja</label>
+            </div>
+            <!-- =============
                         BOTÃO
                     ============= -->
-                    <button class="card botao" onclick="cadastro()">Cadastrar</button>
+            <button class="card botao" onclick="cadastro()">Cadastrar</button>
 
-            </div>
         </div>
     </div>
 </body>
+
 </html>
+
+<script>
+      function login(){
+        window.location = 'loginP.html'
+    }
+    function cadastro(){
+        window.location = 'cadastroP.html'
+    }
+</script>

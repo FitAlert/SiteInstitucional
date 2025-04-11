@@ -1,0 +1,62 @@
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    background: #EEDDCC;
+    align-items: center;
+}
+
+.links ul {
+    list-style: none;
+    width: 500px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.links ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.links ul .agora li a {
+    color: #AB8E7F;
+}
+
+.div_bnt {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_cadastro,
+.btn_login {
+    width: 120px;
+    height: 35px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn_cadastro:hover,
+.btn_login:hover {
+   background-color: #e0b29888;
+}
+
+.btn_cadastro {
+    background: transparent;
+}
+
+.btn_login {
+    font-weight: bolder;
+    background: #E0B298;
+}
+
+/*Fim da parte de navegação navbar*/
