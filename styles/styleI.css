@@ -124,6 +124,7 @@ h1 {
     background-image: url(../imgs/img-1.jpeg);
     background-size: cover;
 }
+
 /*fim do estilo das parte de imagem e suas decorações*/
 
 /*linhas onduladas*/
@@ -164,8 +165,10 @@ h1 {
     border-radius: 5px;
     margin-top: 5%;
     display: flex;
-    flex-wrap: wrap;/*Quando a tela chegar em um determinado tamanho, vai ter uma quebra de linha entre os elementos filhos*/
-    gap: 2%;/*Significa o espaçamento entre os elementos que filhos desse pai*/
+    flex-wrap: wrap;
+    /*Quando a tela chegar em um determinado tamanho, vai ter uma quebra de linha entre os elementos filhos*/
+    gap: 2%;
+    /*Significa o espaçamento entre os elementos que filhos desse pai*/
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -234,16 +237,20 @@ h1 {
 
 }
 
-.main2 .apresentacao .sobre-nos {width: 30%;}
+.main2 .apresentacao .sobre-nos {
+    width: 30%;
+}
 
 
 .main2 .apresentacao .container-img .pat {
     display: flex;
     justify-self: flex-start;
-    z-index: -1;/*Esse comando faz a teg ir para traz */
+    z-index: -1;
+    /*Esse comando faz a teg ir para traz */
     margin-bottom: -70px;
     margin-left: 100%;
 }
+
 /*Fim da parte main2*/
 
 
@@ -275,7 +282,8 @@ h1 {
     width: 680px;
     height: 350px;
     position: relative;
-    overflow-x: hidden;/*aplica uma barra de scroll no eixo x, mas nesse caso está escondida(hidden)*/
+    overflow-x: hidden;
+    /*aplica uma barra de scroll no eixo x, mas nesse caso está escondida(hidden)*/
 }
 
 .slides {
@@ -283,13 +291,15 @@ h1 {
     gap: 40px;
     width: 100%;
     height: 100%;
-    transition: transform 0.5s ease;/*Vai aplicar uma transição de 5s de forma suave(ease)*/
+    transition: transform 0.5s ease;
+    /*Vai aplicar uma transição de 5s de forma suave(ease)*/
 }
 
 .slide {
     width: 100%;
     height: 250px;
-    flex-shrink: 0;/*Esse item não pode encolher mesmo que o espaço seja apertado*/
+    flex-shrink: 0;
+    /*Esse item não pode encolher mesmo que o espaço seja apertado*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -298,8 +308,10 @@ h1 {
 
 
 /* Inputs escondidos */
-input[name="slide"] {/*Seleciona o input onde o nome = slide*/
-    display: none;/*vai retirar esse elemento da tela mas suas propiedades podem ser acessadas*/
+input[name="slide"] {
+    /*Seleciona o input onde o nome = slide*/
+    display: none;
+    /*vai retirar esse elemento da tela mas suas propiedades podem ser acessadas*/
 }
 
 /* Navegação */
@@ -307,7 +319,8 @@ input[name="slide"] {/*Seleciona o input onde o nome = slide*/
     position: absolute;
     bottom: 10px;
     left: 50%;
-    transform: translateX(-50%);/*Significa que vai se mover para direita no eixo x(horizontal)*/
+    transform: translateX(-50%);
+    /*Significa que vai se mover para direita no eixo x(horizontal)*/
     display: flex;
     gap: 10px;
 }
@@ -317,17 +330,21 @@ input[name="slide"] {/*Seleciona o input onde o nome = slide*/
     height: 15px;
     border-radius: 50%;
     background: #ffffff;
-    cursor: pointer;/*Quando o cursor do mause passa por cima dessas lebel vai se transformar na mãozinha ou o ponteiro
+    cursor: pointer;
+    /*Quando o cursor do mause passa por cima dessas lebel vai se transformar na mãozinha ou o ponteiro
     trazendo a identificação que o objeto é clicavel*/
-    transition: background 0.3s;/*vai aplicar uma transição de backgroun em 0.3 segundos*/
+    transition: background 0.3s;
+    /*vai aplicar uma transição de backgroun em 0.3 segundos*/
 }
 
 input#s1:checked~.slides {
-    transform: translateX(0%);/*Se o input com ID s1 estiver marcado (checked), então mova o contêiner .slides para a posição 0%, ou seja, mostre o primeiro slide.*/
+    transform: translateX(0%);
+    /*Se o input com ID s1 estiver marcado (checked), então mova o contêiner .slides para a posição 0%, ou seja, mostre o primeiro slide.*/
 }
 
 input#s2:checked~.slides {
-    transform: translateX(-106%);/*Se o input com ID s1 estiver marcado (checked), então mova o contêiner .slides para a posição 106%, ou seja, mostre o primeiro slide.*/
+    transform: translateX(-106%);
+    /*Se o input com ID s1 estiver marcado (checked), então mova o contêiner .slides para a posição 106%, ou seja, mostre o primeiro slide.*/
 }
 
 input#s1:checked~.navigation label[for="s1"],
@@ -337,15 +354,26 @@ input#s2:checked~.navigation label[for="s2"] {
     background: #333;
 }
 
-.main3 .container-diagrama .slides .box1, .box2, .box3, .box4, .box5,.box6{/*As virgualas entre as classes declaradas,significa que as condições declaradas servem para todas que estão separadas pela virgula*/
+.main3 .container-diagrama .slides .box1,
+.box2,
+.box3,
+.box4,
+.box5,
+.box6 {
+    /*As virgualas entre as classes declaradas,significa que as condições declaradas servem para todas que estão separadas pela virgula*/
     width: 200px;
     height: 200px;
     border-top-right-radius: 10px;
-    border-top-left-radius: 10px; 
+    border-top-left-radius: 10px;
     background-size: cover;
-}   
+}
 
-.main3 .container-diagrama .slides .box1:hover,.box2:hover,.box3:hover,.box4:hover, .box5:hover, .box6:hover{
+.main3 .container-diagrama .slides .box1:hover,
+.box2:hover,
+.box3:hover,
+.box4:hover,
+.box5:hover,
+.box6:hover {
     width: 210px;
     height: 210px;
 }
@@ -376,7 +404,7 @@ input#s2:checked~.navigation label[for="s2"] {
 
 
 
-.main3 .container-diagrama .slides .conteudo{
+.main3 .container-diagrama .slides .conteudo {
     display: flex;
     text-align: center;
     justify-content: center;
@@ -385,34 +413,37 @@ input#s2:checked~.navigation label[for="s2"] {
     margin-top: 150%;
     background-color: #0A0908;
     color: #ffff;
-    border-bottom-left-radius: 10px;/*bordar arredondada apenas no canto esquerdo e na parte inferior */
-    border-bottom-right-radius: 10px;/*bordar arredondada apenas no canto direito e na parte inferior */
+    border-bottom-left-radius: 10px;
+    /*bordar arredondada apenas no canto esquerdo e na parte inferior */
+    border-bottom-right-radius: 10px;
+    /*bordar arredondada apenas no canto direito e na parte inferior */
     padding: 10px;
 }
+
 /*Finalizada parte main3 diagrama*/
 
 /*Inicio parte main3 gráfico*/
-.main3 .container-grafico{
+.main3 .container-grafico {
     margin-top: 2%;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center ;
-    background: linear-gradient(360deg,  #8B6E5A,#EEDDCC );
+    align-items: center;
+    background: linear-gradient(360deg, #8B6E5A, #EEDDCC);
 }
 
 .main3 .container-grafico .cont-2 {
     width: 80%;
     display: flex;
     justify-content: space-between;
-    align-items: center ;
+    align-items: center;
 }
 
-.main3 .container-grafico .cont-2 .titulo{
+.main3 .container-grafico .cont-2 .titulo {
     width: 50%;
 }
 
-.main3 .container-grafico .cont-2 .grafico{
+.main3 .container-grafico .cont-2 .grafico {
     width: 400px;
     height: 400px;
     display: flex;
@@ -420,7 +451,7 @@ input#s2:checked~.navigation label[for="s2"] {
     align-items: center;
 }
 
-.main3 .container-grafico .grafico .img-grafico{
+.main3 .container-grafico .grafico .img-grafico {
     background-image: url(../imgs/grafico.png);
     border-radius: 20px;
     background-size: cover;
@@ -437,9 +468,10 @@ input#s2:checked~.navigation label[for="s2"] {
 
 .background {
     position: relative;
-    background-color: rgba(203, 170, 157, 0.7); /* Cor CBAA9D com opacidade de 70% */
+    background-color: rgba(203, 170, 157, 0.7);
+    /* Cor CBAA9D com opacidade de 70% */
     height: 200px;
-    width: 100%;  
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -451,12 +483,15 @@ input#s2:checked~.navigation label[for="s2"] {
     content: "";
     position: absolute;
     top: 0;
-    left: 50%; /* centraliza */
+    left: 50%;
+    /* centraliza */
     transform: translateX(-50%);
     width: 100%;
     height: 200px;
-    background-color: #333; /* cor do fundo */
-    z-index: -1; /* fica por trás do conteúdo */
+    background-color: #333;
+    /* cor do fundo */
+    z-index: -1;
+    /* fica por trás do conteúdo */
     border-radius: 10px;
 
 }
@@ -473,25 +508,129 @@ input#s2:checked~.navigation label[for="s2"] {
     color: #ffffff;
     font-weight: bolder;
     margin-bottom: 30px;
-    
+
 }
 
 .container-footer .footer-conteudo .background .links ul li a:hover {
-    color: #AB8E7F; /* ou outra cor de destaque */
+    color: #AB8E7F;
+    /* ou outra cor de destaque */
     transition: 0.3s;
 }
 
-.direitos  {
+.direitos {
     color: white;
     text-align: center;
     font-size: 14px;
 }
 
+/*Main 4*/
+.main4 {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
 
+.main4 .title {
+    border-radius: 10px;
+    background-color: #EEDDCC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 70px;
+    margin-top: -20px;
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+}
 
+.main4 .container-contato {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
 
+.main4 .container-contato .img-tel,
+.img-email,
+.img-local,
+.img-horario {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    background-size: cover;
+    cursor: pointer;
+}
 
+.main4 .container-contato .img-tel {
+    background-image: url(../imgs/telefone.png);
+}
 
+.main4 .container-contato .img-email {
+    background-image: url(../imgs/email.png);
+}
 
+.main4 .container-contato .img-local {
+    background-image: url(../imgs/local.png);
+}
 
+.main4 .container-contato .img-horario {
+    background-image: url(../imgs/horario.png);
+}
 
+.main4 .container-contato .tel,
+.email,
+.localizacao,
+.horario {
+    height: 90%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.main4 .container-contato .tel:hover,
+.email:hover,
+.localizacao:hover,
+.horario:hover {
+    background: #DFB197;
+    transition: 0.3s;
+}
+
+.main4 .container-contato .email:hover p {
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.main4 .container-contato .localizacao:hover p {
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.main4 .container-contato .horario:hover p {
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.main4 .container-contato .tel:hover p {
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.main4 .container-contato p {
+    opacity: 0;
+}
+
+.main4 .container-contato .titulo-p {
+    font-weight: bolder;
+    margin-top: 20px;
+}
