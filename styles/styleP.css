@@ -134,7 +134,7 @@ e o position relative fara qu eo contúdo dentro dela sejam relativos ao ela, ou
 .card-cadastro .container{
     display: flex;
     width: 700px;
-    height: 500px;
+    height: 600px;
     border: 2px solid var(--azul);
     border-radius: 25px;
     justify-content: center;
