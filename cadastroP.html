@@ -166,19 +166,27 @@
       
         if (user == "" || email == "" || telefone == "" || senha == "" || senhaConfirmar == "" || loja == "" || cnpj == "" || cidade == "" || uf == "" || rua == "" || numero == "" || cep == "") {
         divResultado.innerHTML = `Todos os campos são obrigatórios.`;
+        
         } if (senha !== senhaConfirmar) {
         divResultado.innerHTML = `As senhas não correspondem.`;
+        
+        } if (validacaoSenha() == false) {
+        return;
+        
         } alert("Parabéns, sua conta foi registrada.");
         window.location = 'index.html'; }
+        
 
     function validacaoSenha() {
+        divResultado.innerHTML = "";
+        
         var senha = inputSenha.value;
         var senhaConfirmar = inputSenhaConfirm.value;
-
-        divResultado.innerHTML = "";
+        var validacoesIncorretas = false;
 
         if (senha.length < 8 || senhaConfirmar.length < 8) {
-        divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>` }
+        divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>`;
+        validacoesIncorretas = true;
 
 // Variaveis de símbolos que não devem estar presentes na senha.
         var senhaExc = senha.includes('!');
@@ -204,10 +212,14 @@
         var senhaConfirmarParEsq = senhaConfirmar.includes('(');
         var senhaConfirmarParDir = senhaConfirmar.includes(')');
 
-        if (senhaExc || senhaArr || senhaHas || senhaCif || senhaPor || senhaAsp || senhaAnd || senhaAst || senhaParEsq || senhaParDir || senhaConfirmarExc || senhaConfirmarArr || senhaConfirmarHas || senhaConfirmarCif || senhaConfirmarPor || senhaConfirmarAsp || senhaConfirmarAnd || senhaConfirmarAst || senhaConfirmarParEsq || senhaConfirmarParDir) {
+        } if (senhaExc || senhaArr || senhaHas || senhaCif || senhaPor || senhaAsp || senhaAnd || senhaAst || senhaParEsq || senhaParDir || senhaConfirmarExc || senhaConfirmarArr || senhaConfirmarHas || senhaConfirmarCif || senhaConfirmarPor || senhaConfirmarAsp || senhaConfirmarAnd || senhaConfirmarAst || senhaConfirmarParEsq || senhaConfirmarParDir) {
         divResultado.innerHTML += `A senha não deve conter os símbolos especiais "!@#$%¨&*()" ou espaços. <br>`;
+        validacoesIncorretas = true;
     
         } if (senhaConfirmar !== senha) {
-        divResultado.innerHTML += `As senhas não correspondem.`; }
+        divResultado.innerHTML += `As senhas não correspondem.`;
+        validacoesIncorretas = true;
+        
+        } return validacoesIncorretas == false;
     }
 </script>
