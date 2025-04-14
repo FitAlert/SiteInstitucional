@@ -58,5 +58,11 @@
     font-weight: bolder;
     background: #E0B298;
 }
+.navbar .logo{
+    background-image: url(../imgs/LOGO_OFICIAL.png);
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+}
 
 /*Fim da parte de navegação navbar*/
