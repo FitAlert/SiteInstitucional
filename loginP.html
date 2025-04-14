@@ -62,7 +62,7 @@
                     <!-- =============
                         BOTÃO
                     ============= -->
-                    <button class="card botao" onclick="login()">Entrar</button>
+                    <button class="card botao" onclick="entrar()">Entrar</button>
                     <br>
                     <a href="cadastroP.html" id="SemConta">Não tem conta ainda? Cadastre-se agora!</a>
             </div>
@@ -73,22 +73,48 @@
 </html>
 
 <script>
-    function login() {
+    function entrar() {
         // Respostas do formulário
         var usuario = inputUsuario.value;
         var email = inputEmail.value;
         var passwd = inputSenha.value;
 
-        // Validação Login
-        if (usuario == 'admin' && email == 'admin@gmail.com' && passwd == 'adm123') {
-            window.location.href = 'index.html';
-        } else {
-            alert ('Os dados informados estão incorretos.')
+        var tentativas = 0;
+
+    while(usuario != 'admin' || email != 'admin@gmail.com' || passwd != 'adm123' && tentativas <3){
+        continuar = confirm('Credenciais incorretas. Tentar novamente?')
+
+        if(continuar == true){
+        usuario = prompt("Informe seu usuario");
+        email = prompt("Informe seu email");
+        passwd = prompt("Informe sua senha");
+        alert('Validando seu login')
+        tentativas++
+        }
+
+        else{
+            alert('Finalizando....')
+            break;
         }
     }
+
+    if(tentativas == 3)
+    {
+        alert('Máximo de 3 tentativas atingido. Tente novamente mais tarde')
+    }
+
+    if (usuario == 'admin' && email == 'admin@gmail.com' && passwd == 'adm123') 
+    {
+        alert('Bem vindo!')
+        window.location.href = 'index.html'
+    } 
+
+    }
+
     function login(){
         window.location = 'loginP.html'
     }
+
     function cadastro(){
         window.location = 'cadastroP.html'
     }
