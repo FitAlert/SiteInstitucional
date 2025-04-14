@@ -66,11 +66,11 @@
                         <div class="input_conjunto">
                             <div class="input-separado">
                                 <p>Senha</p>
-                                <input type="password" id="inputSenha" placeholder="*****">
+                                <input oninput="validacoesCadastro()" type="password" id="inputSenha" placeholder="*****">
                             </div>
                             <div class="input-separado">
                                 <p>Confirmar senha</p>
-                                <input type="password" id="inputSenhaConfirm" placeholder="*****">
+                                <input oninput="validacoesCadastro()" type="password" id="inputSenhaConfirm" placeholder="*****">
                             </div>
                         </div>
                     </div>
@@ -119,6 +119,7 @@
                 <label for="c1">Cadastro Cliente</label>
                 <label for="c2">Cadastro Loja</label>
             </div>
+            <div id="divResultado" style="color: #ffff;"></div>
             <!-- =============
                         BOTÃO
                     ============= -->
@@ -131,10 +132,69 @@
 </html>
 
 <script>
-      function login(){
-        window.location = 'loginP.html'
-    }
+    function login(){
+      window.location = 'loginP.html'
+  }
+
+  // Variáveis do usuário.
+  var user = inputUser.value;
+
+  // Variáveis do e-mail.
+  var email = inputEmail.value;
+
+  // Variável de telefone.
+  var telefone = inputTelefone.value;
+  
+  // Variáveis de senha e confirmação de senha.
+  var senha = inputSenha.value;
+  var tamanhoSenha = senha.length;
+  var simbolosSenha = senha.includes('!@#$%¨&*()');
+  var senhaConfirmar = inputSenhaConfirm.value;
+  var tamanhoSenhaConfirmar = senhaConfirmar.length;
+  var simbolosSenhaConfirmar = senhaConfirmar.includes('!@#$%¨&*()');
+
+  
+
+  // Variável do nome da loja.
+  var loja = inputLoja.value;
+
+  // Variável do CNPJ.
+  var cnpj = inputCNPJ.value;
+
+  // Variavéis do endereço.
+  var cidade = inputCidade.value;
+  var uf = inputUF.value;
+  var rua = inputRua.value
+  var numero = inputNumero.value
+  var cep = inputCEP.value;
+  
+  // Variável contendo as mensagens de validação.
+  var mensagem = "";
+
     function cadastro(){
-        window.location = 'cadastroP.html'
+        window.location = 'cadastroP.html';
+      
+        if ((user || email || telefone || senha || senhaConfirmar) && (loja || cnpj || cidade || uf || rua || numero || cep) == " ") {
+        alert("* Todos os campos são obrigatórios.")
+        return
+        } if (senhaConfirmar != senha) {
+        divErro.innerHTML = `As senhas não correspondem.`
+        }
+
+     
     }
+    function validacoesCadastro() {
+        if ((tamanhoSenha && tamanhoSenhaConfirmar) < 7) {
+        divResultado.innerHTML = `A senha deve conter pelo menos 8 caracteres. <br>`
+        } while ((tamanhoSenha && tamanhoSenhaConfirmar) >= 7) {
+        divResultado.innerHTML = `` } 
+      
+        if ((simbolosSenha && simbolosSenhaConfirmar) = true) {
+        divResultado.innerHTML = `A senha não deve conter os símbolos especiais "!@#$%¨&*()" ou espaços. <br>`
+        } while ((simbolosSenha && simbolosSenhaConfirmar) = false) {
+        divResultado.innerHTML = `` }
+
+        if (senhaConfirmar != senha) {
+        divErro.innerHTML = `As senhas não correspondem.` }
+    } divResultado.innerHTML = mensagem;
 </script>
