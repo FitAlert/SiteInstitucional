@@ -66,11 +66,11 @@
                         <div class="input_conjunto">
                             <div class="input-separado">
                                 <p>Senha</p>
-                                <input oninput="validacoesCadastro()" type="password" id="inputSenha" placeholder="*****">
+                                <input oninput="validacaoSenha()" type="password" id="inputSenha" placeholder="*****">
                             </div>
                             <div class="input-separado">
                                 <p>Confirmar senha</p>
-                                <input oninput="validacoesCadastro()" type="password" id="inputSenhaConfirm" placeholder="*****">
+                                <input oninput="validacaoSenha()" type="password" id="inputSenhaConfirm" placeholder="*****">
                             </div>
                         </div>
                     </div>
@@ -132,69 +132,82 @@
 </html>
 
 <script>
-    function login(){
+    function login() {
       window.location = 'loginP.html'
   }
-
-  // Variáveis do usuário.
-  var user = inputUser.value;
-
-  // Variáveis do e-mail.
-  var email = inputEmail.value;
-
-  // Variável de telefone.
-  var telefone = inputTelefone.value;
-  
-  // Variáveis de senha e confirmação de senha.
-  var senha = inputSenha.value;
-  var tamanhoSenha = senha.length;
-  var simbolosSenha = senha.includes('!@#$%¨&*()');
-  var senhaConfirmar = inputSenhaConfirm.value;
-  var tamanhoSenhaConfirmar = senhaConfirmar.length;
-  var simbolosSenhaConfirmar = senhaConfirmar.includes('!@#$%¨&*()');
-
-  
-
-  // Variável do nome da loja.
-  var loja = inputLoja.value;
-
-  // Variável do CNPJ.
-  var cnpj = inputCNPJ.value;
-
-  // Variavéis do endereço.
-  var cidade = inputCidade.value;
-  var uf = inputUF.value;
-  var rua = inputRua.value
-  var numero = inputNumero.value
-  var cep = inputCEP.value;
-  
-  // Variável contendo as mensagens de validação.
-  var mensagem = "";
-
-    function cadastro(){
+    function cadastro() {
         window.location = 'cadastroP.html';
-      
-        if ((user || email || telefone || senha || senhaConfirmar) && (loja || cnpj || cidade || uf || rua || numero || cep) == " ") {
-        alert("* Todos os campos são obrigatórios.")
-        return
-        } if (senhaConfirmar != senha) {
-        divErro.innerHTML = `As senhas não correspondem.`
-        }
 
-     
+// Variáveis do usuário.
+        var user = inputUser.value;
+
+// Variáveis do e-mail.
+        var email = inputEmail.value;
+
+// Variável de telefone.
+        var telefone = inputTelefone.value;
+
+// Variáveis de senha e confirmação de senha.
+        var senha = inputSenha.value;
+        var senhaConfirmar = inputSenhaConfirm.value;
+
+// Variável do nome da loja.
+        var loja = inputLoja.value;
+
+// Variável do CNPJ.
+        var cnpj = inputCNPJ.value;
+
+// Variavéis do endereço.
+        var cidade = inputCidade.value;
+        var uf = inputUF.value;
+        var rua = inputRua.value
+        var numero = inputNumero.value
+        var cep = inputCEP.value;
+      
+        if (user == "" || email == "" || telefone == "" || senha == "" || senhaConfirmar == "" || loja == "" || cnpj == "" || cidade == "" || uf == "" || rua == "" || numero == "" || cep == "") {
+        divResultado.innerHTML = `Todos os campos são obrigatórios.`;
+        } if (senha !== senhaConfirmar) {
+        divResultado.innerHTML = `As senhas não correspondem.`;
+        } alert("Parabéns, sua conta foi registrada.");
+        window.location = 'index.html'; }
+
+    function validacaoSenha() {
+        var senha = inputSenha.value;
+        var senhaConfirmar = inputSenhaConfirm.value;
+
+        divResultado.innerHTML = "";
+
+        if (senha.length < 8 || senhaConfirmar.length < 8) {
+        divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>` }
+
+// Variaveis de símbolos que não devem estar presentes na senha.
+        var senhaExc = senha.includes('!');
+        var senhaArr = senha.includes('@');
+        var senhaHas = senha.includes('#');
+        var senhaCif = senha.includes('$');
+        var senhaPor = senha.includes('%');
+        var senhaAsp = senha.includes('¨');
+        var senhaAnd = senha.includes('&');
+        var senhaAst = senha.includes('*');
+        var senhaParEsq = senha.includes('(');
+        var senhaParDir = senha.includes(')');
+
+// Variáveis de símbolos que não devem estar presentes na confirmação de senha.
+        var senhaConfirmarExc = senhaConfirmar.includes('!');
+        var senhaConfirmarArr = senhaConfirmar.includes('@');
+        var senhaConfirmarHas = senhaConfirmar.includes('#');
+        var senhaConfirmarCif = senhaConfirmar.includes('$');
+        var senhaConfirmarPor = senhaConfirmar.includes('%');
+        var senhaConfirmarAsp = senhaConfirmar.includes('¨');
+        var senhaConfirmarAnd = senhaConfirmar.includes('&');
+        var senhaConfirmarAst = senhaConfirmar.includes('*');
+        var senhaConfirmarParEsq = senhaConfirmar.includes('(');
+        var senhaConfirmarParDir = senhaConfirmar.includes(')');
+
+        if (senhaExc || senhaArr || senhaHas || senhaCif || senhaPor || senhaAsp || senhaAnd || senhaAst || senhaParEsq || senhaParDir || senhaConfirmarExc || senhaConfirmarArr || senhaConfirmarHas || senhaConfirmarCif || senhaConfirmarPor || senhaConfirmarAsp || senhaConfirmarAnd || senhaConfirmarAst || senhaConfirmarParEsq || senhaConfirmarParDir) {
+        divResultado.innerHTML += `A senha não deve conter os símbolos especiais "!@#$%¨&*()" ou espaços. <br>`;
+    
+        } if (senhaConfirmar !== senha) {
+        divResultado.innerHTML += `As senhas não correspondem.`; }
     }
-    function validacoesCadastro() {
-        if ((tamanhoSenha && tamanhoSenhaConfirmar) < 7) {
-        divResultado.innerHTML = `A senha deve conter pelo menos 8 caracteres. <br>`
-        } while ((tamanhoSenha && tamanhoSenhaConfirmar) >= 7) {
-        divResultado.innerHTML = `` } 
-      
-        if ((simbolosSenha && simbolosSenhaConfirmar) = true) {
-        divResultado.innerHTML = `A senha não deve conter os símbolos especiais "!@#$%¨&*()" ou espaços. <br>`
-        } while ((simbolosSenha && simbolosSenhaConfirmar) = false) {
-        divResultado.innerHTML = `` }
-
-        if (senhaConfirmar != senha) {
-        divErro.innerHTML = `As senhas não correspondem.` }
-    } divResultado.innerHTML = mensagem;
 </script>
