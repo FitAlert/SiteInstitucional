@@ -5,17 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Monitoramento de provadores</title>
-
+    <title>FITALERT</title>
+    <link rel="shortcut icon" href="imgs/logo-oficial-branca.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/styleI.css">
     <link rel="stylesheet" href="styles/menu.css">
 </head>
 
+<style>
+    .main2 hr,
+    .main3 hr,
+    .main4 hr {
+        margin: 2% 0 2% 0;
+        width: 80%;
+        margin: 0 auto;
+        color: #000000;
+    }
+</style>
+
 <body>
     <!--Navbar barra de navegação-->
     <nav class="navbar">
-        <div class="logo">
-
+        <div class="conjunto-logo">
+            <div class="logo">
+            </div>
+            FITALERT
         </div>
 
         <div class="links">
@@ -34,21 +47,24 @@
         </div>
     </nav>
 
-
     <main class="main1">
         <!--conteúdo-->
         <div class="container">
 
             <div class="apresentacao">
                 <div class="titulo">
-                    <h1>Provadores com monitoramento <span style="color: #EEDDCC; background-color: #6e4930be; padding: 5px 15px 5px 15px; border-radius: 30px;">inteligente</span></h1>
+                    <h1>Provadores com monitoramento <span
+                            style="color: #EEDDCC; background-color: #6e4930be; padding: 5px 15px 5px 15px; border-radius: 30px;">inteligente</span>
+                    </h1>
                 </div>
                 <div class="sub_titulo">
                     <p>
-                        Transforme seu provador em uma máquina de conversão utilizando nossos serviços de monitoramento de provadores de roupa, com uma dashboard dinâmica que te auxilia na tomada de decisão estratégica!
+                        Transforme seu provador em uma máquina de conversão utilizando nossos serviços de monitoramento
+                        de provadores de roupa, com uma dashboard dinâmica que te auxilia na tomada de decisão
+                        estratégica!
                     </p>
                 </div>
-                <button class="calculadora">Calculadora</button>
+                <button class="calculadora" onclick="calculadora()">Calculadora</button>
             </div>
 
             <div class="apresentacao_img">
@@ -113,7 +129,7 @@
             <div class="box-pai">
                 <div class="box-filho">
                     <div class="img">
-                        <img src="imgs/calculadora-Photoroom.png" alt="">
+                        <img src="imgs/calculadora-Photoroom.png" alt="" width="120px">
                     </div>
                     <div class="rotulos">
                         Calculadora financeira
@@ -121,7 +137,7 @@
                 </div>
                 <div class="box-filho">
                     <div class="img">
-                        <img src="imgs/alerta.png" alt="">
+                        <img src="imgs/alerta.png" alt="" width="120px">
                     </div>
                     <div class="rotulos">
                         Alertas de lotação
@@ -129,7 +145,7 @@
                 </div>
                 <div class="box-filho">
                     <div class="img">
-                        <img src="imgs/moinitoramento.png" alt="">
+                        <img src="imgs/moinitoramento.png" alt="" width="120px">
                     </div>
                     <div class="rotulos">
                         Monitoramento em tempo real
@@ -137,37 +153,16 @@
                 </div>
                 <div class="box-filho">
                     <div class="img">
-                        <img src="imgs/equipe.png" alt="">
+                        <img src="imgs/equipe.png" alt="" width="120px">
                     </div>
                     <div class="rotulos">
                         Apoio equipe
                     </div>
                 </div>
 
-                <div class="decoracao pat">
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                    <div class="point"></div>
-                </div>
             </div>
-        </div><hr style="width: 80%; margin-top: -75px;">
+        </div>
+
         <div class="apresentacao">
             <div class="container-img">
                 <div class="decoracao pat">
@@ -197,15 +192,15 @@
                 </div>
             </div>
             <div class="sobre-nos-container">
-            <div class="sobre-nos" id="sobre-nos">
-                <h1>Sobre nós</h1><br>
-                <p>Somos uma empresa focada em aumentar a conversão de vendas e lucros das lojas de roupas por meio
-                    de monitoramento em tempo real dos provadores. Nossa solução permite que as lojas acompanhem a
-                    presença e o tempo dos clientes dentro deles, identificando padrões de comportamento e
-                    otimizando o atendimento. Com dados e insights em tempo real, ajudamos as lojas a melhorar a
-                    experiência do cliente e a maximizar suas vendas de forma mais eficiente</p>
+                <div class="sobre-nos" id="sobre-nos">
+                    <h1>Sobre nós</h1><br>
+                    <p>Somos uma empresa focada em aumentar a conversão de vendas e lucros das lojas de roupas por meio
+                        de monitoramento em tempo real dos provadores. Nossa solução permite que as lojas acompanhem a
+                        presença e o tempo dos clientes dentro deles, identificando padrões de comportamento e
+                        otimizando o atendimento. Com dados e insights em tempo real, ajudamos as lojas a melhorar a
+                        experiência do cliente e a maximizar suas vendas de forma mais eficiente</p>
+                </div>
             </div>
-    </div>
         </div>
     </main>
 
@@ -260,12 +255,16 @@
                 </div>
             </div>
         </div>
-        <hr style="width: 80%;">
+        <hr style="margin: 80px 0 2% 0;
+width: 80%;
+border: 1px dashed #707070;">
         <div class="container-grafico">
             <div class="cont-2">
                 <div class="titulo">
                     <h1>Dashboards dinâmicas</h1><br>
-                    <p>Fique ciente em tempo real sobre presença de clientes nos provadores ao longo dos dias da semana. Além de ter acesso a uma dashboard que te auxilie a identificar padrões de ocupação e fluxo de visitantes.  </p>
+                    <p>Fique ciente em tempo real sobre presença de clientes nos provadores ao longo dos dias da semana.
+                        Além de ter acesso a uma dashboard que te auxilie a identificar padrões de ocupação e fluxo de
+                        visitantes. </p>
                 </div>
                 <div class="grafico">
                     <div class="img-grafico">
@@ -275,6 +274,11 @@
             </div>
         </div>
     </main>
+
+    <hr style="
+width: 80%;
+margin: 0 auto;
+border: 1px dashed #707070;">
 
     <main class="main4" id="contato">
         <div class="title">
@@ -302,7 +306,7 @@
             <div class="horario">
                 <div class="img-horario">
                 </div>
-                <p class="titulo-p">Segunda a Sexta</p> 
+                <p class="titulo-p">Segunda a Sexta</p>
                 <p>10:00 ás 21:00</p>
             </div>
         </div>
@@ -337,5 +341,8 @@
     }
     function cadastro() {
         window.location = 'cadastroP.html'
+    }
+    function calculadora(){
+        window.location = 'calculadora.html'
     }
 </script>

@@ -124,6 +124,7 @@ Card pai responsavel por deixar a central de cadastro no centro da tela
     height: 100vh;
     display: flex;
     align-items: center;
+    margin-top: 3%;
     justify-content: center;
 }
 

@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap');
 
-/*Essa parte referincia a tudo do código para cada tag será passada esses valores*/
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    /*Vai pegar os valores padding e o margin adicionados e aplicara em em toda a página, apenas nas bordas */
-}
+
 
 :root{
     --titulos: #6e4930be;
@@ -18,6 +12,7 @@ body {
     color: var(--titulos);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     flex-wrap: wrap;
     font-family: "Montserrat", sans-serif;
     width: 100%;
@@ -25,8 +20,10 @@ body {
 }
 
 h1 {
-    font-size: 60px;
+    font-size: 45px;
 }
+
+
 
 /*É o corpo onde está todo o centeudo essa é a main 1 */
 .main1 {
@@ -38,8 +35,9 @@ h1 {
 }
 
 .main1 .container {
+    margin-top: -3%;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     align-items: center;
     display: flex;
     justify-content: space-evenly;
@@ -83,12 +81,15 @@ h1 {
 
 .apresentacao .sub_titulo p {
     padding: 30px 0 30px 0;
-    font-size: 21px;
+    font-size: 18px;
     color: #8B6E5A;
 }
 
 /*Botão calculadora*/
 .apresentacao .calculadora {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 18px;
     color: var(--fundo);
     background: #8B6E5A;
@@ -96,12 +97,12 @@ h1 {
     width: 150px;
     height: 35px;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 5px;
     border: none;
 }
 
 .apresentacao .calculadora:hover {
-    background: #0a0908c2;
+    background-color: #745542;
 }
 
 /*Fim da estilização de escritão e botão de calculadora*/
@@ -116,13 +117,14 @@ h1 {
     display: flex;
     align-self: flex-end;
     margin-bottom: -20px;
+    z-index: -1;
 }
 
 /*Point top right (ptr) referência imagem*/
 .apresentacao_img .ptr {
     display: flex;
-    align-self: flex-start;
-    margin-top: -20px;
+    align-self: flex-start; 
+    margin-top: 50px;   
 }
 
 .img_apresentacao {
@@ -147,7 +149,7 @@ h1 {
     bottom: 0;
 }
 
-/*Segunda parte da main conteudo do scroll*/
+/*Segunda parte da main */
 .main2 {
     margin-top: 5%;
     width: 100%;
@@ -155,6 +157,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
     background: #ffff;
 }
 
@@ -164,41 +167,37 @@ h1 {
 
 .main2 .container {
     display: flex;
-    flex-direction: column;
     width: 80%;
-    height: 40vh;
+    height: 35vh;
     margin-bottom: 10%;
 }
 
 .container .box-pai {
-    border-radius: 5px;
-    margin-top: 5%;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     /*Quando a tela chegar em um determinado tamanho, vai ter uma quebra de linha entre os elementos filhos*/
     gap: 2%;
     /*Significa o espaçamento entre os elementos que filhos desse pai*/
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    height: 100px;
+    height: 100%;
+    border-radius: 5px;
+    margin-top: 5%;
 }
 
 .box-pai .box-filho {
     background: #ECECEE;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 250px;
     height: 250px;
     flex-direction: column;
     border-radius: 10px;
 }
 
-.box-pai .box-filho .img img {
-    width: 120px;
-    height: 101px;
-}
 
 .box-pai .box-filho .rotulos {
     display: flex;
@@ -221,11 +220,11 @@ h1 {
 
 .main2 .apresentacao {
     width: 80%;
-    margin-bottom: 5%;
     height: 428px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-bottom: 3%;
     align-items: center;
 
 }
@@ -275,25 +274,25 @@ h1 {
 /*Parte main3*/
 .main3 {
     margin-top: 5%;
+    margin-bottom: 3%;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .main3 .container-diagrama {
     width: 80%;
-    height: 50vh;
+    height: 40vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2%;
 }
 
 .main3 .container-diagrama .titulo {
     width: 30%;
-
 }
 
 .slider {
@@ -555,6 +554,7 @@ input#s2:checked~.navigation label[for="s2"] {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
+    margin-top: 3%;
 }
 
 .main4 .title {
