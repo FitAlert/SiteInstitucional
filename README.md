@@ -7,7 +7,7 @@ Este é o repositório do site institucional da **FitAlert**, uma plataforma vol
 ## 📸 Demonstração
 
 <p align="center">
-  <img src="imgs/demonstrcao.png" alt="Página inicial do FitAlert" width="600"/>
+  <img src="imgs/demonstrcao.png" alt="Página inicial do FitAlert" width="1000"/>
 </p>
 
 ## 📁 Estrutura de Arquivos
