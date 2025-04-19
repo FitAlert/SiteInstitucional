@@ -1,4 +1,6 @@
-/*Essa parte referincia a tudo do código para cada teg será passada esses valores*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap');
+
+/*Essa parte referincia a tudo do código para cada tag será passada esses valores*/
 * {
     padding: 0;
     margin: 0;
@@ -6,22 +8,25 @@
     /*Vai pegar os valores padding e o margin adicionados e aplicara em em toda a página, apenas nas bordas */
 }
 
+:root{
+    --titulos: #6e4930be;
+    --container: #8B6E5A;
+    --fundo: #EEDDCC;
+}
+
 body {
+    color: var(--titulos);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    font-family: Arial, Helvetica, sans-serif;
-    /*Quando tem mais de uma fonte significa que se o computador não reconhecer a primeira fonte Arial, vai passa para a próxima que seria a Helvetica e se o caso persistir será declarada a sans-serif que é uma padrão que todos os navegadores reconhecem*/
+    font-family: "Montserrat", sans-serif;
     width: 100%;
-    background: #EEDDCC;
+    background: var(--fundo);
 }
 
 h1 {
-    font-size: 50px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 60px;
 }
-
-
 
 /*É o corpo onde está todo o centeudo essa é a main 1 */
 .main1 {
@@ -64,7 +69,7 @@ h1 {
     display: flex;
 }
 
-/*Fim do estili de pontos de decoração*/
+/*Fim do estilo de pontos de decoração*/
 
 /*Estilo da parte escrita de apresentação e botão de calculadora financeira lado direito da tela na parte de contúdo*/
 .apresentacao {
@@ -77,19 +82,22 @@ h1 {
 
 
 .apresentacao .sub_titulo p {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 24px;
+    padding: 30px 0 30px 0;
+    font-size: 21px;
+    color: #8B6E5A;
 }
 
 /*Botão calculadora*/
 .apresentacao .calculadora {
     font-size: 18px;
-    color: #fff;
-    background: #0A0908;
+    color: var(--fundo);
+    background: #8B6E5A;
+    padding: 10px 10px 10px 10px;
     width: 150px;
     height: 35px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
+    border: none;
 }
 
 .apresentacao .calculadora:hover {
@@ -118,10 +126,11 @@ h1 {
 }
 
 .img_apresentacao {
-    width: 350px;
-    height: 428px;
+    margin-top: 100px;
+    width: 450px;
+    height: 498px;
     border-bottom-left-radius: 100px;
-    background-image: url(../imgs/img-1.jpeg);
+    background-image: url(../imgs/background_entrada2.png);
     background-size: cover;
 }
 
@@ -187,8 +196,8 @@ h1 {
 }
 
 .box-pai .box-filho .img img {
-    width: 180px;
-    height: 170px;
+    width: 120px;
+    height: 101px;
 }
 
 .box-pai .box-filho .rotulos {
@@ -200,9 +209,8 @@ h1 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #ffff;
-    background-color: #0A0908;
-    font-family: 'Times New Roman', Times, serif;
+    color: var(--titulos);
+    font-weight: bold;
 }
 
 /*pontos de decoração de valor absoluto marcada ao topo da main 2*/
@@ -238,13 +246,19 @@ h1 {
 }
 
 .main2 .apresentacao .sobre-nos {
-    background-color: antiquewhite;
-    border-radius: 15px;
-    height: 300px;
-    width: 40%;
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
+.sobre-nos-container{
+    display: flex;
+    justify-content: end;
+    background-color: antiquewhite;
+    padding: 10px;
+    border-radius: 15px;
+    width: 50%;
+    padding: 40px;
+}
 
 .main2 .apresentacao .container-img .pat {
     display: flex;
@@ -364,7 +378,7 @@ input#s2:checked~.navigation label[for="s2"] {
 .box4,
 .box5,
 .box6 {
-    /*As virgualas entre as classes declaradas,significa que as condições declaradas servem para todas que estão separadas pela virgula*/
+    /*As virgúlas entre as classes declaradas,significa que as condições declaradas servem para todas que estão separadas pela virgula*/
     width: 200px;
     height: 200px;
     border-top-right-radius: 10px;
@@ -384,26 +398,32 @@ input#s2:checked~.navigation label[for="s2"] {
 
 .main3 .container-diagrama .slides .box1 {
     background-image: url(../imgs/1.jpg);
+    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box2 {
     background-image: url(../imgs/2.jpg);
+    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box3 {
     background-image: url(../imgs/3.png);
+    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box4 {
     background-image: url(../imgs/4.jpg);
+    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box5 {
     background-image: url(../imgs/5.jpg);
+    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box6 {
     background-image: url(../imgs/6.jpg);
+    filter: sepia();
 }
 
 
@@ -415,7 +435,7 @@ input#s2:checked~.navigation label[for="s2"] {
     align-items: center;
     height: 100px;
     margin-top: 150%;
-    background-color: #0A0908;
+    background-color: var(--titulos);
     color: #ffff;
     border-bottom-left-radius: 10px;
     /*bordar arredondada apenas no canto esquerdo e na parte inferior */
@@ -433,7 +453,7 @@ input#s2:checked~.navigation label[for="s2"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(360deg, #8B6E5A, #EEDDCC);
+    background: linear-gradient(360deg, --container, #EEDDCC);
 }
 
 .main3 .container-grafico .cont-2 {
@@ -547,7 +567,6 @@ input#s2:checked~.navigation label[for="s2"] {
     height: 70px;
     margin-top: -20px;
     font-size: 40px;
-    font-family: 'Times New Roman', Times, serif;
     font-weight: bolder;
 }
 

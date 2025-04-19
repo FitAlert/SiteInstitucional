@@ -42,26 +42,30 @@
     height: 35px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
+    border: none;
+    color: #EEDDCC;
 }
 
 .btn_cadastro:hover,
 .btn_login:hover {
-   background-color: #e0b29888;
+    background-color: #8B6E5A;
 }
 
 .btn_cadastro {
     background: transparent;
+    background: #ad9586;
 }
 
 .btn_login {
     font-weight: bolder;
-    background: #E0B298;
+    background: #745542;
 }
 .navbar .logo{
     background-image: url(../imgs/LOGO_OFICIAL.png);
-    width: 100px;
-    height: 100px;
+    margin-top: 80px;
+    width: 180px;
+    height: 180px;
     background-size: cover;
 }
 
