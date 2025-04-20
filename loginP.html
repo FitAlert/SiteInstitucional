@@ -53,8 +53,6 @@
                     <div class="formLogin">
                         <p class="title">Login</p>
                         <div id="aviso" class="aviso" style="display: none"></div>
-                        <p>Nome de usuário</p>
-                        <input type="text" id="inputUsuario" placeholder="Nome">
                         <p>Email</p>
                         <input type="text" id="inputEmail" placeholder="exemplo@gmail.com">
                         <p>Senha</p>
@@ -81,7 +79,6 @@
     function entrar() 
     {
             // Respostas do formulário
-            var usuario = inputUsuario.value;
             var email = inputEmail.value;
             var passwd = inputSenha.value;
 
@@ -90,7 +87,7 @@
             tentativas = 0
         }
 
-        while((usuario != 'admin' || email != 'admin@gmail.com' || passwd != 'adm123') && tentativas <3){
+        while((email != 'admin@gmail.com' || passwd != 'admin') && tentativas <3){
             tentativas++
             mostrarAviso(`Credenciais incorretas. Tente novamente. Tentativa: ${tentativas}`)
             return;
@@ -101,7 +98,7 @@
             mostrarAviso('Máximo de 3 tentativas atingido. Tente novamente mais tarde')
         }
 
-        if (usuario == 'admin' && email == 'admin@gmail.com' && passwd == 'adm123') 
+        if (email == 'admin@gmail.com' && passwd == 'admin') 
         {
             alert('Bem vindo!')
             window.location.href = 'index.html'
