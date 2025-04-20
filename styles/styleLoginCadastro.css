@@ -194,6 +194,10 @@ Local onde esta a as label qe são referencias dos inputs escondidos, a posiçã
     transform: translateX(-50%);
 }
 
+.input-separado p {
+    margin: 10px 0 5px;
+}
+
 /*
 aqui as duas labels estão recebendo estilis e nessa parte é um estilo geral que vai atingia ambas
 */
