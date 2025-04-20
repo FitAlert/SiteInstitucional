@@ -143,41 +143,36 @@
 
 // Variáveis do usuário.
         var user = inputUser.value;
-
-// Variáveis do e-mail.
         var email = inputEmail.value;
-
-// Variável de telefone.
-        var telefone = inputTelefone.value;
 
 // Variáveis de senha e confirmação de senha.
         var senha = inputSenha.value;
         var senhaConfirmar = inputSenhaConfirm.value;
 
-// Variável do nome da loja.
         var loja = inputLoja.value;
-
-// Variável do CNPJ.
         var cnpj = inputCNPJ.value;
-
-// Variavéis do endereço.
         var cidade = inputCidade.value;
         var uf = inputUF.value;
         var rua = inputRua.value
         var numero = inputNumero.value
         var cep = inputCEP.value;
+        var telefone = inputTelefone.value;
     
         if (user == "" || email == "" || telefone == "" || senha == "" || senhaConfirmar == "" || loja == "" || cnpj == "" || cidade == "" || uf == "" || rua == "" || numero == "" || cep == "") {
         divResultado.innerHTML = `Todos os campos são obrigatórios.`;
         
-        } if (senha !== senhaConfirmar) {
+        } 
+        
+        if (senha !== senhaConfirmar) {
         divResultado.innerHTML = `As senhas não correspondem.`;
+        } 
         
-        } if (validacaoSenha() == false) {
+        if (validacaoSenha() == false) {
         return;
+        }
         
-        } alert("Parabéns, sua conta foi registrada.");
-        window.location = 'index.html'; }
+        alert("Parabéns, sua conta foi registrada.");
+        window.location = 'login.html'; }
         
 
     function validacaoSenha() {
@@ -187,7 +182,7 @@
         var senhaConfirmar = inputSenhaConfirm.value;
         var validacoesIncorretas = false;
 
-        if (senha.length < 8 || senhaConfirmar.length < 8) {
+        if (senha.length < 8) {
         divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>`;
         validacoesIncorretas = true;
 
@@ -202,27 +197,18 @@
         var senhaAst = senha.includes('*');
         var senhaParEsq = senha.includes('(');
         var senhaParDir = senha.includes(')');
-
-// Variáveis de símbolos que não devem estar presentes na confirmação de senha.
-        var senhaConfirmarExc = senhaConfirmar.includes('!');
-        var senhaConfirmarArr = senhaConfirmar.includes('@');
-        var senhaConfirmarHas = senhaConfirmar.includes('#');
-        var senhaConfirmarCif = senhaConfirmar.includes('$');
-        var senhaConfirmarPor = senhaConfirmar.includes('%');
-        var senhaConfirmarAsp = senhaConfirmar.includes('¨');
-        var senhaConfirmarAnd = senhaConfirmar.includes('&');
-        var senhaConfirmarAst = senhaConfirmar.includes('*');
-        var senhaConfirmarParEsq = senhaConfirmar.includes('(');
-        var senhaConfirmarParDir = senhaConfirmar.includes(')');
-
-        } if (senhaExc || senhaArr || senhaHas || senhaCif || senhaPor || senhaAsp || senhaAnd || senhaAst || senhaParEsq || senhaParDir || senhaConfirmarExc || senhaConfirmarArr || senhaConfirmarHas || senhaConfirmarCif || senhaConfirmarPor || senhaConfirmarAsp || senhaConfirmarAnd || senhaConfirmarAst || senhaConfirmarParEsq || senhaConfirmarParDir) {
-        divResultado.innerHTML += `A senha não deve conter os símbolos especiais "!@#$%¨&*()" ou espaços. <br>`;
-        validacoesIncorretas = true;
-    
-        } if (senhaConfirmar !== senha) {
-        divResultado.innerHTML += `As senhas não correspondem.`;
-        validacoesIncorretas = true;
+        } 
         
-        } return validacoesIncorretas == false;
+        if (senhaExc || senhaArr || senhaHas || senhaCif || senhaPor || senhaAsp || senhaAnd || senhaAst || senhaParEsq || senhaParDir) {
+            divResultado.innerHTML += `A senha não deve conter os símbolos especiais "!@#$%¨&*()" ou espaços. <br>`;
+            validacoesIncorretas = true;
+        } 
+        
+        if (senhaConfirmar !== senha) {
+            divResultado.innerHTML += `As senhas não correspondem.`;
+            validacoesIncorretas = true;
+        } 
+        
+        return validacoesIncorretas == false;
     }
 </script>
