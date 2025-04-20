@@ -52,6 +52,7 @@
                     ============= -->
                     <div class="formLogin">
                         <p class="title">Login</p>
+                        <div id="aviso" class="aviso" style="display: none"></div>
                         <p>Nome de usuário</p>
                         <input type="text" id="inputUsuario" placeholder="Nome">
                         <p>Email</p>
@@ -75,41 +76,36 @@
 </html>
 
 <script>
-    function entrar() {
-        // Respostas do formulário
-        var usuario = inputUsuario.value;
-        var email = inputEmail.value;
-        var passwd = inputSenha.value;
+    iniciou = false;
 
-        var tentativas = 0;
+    function entrar() 
+    {
+            // Respostas do formulário
+            var usuario = inputUsuario.value;
+            var email = inputEmail.value;
+            var passwd = inputSenha.value;
 
-    while(usuario != 'admin' || email != 'admin@gmail.com' || passwd != 'adm123' && tentativas <3){
-        continuar = confirm('Credenciais incorretas. Tentar novamente?')
-
-        if(continuar == true){
-        usuario = prompt("Informe seu usuario");
-        email = prompt("Informe seu email");
-        passwd = prompt("Informe sua senha");
-        alert('Validando seu login')
-        tentativas++
+        if(iniciou == false){
+            iniciou = true
+            tentativas = 0
         }
 
-        else{
-            alert('Finalizando....')
-            break;
+        while((usuario != 'admin' || email != 'admin@gmail.com' || passwd != 'adm123') && tentativas <3){
+            tentativas++
+            mostrarAviso(`Credenciais incorretas. Tente novamente. Tentativa: ${tentativas}`)
+            return;
         }
-    }
 
-    if(tentativas == 3)
-    {
-        alert('Máximo de 3 tentativas atingido. Tente novamente mais tarde')
-    }
+        if(tentativas >= 3)
+        {
+            mostrarAviso('Máximo de 3 tentativas atingido. Tente novamente mais tarde')
+        }
 
-    if (usuario == 'admin' && email == 'admin@gmail.com' && passwd == 'adm123') 
-    {
-        alert('Bem vindo!')
-        window.location.href = 'index.html'
-    } 
+        if (usuario == 'admin' && email == 'admin@gmail.com' && passwd == 'adm123') 
+        {
+            alert('Bem vindo!')
+            window.location.href = 'index.html'
+        } 
 
     }
 
@@ -119,5 +115,11 @@
 
     function cadastro(){
         window.location = 'cadastroP.html'
+    }
+
+    function mostrarAviso(mensagem){
+        var aviso = document.getElementById("aviso");
+        aviso.innerHTML = mensagem;
+        aviso.style.display = "block";
     }
 </script>
