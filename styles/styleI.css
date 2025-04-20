@@ -447,38 +447,34 @@ input#s2:checked~.navigation label[for="s2"] {
 
 /*Inicio parte main3 gráfico*/
 .main3 .container-grafico {
-    margin-top: 2%;
-    width: 100%;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(360deg, --container, #EEDDCC);
 }
 
-.main3 .container-grafico .cont-2 {
-    width: 80%;
+.cont-2 {
+    max-width: 80%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 150px;
 }
-
-.main3 .container-grafico .cont-2 .titulo {
+.titulo {
     width: 50%;
 }
-
-.main3 .container-grafico .cont-2 .grafico {
-    width: 400px;
-    height: 400px;
+.grafico {
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.main3 .container-grafico .grafico .img-grafico {
-    background-image: url(../imgs/grafico.png);
+.img-grafico {
+    background-image: url(../imgs/readme-Photoroom.png);
     border-radius: 20px;
-    background-size: cover;
-    width: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 600px;
     height: 400px;
 }
 
