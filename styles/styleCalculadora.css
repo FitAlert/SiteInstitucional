@@ -43,7 +43,7 @@
 }
 
 .inserir-dados {
-  width: 400px;
+  width: 470px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -62,10 +62,10 @@
 }
 
 .inserir-dados input {
-  padding: 0.5rem 1rem;
+  padding: 10px 5px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  width: 120px;
+  width: 125px;
   font-size: 1rem;
   margin-left: 1rem;
 }

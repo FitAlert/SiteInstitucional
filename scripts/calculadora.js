@@ -6,13 +6,14 @@ function cadastro() {
 }
 
 function calcular() {
-    var ticket = Number(inputTicket.value)
-    var clientes = Number(inputClientes.value)
+    var resultado = '';
+    var ticket = Number(inputTicket.value);
+    var clientes = Number(inputClientes.value);
 
     if (ticket <= 0 || clientes <= 0) {
-        alert("Campos incorretos.");
-        return;
-    }
+        alert("Campos inválidos");
+        resultado = '';
+    } else {
 
     // Com base na pesquisa da Alert
     var aumentoTicket = 2;  // Clientes que usam provador dobram o número de itens
@@ -26,15 +27,15 @@ function calcular() {
     // Potencial de aumento no faturamento
     var aumentoFaturamento = (ticketComMonitoramento - ticket) * clientes;
 
-    divMensagem.innerHTML += `
+    resultado = `
     <div class="geral">
                 <h2>O Que Você Está Perdendo</h2>
                 <br><br>
                 <span style="color:green;">
-                    <b>Aumento no faturamento potencial:</b> R$${aumentoFaturamento}
+                    <b>Aumento no faturamento potencial:</b> R$${aumentoFaturamento.toFixed(2)}
                 </span><br><br>
                 <span style="color:green;">
-                    <b>Aumento no ticket médio:</b> R$${(ticketComMonitoramento - ticket)}
+                    <b>Aumento no ticket médio:</b> R$${(ticketComMonitoramento - ticket).toFixed(2)}
                 </span><br><br>
                 <span>
                     <b>Você está perdendo cerca de </b><span style="color:red;"> ${visitantesConvertidosComProvador - visitantesConvertidosSemProvador} clientes</span>
@@ -51,7 +52,7 @@ function calcular() {
                                     <div class="label_box">
                                             <b> Ticket médio</b>
                                     </div>
-                                    R$${ticket}
+                                    R$${ticket.toFixed(2)}
                             </div>
                             <div class="box">
                                     <div class="label_box">
@@ -83,14 +84,14 @@ function calcular() {
                                     <div class="label_box">
                                         <b>Ticket médio potencial:</b>
                                     </div>
-                                    R$${ticketComMonitoramento}
+                                    R$${ticketComMonitoramento.toFixed(2)}
                                 </div>
                     
                                <div class="box">
                                  <div class="label_box">
                                     <b>Mensal:</b>
                                     </div>
-                                 R$${aumentoFaturamento}
+                                 R$${aumentoFaturamento.toFixed(2)}
                                   (2x o valor atual)<br>
                                     </div>
                     
@@ -118,4 +119,6 @@ function calcular() {
                     </div> 
                 </div> 
             `;
+    }
+    divMensagem.innerHTML = resultado;
 }

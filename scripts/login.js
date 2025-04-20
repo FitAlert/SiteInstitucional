@@ -8,13 +8,12 @@ function entrar()
 
     if(iniciou == false){
         iniciou = true
-        tentativas = 0
+        var tentativas = 0
     }
 
     while((email != 'admin@gmail.com' || passwd != 'admin') && tentativas <3){
         tentativas++
         mostrarAviso(`Credenciais incorretas. Tente novamente. Tentativa: ${tentativas}`)
-        return;
     }
 
     if(tentativas >= 3)
