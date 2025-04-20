@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FITALERT</title>
-    <link rel="shortcut icon" href="imgs/logo-oficial-branca.png" type="image/x-icon">
-    <link rel="stylesheet" href="./styles/styleP.css">
-    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="shortcut icon" href="../images/logos/logo-oficial-branca.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/styleLoginCadastro.css">
+    <link rel="stylesheet" href="../styles/menu.css">
+    <script src="/scripts/login.js"></script>
 </head>
 <body>
 
-     <!--Navbar barra de navegação-->
-     <nav class="navbar">
+    <!--Navbar barra de navegação-->
+    <nav class="navbar">
         <div class="conjunto-logo">
             <div class="logo">
             </div>
@@ -72,51 +73,3 @@
     </div>
 </body>
 </html>
-
-<script>
-    iniciou = false;
-
-    function entrar() 
-    {
-            // Respostas do formulário
-            var email = inputEmail.value;
-            var passwd = inputSenha.value;
-
-        if(iniciou == false){
-            iniciou = true
-            tentativas = 0
-        }
-
-        while((email != 'admin@gmail.com' || passwd != 'admin') && tentativas <3){
-            tentativas++
-            mostrarAviso(`Credenciais incorretas. Tente novamente. Tentativa: ${tentativas}`)
-            return;
-        }
-
-        if(tentativas >= 3)
-        {
-            mostrarAviso('Máximo de 3 tentativas atingido. Tente novamente mais tarde')
-        }
-
-        if (email == 'admin@gmail.com' && passwd == 'admin') 
-        {
-            alert('Bem vindo!')
-            window.location.href = 'index.html'
-        } 
-
-    }
-
-    function login(){
-        window.location = 'loginP.html'
-    }
-
-    function cadastro(){
-        window.location = 'cadastroP.html'
-    }
-
-    function mostrarAviso(mensagem){
-        var aviso = document.getElementById("aviso");
-        aviso.innerHTML = mensagem;
-        aviso.style.display = "block";
-    }
-</script>

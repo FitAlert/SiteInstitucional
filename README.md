@@ -7,7 +7,7 @@ Este é o repositório do site institucional da **FitAlert**, uma plataforma vol
 ## 📸 O site
 
 <p align="center">
-  <img src="imgs/demonstrcao.png" alt="Página inicial do FitAlert" width="1000"/>
+  <img src="images/demonstrcao.png" alt="Página inicial do FitAlert" width="1000"/>
 </p>
 
 ## 📁 Estrutura de Arquivos
@@ -22,6 +22,41 @@ Este é o repositório do site institucional da **FitAlert**, uma plataforma vol
 | `imgs/`              | Contém logotipos e imagens utilizadas nas páginas. |
 
 ---
+## Arquitetura de Pastas
+```
+site-institucional/
+    ├── public/
+    │   ├── assets/
+    │   │   ├── images/            # Imagens e logos do site
+    │   │   │   └── demonstracao.png
+    |   |   |   |__ logos               # Pasta contendo as logos
+    |   |   |   |__ sessaoComoFunciona  # Pasta com imagens de uma sessão
+    |   |   |   |__ ...                 # Outras pastas de imagens
+    │   │   ├── css/              # Arquivos de estilo
+    │   │   │   ├── style.css     # Estilos globais
+    │   │   │   ├── login.css     # Estilos da página de login
+    │   │   │   ├── cadastro.css  # Estilos da página de cadastro
+    │   │   │   └── calculator.css # Estilos da calculadora
+    │   │   └── js/               # Scripts JavaScript
+    │   │       ├── login.js      # Lógica do login
+    │   │       ├── cadastro.js   # Lógica do cadastro
+    │   │       └── calculator.js  # Lógica da calculadora
+    │   │
+    │   └── pages/                # Páginas do site
+    │       ├── login.html        # Página de login
+    │       ├── cadastro.html     # Página de cadastro
+    │       └── calculator.html   # Página da calculadora
+    │
+    ├── src/                      # Código fonte
+    │   ├── database/             # Conexão com banco de dados
+    │   │   └── connection.js
+    │   └── utils/               # Utilitários
+    │       └── validators.js    # Validações de formulários
+    │
+    ├── index.html              # Página inicial
+    ├── README.md              # Documentação do projeto
+    └── .gitignore            # Arquivos ignorados pelo git
+```
 
 ## 🚀 Funcionalidades
 

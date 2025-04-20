@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FITALERT</title>
-    <link rel="shortcut icon" href="imgs/logo-oficial-branca.png" type="image/x-icon">
-    <link rel="stylesheet" href="./styles/styleP.css">
-    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="shortcut icon" href="../images/logos/logo-oficial-branca.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/styleLoginCadastro.css">
+    <link rel="stylesheet" href="../styles/menu.css">
+    <script src="/scripts/cadastro.js"></script>
 </head>
 
 <body>
@@ -135,87 +136,3 @@
 </body>
 
 </html>
-
-<script>
-    function login() {
-    window.location = 'loginP.html'
-}
-    function cadastro() {
-        window.location = 'cadastroP.html';
-
-// Variáveis do usuário.
-        var user = inputUser.value;
-        var email = inputEmail.value;
-
-// Variáveis de senha e confirmação de senha.
-        var senha = inputSenha.value;
-        var senhaConfirmar = inputSenhaConfirm.value;
-
-        var loja = inputLoja.value;
-        var cnpj = inputCNPJ.value;
-        var cidade = inputCidade.value;
-        var uf = inputUF.value;
-        var rua = inputRua.value
-        var numero = inputNumero.value
-        var cep = inputCEP.value;
-        var telefone = inputTelefone.value;
-    
-        if (user == "" || email == "" || telefone == "" || senha == "" || senhaConfirmar == "" || loja == "" || cnpj == "" || cidade == "" || uf == "" || rua == "" || numero == "" || cep == "") {
-        divResultado.innerHTML = `Todos os campos são obrigatórios.`;
-        
-        } 
-        
-        if (senha !== senhaConfirmar) {
-        divResultado.innerHTML = `As senhas não correspondem.`;
-        } 
-        
-        if (validacaoSenha() == false) {
-        return;
-        }
-        
-        alert("Parabéns, sua conta foi registrada.");
-        window.location = 'loginP.html'; }
-        
-    function validarEmail(){
-        divEmail.innerHTML = "";
-        email = inputEmail.value
-
-        for (i = 0; i < email.length; i++) {
-            if(email.includes('@')){
-                temarroba = true;
-                break;
-            }
-            else{
-                divEmail.innerHTML = `Digite um email válido. <br>`;
-            }
-        }
-
-        }
-
-    function validacaoSenha() {
-            divResultado.innerHTML = "";
-            
-            var senha = inputSenha.value;
-            var senhaConfirmar = inputSenhaConfirm.value;
-            var validacoesIncorretas = false;
-
-            for (i = 0; i < senha.length; i++) {
-                if(senha.length < 8){
-                    divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>`;
-                    validacoesIncorretas = true;
-                    break;
-                }
-                else{
-                    divResultado.innerHTML = ``;
-                    break;
-                }
-            }
-            
-            if (senhaConfirmar !== senha) {
-                divResultado.innerHTML += `As senhas não correspondem.`;
-                validacoesIncorretas = true;
-            } 
-            
-            return validacoesIncorretas == false;
-        }
-</script>
