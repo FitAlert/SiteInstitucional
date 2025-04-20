@@ -55,8 +55,10 @@
                             </div>
                             <div class="input-separado">
                                 <p>Email</p>
-                                <input type="email" id="inputEmail" placeholder="exemplo@gmail.com">
+                                <input type="email" id="inputEmail" placeholder="exemplo@gmail.com" oninput="validarEmail()">
+                                <div id="divEmail" style="color: #ffff;"></div>
                             </div>
+                            
                         </div>
                         <div class="input_conjunto">
                             <div class="input-separado">
@@ -174,41 +176,46 @@
         alert("Parabéns, sua conta foi registrada.");
         window.location = 'login.html'; }
         
+    function validarEmail(){
+        divEmail.innerHTML = "";
+        email = inputEmail.value
+
+        for (i = 0; i < email.length; i++) {
+            if(email.includes('@')){
+                temarroba = true;
+                break;
+            }
+            else{
+                divEmail.innerHTML = `Digite um email válido. <br>`;
+            }
+        }
+
+        }
 
     function validacaoSenha() {
-        divResultado.innerHTML = "";
-        
-        var senha = inputSenha.value;
-        var senhaConfirmar = inputSenhaConfirm.value;
-        var validacoesIncorretas = false;
+            divResultado.innerHTML = "";
+            
+            var senha = inputSenha.value;
+            var senhaConfirmar = inputSenhaConfirm.value;
+            var validacoesIncorretas = false;
 
-        if (senha.length < 8) {
-        divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>`;
-        validacoesIncorretas = true;
-
-// Variaveis de símbolos que não devem estar presentes na senha.
-        var senhaExc = senha.includes('!');
-        var senhaArr = senha.includes('@');
-        var senhaHas = senha.includes('#');
-        var senhaCif = senha.includes('$');
-        var senhaPor = senha.includes('%');
-        var senhaAsp = senha.includes('¨');
-        var senhaAnd = senha.includes('&');
-        var senhaAst = senha.includes('*');
-        var senhaParEsq = senha.includes('(');
-        var senhaParDir = senha.includes(')');
-        } 
-        
-        if (senhaExc || senhaArr || senhaHas || senhaCif || senhaPor || senhaAsp || senhaAnd || senhaAst || senhaParEsq || senhaParDir) {
-            divResultado.innerHTML += `A senha não deve conter os símbolos especiais "!@#$%¨&*()" ou espaços. <br>`;
-            validacoesIncorretas = true;
-        } 
-        
-        if (senhaConfirmar !== senha) {
-            divResultado.innerHTML += `As senhas não correspondem.`;
-            validacoesIncorretas = true;
-        } 
-        
-        return validacoesIncorretas == false;
-    }
+            for (i = 0; i < senha.length; i++) {
+                if(senha.length < 8){
+                    divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>`;
+                    validacoesIncorretas = true;
+                    break;
+                }
+                else{
+                    divResultado.innerHTML = ``;
+                    break;
+                }
+            }
+            
+            if (senhaConfirmar !== senha) {
+                divResultado.innerHTML += `As senhas não correspondem.`;
+                validacoesIncorretas = true;
+            } 
+            
+            return validacoesIncorretas == false;
+        }
 </script>
