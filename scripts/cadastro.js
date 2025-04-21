@@ -1,9 +1,8 @@
 function login() {
     window.location = 'login.html'
 }
-function cadastro() {
-    window.location = 'cadastro.html';
 
+function cadastro() {
 // Variáveis do usuário.
 var user = inputUser.value;
 var email = inputEmail.value;
@@ -12,52 +11,20 @@ var email = inputEmail.value;
 var senha = inputSenha.value;
 var senhaConfirmar = inputSenhaConfirm.value;
 
-var loja = inputLoja.value;
-var cnpj = inputCNPJ.value;
-var cidade = inputCidade.value;
-var uf = inputUF.value;
-var rua = inputRua.value
-var numero = inputNumero.value
-var cep = inputCEP.value;
 var telefone = inputTelefone.value;
 
-if (user == "" || email == "" || telefone == "" || senha == "" || senhaConfirmar == "" || loja == "" || cnpj == "" || cidade == "" || uf == "" || rua == "" || numero == "" || cep == "") {
-divResultado.innerHTML = `Todos os campos são obrigatórios.`;
+if (user == '' || email == '' || telefone == '' || senha == '' || senhaConfirmar == '') {
+alert(`Todos os campos são obrigatórios.`);
+} else if (senha !== senhaConfirmar) {
+alert(`As senhas não correspondem.`);
+} else if (email.includes('@') && (email.includes('.com') || email.includes('.com.br'))){
+    alert("Parabéns, sua conta foi registrada.");
+    window.location = 'login.html'; 
+} else {
+    alert('O email não é válido')
+};
 
-} 
-
-if (senha !== senhaConfirmar) {
-divResultado.innerHTML = `As senhas não correspondem.`;
-} 
-
-if (validacaoSenha() == false) {
-return;
-}
-
-alert("Parabéns, sua conta foi registrada.");
-window.location = 'login.html'; }
-
-function mascaraTelefone() {
-    var mensagem = '';
-    var telefone = inputTelefone.value;
-    var telefoneTamanho = telefone.length;
-
-    for (var i = 0; i < telefoneTamanho; i++) {
-
-        if (i == 0) {
-            mensagem += '(';
-        } else if (i == 3) {
-            mensagem += ')';
-        } else if (i == 4) {
-            mensagem += ' ';
-        } else if (i == 10) {
-            mensagem += '-';
-        } else {
-            mensagem += telefone[i]
-        }
-    }
-    inputTelefone.value = mensagem;
-}
+};
 
 function validarEmail(){
     divEmail.innerHTML = "";
