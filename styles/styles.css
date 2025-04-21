@@ -3,7 +3,8 @@
 
 
 :root{
-    --titulos: #6e4930be;
+    --titulos: #3C2F2F ;
+    --paragrafos: #2E2E2E  ;
     --container: #8B6E5A;
     --fundo: #EEDDCC;
 }
@@ -23,6 +24,13 @@ h1 {
     font-size: 45px;
 }
 
+h1, h2{
+    color: var(--titulos);
+}
+
+p{
+    color: var(--paragrafos);
+}
 
 
 /*É o corpo onde está todo o centeudo essa é a main 1 */
@@ -82,7 +90,6 @@ h1 {
 .apresentacao .sub_titulo p {
     padding: 30px 0 30px 0;
     font-size: 18px;
-    color: #8B6E5A;
 }
 
 /*Botão calculadora*/
@@ -92,7 +99,7 @@ h1 {
     align-items: center;
     font-size: 18px;
     color: var(--fundo);
-    background: #8B6E5A;
+    background: var(--titulos);
     padding: 10px 10px 10px 10px;
     width: 150px;
     height: 35px;
@@ -197,7 +204,6 @@ h1 {
     flex-direction: column;
     border-radius: 10px;
 }
-
 
 .box-pai .box-filho .rotulos {
     display: flex;
@@ -347,6 +353,7 @@ input[name="slide"] {
     height: 15px;
     border-radius: 50%;
     background: #ffffff;
+    border: 1px solid #000;
     cursor: pointer;
     /*Quando o cursor do mause passa por cima dessas lebel vai se transformar na mãozinha ou o ponteiro
     trazendo a identificação que o objeto é clicavel*/
@@ -397,32 +404,26 @@ input#s2:checked~.navigation label[for="s2"] {
 
 .main3 .container-diagrama .slides .box1 {
     background-image: url(../images/sessaoComoFunciona/1.jpg);
-    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box2 {
     background-image: url(../images/sessaoComoFunciona/2.jpg);
-    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box3 {
     background-image: url(../images/sessaoComoFunciona/3.png);
-    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box4 {
     background-image: url(../images/sessaoComoFunciona/4.jpg);
-    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box5 {
     background-image: url(../images/sessaoComoFunciona/5.jpg);
-    filter: sepia();
 }
 
 .main3 .container-diagrama .slides .box6 {
     background-image: url(../images/sessaoComoFunciona/6.jpg);
-    filter: sepia();
 }
 
 
@@ -519,7 +520,7 @@ input#s2:checked~.navigation label[for="s2"] {
     transition: 0.3s;
 }
 
-.direitos {
+.direitos p{
     color: white;
     text-align: center;
     font-size: 14px;

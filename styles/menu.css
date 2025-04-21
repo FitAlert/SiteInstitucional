@@ -8,7 +8,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap');
 
-
+:root{
+    --btn-login: #3C2F2F ;
+    --border-btn-cadastro: #3c2f2fd8;
+}
 
 .navbar {
     width: 100%;
@@ -32,6 +35,7 @@
 
 .links ul li a {
     text-decoration: none;
+    font-weight: 500;
     color: black;
 }
 
@@ -43,6 +47,9 @@
     width: 250px;
     display: flex;
     justify-content: space-between;
+}
+.links ul li:hover {
+    border-bottom: 1px solid var(--btn-login);
 }
 
 .btn_cadastro,
@@ -58,16 +65,20 @@
 
 .btn_cadastro:hover,
 .btn_login:hover {
+    color: #EEDDCC;
     background-color: #8B6E5A;
 }
 
 .btn_cadastro {
-    background: #ad9586;
+    border: 1px solid var(--border-btn-cadastro);
+    background: transparent;
+    color: var(--border-btn-cadastro);
+    font-weight: bolder;
 }
 
 .btn_login {
     font-weight: bolder;
-    background: #745542;
+    background: var(--btn-login);
 }
 .navbar .logo{
     background-image: url(../images/logos/logo-oficial-preta.png);
@@ -83,7 +94,7 @@
     justify-content: space-between;
     align-items: center;
     width: 220px;
-    font-size: 25px;
+    font-size: 27px;
     font-family: 'Times New Roman', Times, serif;
     color: #000;
 }

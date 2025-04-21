@@ -7,12 +7,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
-    background-image: url(../images/telaLogin/background_entrada\ .png);
+    background-image: url(../images/telaLogin/cadastro-logim-background.jpeg);
     background-size: 1920px 1080px;
 }
 
 :root {
-    --preto: #746156ef;
+    --preto: #3C2F2F;
     --branco: #f5f5f5;
     --cinza: #c9c9c9;
     --azul: #8b7777;
@@ -52,7 +52,7 @@ body {
     width: 33%;
     height: 100%;
     align-items: center;
-    margin: 120px auto;
+    margin: 60px auto;
     backdrop-filter: blur(20px);
 }
 
@@ -64,16 +64,8 @@ body {
     width: 100%;
 }
 
-.formLogin .logo {
-    border: 2px solid yellow;
-    text-align: center;
-    margin: 5%;
-    background-image: url('../images/logos/logo-oficial-branca.png');
-}
-
 .formLogin {
-    /* border: 2px solid yellow; */
-    padding-top: 60px;
+    padding-top: 30px;
     padding-bottom: 60px;
     width: 70%;
     height: 100%;
@@ -111,11 +103,10 @@ body {
 .container .botao {
     display: flex;
     justify-content: center;
-    margin: 25px 0 10px 0;
-    width: 150px;
+    width: 300px;
     height: 50px;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 5px;
     background-color: var(--preto);
     color: #f5f5f5;
     font-weight: bolder;
@@ -142,10 +133,10 @@ Card pai responsavel por deixar a central de cadastro no centro da tela
 */
 .card-cadastro{
     width: 100%;
-    height: 700px;
+    height: 650px;
     display: flex;
     align-items: center;
-    margin: 60px 0 60px;
+    margin: 60px 0 ;
     justify-content: center;
 }
 
@@ -156,20 +147,21 @@ e o position relative fara qu eo contúdo dentro dela sejam relativos ao ela, ou
 .card-cadastro .container{
     display: flex;
     width: 33%;
-    height: 100%;
+    height:100%;
     border: 2px solid var(--azul);
     border-radius: 25px;
     justify-content: center;
     backdrop-filter: blur(20px);
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .formCadastro {
     display: flex;
     /* border: 2px solid black; */
     width: 100%;
-    height: 550px;
-    padding: 80px 60px 0 60px;
+    height: 500px;
+    padding: 40px 60px 0px 60px;
     justify-content: center;
 }
 
@@ -207,6 +199,5 @@ e o position relative fara qu eo contúdo dentro dela sejam relativos ao ela, ou
 
 .container a {
     font-size: 15px;
-    color: var(--cinza);
-    margin-bottom: 0;
+    color: var(--branco);
 }
