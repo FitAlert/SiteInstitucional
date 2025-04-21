@@ -44,92 +44,41 @@
                     ============= -->
 
             <!-- Navegação -->
-                <input type="radio" name="cad" id="c1" checked>
-                <input type="radio" name="cad" id="c2">
                 <div class="formCadastro">
-                    <div class="form1 cad">
-                        <h2>Cliente</h2>
-                        <div class="input_conjunto">
-                            <div class="input-separado">
+                    <div class="form">
+                        <h2>Cadastro</h2>
+                            <div class="campo">
                                 <p>Nome de usuário</p>
                                 <input type="text" id="inputUser" placeholder="Nome">
                             </div>
-                            <div class="input-separado">
+                            <div class="campo">
                                 <p>Email</p>
                                 <input type="email" id="inputEmail" placeholder="exemplo@gmail.com" oninput="validarEmail()">
                                 <div id="divEmail" style="color: #ffff;"></div>
                             </div>
-                            
-                        </div>
-                        <div class="input_conjunto">
-                            <div class="input-separado">
+                            <div class="campo">
                                 <p>Telefone</p>
                                 <input type="tel" id="inputTelefone" placeholder="__ ____-____" maxlength="11">
                             </div>
-                            
-                        </div>
-
-                        <div class="input_conjunto">
-                            <div class="input-separado">
+                            <div class="campo">
                                 <p>Senha</p>
                                 <input oninput="validacaoSenha()" type="password" id="inputSenha" placeholder="*****">
                             </div>
-                            <div class="input-separado">
+                            <div class="campo">
                                 <p>Confirmar senha</p>
                                 <input oninput="validacaoSenha()" type="password" id="inputSenhaConfirm" placeholder="*****">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form2 cad">
-                        <h2>Loja</h2>
-
-                        <div class="input_conjunto">
-                            <div class="input-separado">
-                                <p>Nome da loja</p>
-                                <input type="text" id="inputLoja" placeholder="Loja">
-                            </div>
-                            <div class="input-separado">
-                                <p>CNPJ</p>
-                                <input type="text" id="inputCNPJ" placeholder="__.___.___/____-__" maxlength="14">
-                            </div>
-                        </div>
-                        <div class="input_conjunto">
-                            <div class="input-separado">
-                                <p>Cidade</p>
-                                <input type="text" id="inputCidade" placeholder="Cidade">
-                            </div>
-                            <div class="input-separado">
-                                <p>UF</p>
-                                <input type="text" id="inputUF" placeholder="UF" maxlength="2">
-                            </div>
-                            
-                        </div>
-                        <div class="input_conjunto">
-                            <div class="input-separado">
-                                <p>Rua</p>
-                                <input type="text" id="inputRua" placeholder="Rua">
-                            </div>
-                            <div class="input-separado">
-                                <p>Número</p>
-                                <input type="text" id="inputNumero" placeholder="Número">
-                            </div>
-                            
-                        </div>
-                        <div class="input-separado">
-                                <p>CEP</p>
-                                <input type="text" id="inputCEP" placeholder="_____-___" maxlength="8">
                             </div>
                     </div>
                 </div> 
                 <div class="navigation">
-                <label for="c1">Cadastro Cliente</label>
-                <label for="c2">Cadastro Loja</label>
             </div>
             <div id="divResultado" style="color: #ffff;"></div>
             <!-- =============
-                        BOTÃO
-                    ============= -->
+            BOTÃO
+            ============= -->
+            
             <button class="card botao" onclick="cadastro()">Cadastrar</button>
+            <a href="">Já sou cadastrado</a>
 
         </div>
     </div>

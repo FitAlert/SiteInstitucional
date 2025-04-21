@@ -142,10 +142,10 @@ Card pai responsavel por deixar a central de cadastro no centro da tela
 */
 .card-cadastro{
     width: 100%;
-    height: 100vh;
+    height: 700px;
     display: flex;
     align-items: center;
-    margin-top: 3%;
+    margin: 60px 0 60px;
     justify-content: center;
 }
 
@@ -155,130 +155,58 @@ e o position relative fara qu eo contúdo dentro dela sejam relativos ao ela, ou
 */
 .card-cadastro .container{
     display: flex;
-    width: 700px;
-    height: 600px;
+    width: 33%;
+    height: 100%;
     border: 2px solid var(--azul);
     border-radius: 25px;
     justify-content: center;
     backdrop-filter: blur(20px);
     align-items: center;
-    position: relative;
-    overflow: hidden;/*aplica uma barra de scroll no eixo x, mas nesse caso está escondida(hidden)*/
 }
 
-/*
-aqui é onde vai ficar a parte de login e cadastro, o transition serve para dari um efeito de transição quando a for selecionado ou cadastro de usuario ou loja
-*/
-.card-cadastro .container .formCadastro{
-    height: 100%;
+.formCadastro {
+    display: flex;
+    /* border: 2px solid black; */
     width: 100%;
-    display: flex;
-    align-items: center;
-    transition: transform 0.5s ease;/*Vai aplicar uma transição de 5s de forma suave(ease)*/
-}
-
-.card-cadastro .container  input[name="cad"]{
-    opacity: 0;/*vai fazer com que os inputs fiquem transparente na tela*/
-}
-
-/*
-Local onde esta a as label qe são referencias dos inputs escondidos, a posição absolute significa que terá o poder se estar sobre qualquer objeto
-*/
-.navigation {
-    display: flex;
-    width: 100%;
-    height: 60px;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    margin-top: -10px;
-    transform: translateX(-50%);
-}
-
-.input-separado p {
-    margin: 10px 0 5px;
-}
-
-/*
-aqui as duas labels estão recebendo estilis e nessa parte é um estilo geral que vai atingia ambas
-*/
-.navigation label {
-    display: flex;
-    align-items: center;
+    height: 550px;
+    padding: 80px 60px 0 60px;
     justify-content: center;
-    height: 60px;
-    width: 100%;
-    background-color: #928686;
-    cursor: pointer;
-    color: white;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid green; */
+    width: 95%;
+}
+
+.form h2 {
+    font-size: 30px;
     font-weight: bold;
+    margin: 0 0 10px 0;
+    color: var(--branco);
 }
 
-/*O ~ significa que vai selecionar tudo o que vier apaitir do #s1
-Se o input #s1 estiver selecionado (ou seja, checked), então o CSS vai aplicar um background: #333 no label que tem for="s1" (o botão do slide 1)
-*/
-input#c1:checked~.navigation label[for="c1"],
-input#c2:checked~.navigation label[for="c2"] {
-    background: #695b5b;
+.campo {
+    margin: 7px 0;
 }
 
-/*
-Essa parte e a proxima está indicando que hávera uma transição, 
-c1 que é a o cadastro do usuario tem referencia na posisão 0 
-c2 selecionado vai para -52% qu eesta referenciando ao cadastro da loja 
-*/
-input#c1:checked ~ .formCadastro {
-    transform: translateX(0%);
+.campo p {
+    font-size: 16px;
+    color: var(--branco);
+    margin: 1%;
 }
 
-input#c2:checked ~ .formCadastro {
-    transform: translateX(-100%);
-}
-    
-/*
-Esta desenvolvendo um estilo global para tela de cadastro usuário e loja
-*/
-.card-cadastro .container .formCadastro .form1, .form2{
-    display: flex;
-    width: 600px;
-    flex-wrap: wrap;/*Vai ter quebra de linha em um determinado tamanho*/
-    justify-content: center;
-    align-items: center;  
-}
-
-/*
-para ficar centralizado
-*/
-.card-cadastro .container .formCadastro .form1, .form2{margin-left: 11%;}
-.card-cadastro .container .formCadastro .form2{ margin-left: 14%;}
-
-.card-cadastro .container .formCadastro .form1 h2, .form2 h2{
-    text-align: center;
-    margin-right: 50px;
-    color: #fff;
-}
-.card-cadastro .container .formCadastro .form1 p, .form2 p{
-    color: #fff;  
-}
-
-/*
-Estilo para os input no geral de cadastro para que fiquem 2 em cada linha
-mas quando a tela for menor vai ter a quebra de linha ficado um input embaixo do outro
-*/
-.card-cadastro .container .formCadastro .form1 .input_conjunto, .form2 .input_conjunto{
-    display: flex;
-    width: 600px;
-    gap: 20px; 
-    flex-wrap: wrap;
-}
-
-/*
-Estilo para os input no geral de cadastro
-*/
-.card-cadastro .container .formCadastro .form1 input, .form2 input{
-    width: 250px;
+.campo input {
+    width: 100%;
     height: 35px;
     border-radius: 7px;
     border-style: none;
     padding-left: 15px;
+}
+
+.container a {
+    font-size: 15px;
+    color: var(--cinza);
+    margin-bottom: 0;
 }
