@@ -64,7 +64,7 @@ function validarEmail(){
     email = inputEmail.value
 
     for (i = 0; i < email.length; i++) {
-        if(email.includes('@')){
+        if(email.includes('@') && (email.includes('.com') || email.includes('.com.br'))){
             temarroba = true;
             break;
         }
