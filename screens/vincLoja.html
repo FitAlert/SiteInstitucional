@@ -53,7 +53,7 @@
                     FORMULÁRIO
                     ============= -->
                     <div class="formLogin">
-                        <p class="title">Loja</p>
+                        <p class="title">Vincular loja ao usuário</p>
                         <div class="input_conjunto">
                             <div class="input-separado">
                                 <p>Nome da loja</p>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="input-separado">
                                 <p>CNPJ</p>
-                                <input type="text" id="inputCNPJ" placeholder="__.___.___/____-__" maxlength="14">
+                                <input type="text" id="inputCNPJ" placeholder="__.___.___/____-__" maxlength="18" oninput="maskCNPJ()">
                             </div>
                         </div>
                         <div class="input_conjunto">
@@ -71,7 +71,7 @@
                             </div>
                             <div class="input-separado">
                                 <p>UF</p>
-                                <input type="text" id="inputUF" placeholder="UF" maxlength="2">
+                                <input type="text" id="inputUF" placeholder="UF" maxlength="2" oninput="maskUF()">
                             </div>
                             
                         </div>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="input-separado">
                                 <p>CEP</p>
-                                <input type="text" id="inputCEP" placeholder="_____-___" maxlength="8">
+                                <input type="text" id="inputCEP" placeholder="_____-___" maxlength="9" oninput="maskCEP()">
                             </div>
                     </div>
                     <!-- =============
