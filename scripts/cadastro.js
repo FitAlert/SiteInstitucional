@@ -37,6 +37,28 @@ return;
 alert("Parabéns, sua conta foi registrada.");
 window.location = 'login.html'; }
 
+function mascaraTelefone() {
+    var mensagem = '';
+    var telefone = inputTelefone.value;
+    var telefoneTamanho = telefone.length;
+
+    for (var i = 0; i < telefoneTamanho; i++) {
+
+        if (i == 0) {
+            mensagem += '(';
+        } else if (i == 3) {
+            mensagem += ')';
+        } else if (i == 4) {
+            mensagem += ' ';
+        } else if (i == 10) {
+            mensagem += '-';
+        } else {
+            mensagem += telefone[i]
+        }
+    }
+    inputTelefone.value = mensagem;
+}
+
 function validarEmail(){
     divEmail.innerHTML = "";
     email = inputEmail.value
