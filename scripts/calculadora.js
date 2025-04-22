@@ -24,8 +24,11 @@ function calcular() {
     var visitantesConvertidosSemProvador = clientes * taxaConversaoSemProvador;
     var visitantesConvertidosComProvador = clientes * taxaConversaoComProvador;
 
+
+    // faturamento sem monitoramneto
+    var faturamentoSemMonitoramento = ticket * clientes;
     // Potencial de aumento no faturamento
-    var aumentoFaturamento = (ticketComMonitoramento - ticket) * clientes;
+    var aumentoFaturamento = ticketComMonitoramento * visitantesConvertidosComProvador;
 
     var clientesPerda= visitantesConvertidosComProvador - visitantesConvertidosSemProvador
 
@@ -75,6 +78,13 @@ function calcular() {
                                     </div>
                                         ${visitantesConvertidosSemProvador.toFixed()} em vendas.
                             </div>
+
+                            <div class="box">
+                                 <div class="label_box">
+                                    <b>Faturamento mensal:</b>
+                                    </div>
+                                 R$${faturamentoSemMonitoramento.toFixed(2)}<br>
+                                    </div>
                         </div>
                     </div>
                     
@@ -86,22 +96,8 @@ function calcular() {
                                     <div class="label_box">
                                         <b>Ticket médio potencial:</b>
                                     </div>
-                                    R$${ticketComMonitoramento.toFixed(2)}
-                                </div>
-                    
-                               <div class="box">
-                                 <div class="label_box">
-                                    <b>Mensal:</b>
-                                    </div>
-                                 R$${aumentoFaturamento.toFixed(2)}
-                                  (2x o valor atual)<br>
-                                    </div>
-                    
-                                <div class="box">
-                                    <div class="label_box">
-                                        <b>Taxa de conversão:</b>
-                                        </div>
-                                    67%
+                                    R$${ticketComMonitoramento.toFixed(2)} 
+                                  (2x o valor atual)
                                 </div>
                     
                                 <div class="box">
@@ -111,11 +107,25 @@ function calcular() {
                                     ${clientes}
                                 </div>
                     
+                                <div class="box">
+                                    <div class="label_box">
+                                        <b>Taxa de conversão:</b>
+                                        </div>
+                                    67%
+                                </div>
+                    
                                 <div class="box" >
                                     <div class="label_box" >
                                         <b>Conversão de clientes:</b>
                                     </div>
-                                    ${visitantesConvertidosComProvador.toFixed()}
+                                    ${visitantesConvertidosComProvador.toFixed()} em vendas
+                            </div>
+
+                             <div class="box">
+                                 <div class="label_box">
+                                    <b>Faturamento mensal:</b>
+                                    </div>
+                                 R$${aumentoFaturamento.toFixed(2)}<br>
                             </div>
                          </div> 
                     </div> 
