@@ -27,6 +27,8 @@ function calcular() {
     // Potencial de aumento no faturamento
     var aumentoFaturamento = (ticketComMonitoramento - ticket) * clientes;
 
+    var clientesPerda= visitantesConvertidosComProvador - visitantesConvertidosSemProvador
+
     resultado = `
     <div class="geral">
                 <h2>O Que Você Está Perdendo</h2>
@@ -38,7 +40,7 @@ function calcular() {
                     <b>Aumento no ticket médio:</b> R$${(ticketComMonitoramento - ticket).toFixed(2)}
                 </span><br><br>
                 <span>
-                    <b>Você está perdendo cerca de </b><span style="color:red;"> ${visitantesConvertidosComProvador - visitantesConvertidosSemProvador} clientes</span>
+                    <b>Você está perdendo cerca de </b><span style="color:red;"> ${clientesPerda.toFixed()} clientes</span>
                 </span>
             </div>
 
@@ -58,7 +60,7 @@ function calcular() {
                                     <div class="label_box">
                                         <b>Visitantes mensais:</b>
                                     </div>
-                                    ${clientes}
+                                    ${clientes.toFixed()}
                             </div>
                     
                             <div class="box">
@@ -71,7 +73,7 @@ function calcular() {
                                     <div class="label_box">
                                         <b>Conversão de clientes</b>
                                     </div>
-                                        ${visitantesConvertidosSemProvador} em vendas.
+                                        ${visitantesConvertidosSemProvador.toFixed()} em vendas.
                             </div>
                         </div>
                     </div>
@@ -113,7 +115,7 @@ function calcular() {
                                     <div class="label_box" >
                                         <b>Conversão de clientes:</b>
                                     </div>
-                                    ${visitantesConvertidosComProvador}
+                                    ${visitantesConvertidosComProvador.toFixed()}
                             </div>
                          </div> 
                     </div> 
