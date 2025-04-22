@@ -25,7 +25,7 @@ function entrar()
     if (email == 'admin@gmail.com' && passwd == 'admin') 
     {
         alert('Bem vindo!')
-        window.location.href = 'vincLoja.html'
+        window.location.href = 'dashboard.html'
     } 
 
 }

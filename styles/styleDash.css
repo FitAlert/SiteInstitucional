@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.containerPrincipal {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    background-color: #ffffff18;
+    box-shadow: 3px 3px 6px #0000001f;
+}
+
+.containerCabecalho {
+    display: flex;
+    flex-direction: column;
+}
+.blocoFiltros, .blocoKpi {
+    margin: 1px;
+    padding: 10px;
+}
+.blocoFiltros select, input {
+    display: flex;
+    width: 150px;
+    margin: 2px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f7e7d7;
+}
+.blocoKpi {
+    display: flex;
+    justify-content: start;
+    gap: 15px;
+    color: #724d2a;
+}
+.blocoKpi div {
+    width: 180px;
+    max-height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #eabe94;
+}
+.blocoKpi h3 {
+    max-height: 20px;
+    font-size: 11px;
+    font-weight: 300;
+    font-weight: bold;
+}
+.blocoKpi p {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.containerConteudo {
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.conteudoLateralEsquerdo {
+    width: 100px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #fcf5ef;
+    box-shadow: 2px 2px 5px #00000036;
+}
+.conteudoLateralEsquerdo h2 {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+.blocoProvadores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.blocoProvadores div {
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #df6e60;
+}
+.blocoProvadores div p {
+    font-size: 14px;
+    text-align: center;
+}
+
+.conteudoLateralDireito {
+    display: flex;
+}
+.blocoGraficosCima, .blocoGraficosBaixo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    margin-right: 15px;
+}
+
+.cardGrafico {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #e9e9e957;
+    box-shadow: 4px 4px 5px #0000004f;
+}
+
+.btn_cadastrarLoja{
+    width: 250px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #EEDDCC;
+    font-weight: bolder;
+    background: var(--btn-login);
+}
+
+.div_btn_cadastrarloja{
+    display: flex;
+    justify-content: flex-end;
+}
