@@ -40,7 +40,7 @@ function calcular() {
                     <b>Aumento no faturamento potencial:</b> R$${aumentoFaturamento.toFixed(2)}
                 </span><br><br>
                 <span style="color:green;">
-                    <b>Aumento no ticket médio:</b> R$${(ticketComMonitoramento - ticket).toFixed(2)}
+                    <b>Aumento no ticket médio:</b> R$${(ticketComMonitoramento).toFixed(2)}
                 </span><br><br>
                 <span>
                     <b>Você está perdendo cerca de </b><span style="color:red;"> ${clientesPerda.toFixed()} clientes</span>
