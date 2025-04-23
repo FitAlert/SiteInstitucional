@@ -13,8 +13,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     background-color: #706c5a;
-    height: 100vh;
     border-radius: 0px 18px 18px 0px;
     position: relative;
     transition: all .5s;
@@ -24,6 +24,10 @@ body {
 
 #sidebar_content {
     padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #user {
@@ -34,8 +38,8 @@ body {
 }
 
 .user_avatar {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 20px;
 }
@@ -112,5 +116,83 @@ body {
     border: none;
     cursor: pointer;
 }
+
+
+/*Menu hamburgue*/
+.menu-btn {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .btn-line {
+    width: 27px;
+    height: 4px;
+    background-color: black;
+    transition: all 0.3s ease;
+    margin-bottom: 4px;
+  }
+  
+  .menu-btn.active .btn-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .menu-btn.active .btn-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-btn.active .btn-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  .menu {
+    width: 300px;
+    display: none;
+    position: absolute;
+    left:11%;
+    border-radius: 5px;
+    padding: 10px;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    background: #706c5a;
+  }
+  
+  .menu.active {
+    display: flex;
+    transition-duration: 0.3s ;
+  }
+  
+  .menu ul {
+    height: 60vh;
+    list-style-type: none;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .menu ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+    background: #302f2f;
+  }
+  
+  .menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+  
+  .menu ul li a:hover {
+    color: #ffffff;
+  }
+  
 
 
