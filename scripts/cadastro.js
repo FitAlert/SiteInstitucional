@@ -17,7 +17,7 @@ if (user == '' || email == '' || telefone == '' || senha == '' || senhaConfirmar
 alert(`Todos os campos são obrigatórios.`);
 } else if (senha !== senhaConfirmar) {
 alert(`As senhas não correspondem.`);
-} else if (email.includes('@') && (email.includes('.com') || email.includes('.com.br'))){
+} else if (email.includes('@')){
     alert("Parabéns, sua conta foi registrada.");
     window.location = 'login.html'; 
 } else {
@@ -31,7 +31,7 @@ function validarEmail(){
     email = inputEmail.value
 
     for (i = 0; i < email.length; i++) {
-        if(email.includes('@') && (email.includes('.com') || email.includes('.com.br'))){
+        if(email.includes('@')){
             temarroba = true;
             break;
         }
