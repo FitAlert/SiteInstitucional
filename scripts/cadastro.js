@@ -21,7 +21,7 @@ alert(`As senhas não correspondem.`);
     alert("Parabéns, sua conta foi registrada.");
     window.location = 'login.html'; 
 } else {
-    alert('O email não é válido')
+    alert('O email não é válido.')
 };
 
 };
@@ -46,12 +46,12 @@ function validacaoSenha() {
     
     var senha = inputSenha.value;
     var senhaConfirmar = inputSenhaConfirm.value;
-    var validacoesIncorretas = false;
+    var validacao = true;
 
     for (i = 0; i < senha.length; i++) {
         if(senha.length < 8){
             divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>`;
-            validacoesIncorretas = true;
+            validacao = false;
             break;
         }
         else{
@@ -62,8 +62,6 @@ function validacaoSenha() {
 
     if (senhaConfirmar !== senha) {
         divResultado.innerHTML += `As senhas não correspondem.`;
-        validacoesIncorretas = true;
+        validacao = false;
     } 
-
-    return validacoesIncorretas == false;
 }

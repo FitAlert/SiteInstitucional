@@ -2,32 +2,32 @@ iniciou = false;
 
 function entrar() 
 {
-    // Respostas do formulário
     var email = inputEmail.value;
-    var passwd = inputSenha.value;
+    var senha = inputSenha.value;
+    
+    var validacao = false;
 
-    if(iniciou == false){
-        iniciou = true
-        tentativas = 0
+    if (iniciou == false) {
+        iniciou = true;
+        tentativas = 0;
     }
 
-    while((email != 'admin@gmail.com' || passwd != 'admin') && tentativas <3){
-        tentativas++
-        mostrarAviso(`Credenciais incorretas. Tente novamente. Tentativa: ${tentativas}`) 
-        return;
+    while ((email != 'admin@gmail.com' || senha != 'admin') && tentativas < 3) {
+        tentativas++;
+        mostrarAviso(`Credenciais incorretas. Tente novamente. Tentativa: ${tentativas}`);
+        break;
     }
 
-    if(tentativas >= 3)
-    {
-        mostrarAviso('Máximo de 3 tentativas atingido. Tente novamente mais tarde')
+    if (tentativas >= 3) {
+        mostrarAviso('Máximo de 3 tentativas atingido. Tente novamente mais tarde.');
+    } else if (email == 'admin@gmail.com' && senha == 'admin') {
+        validacaoLogin = true;
     }
 
-    if (email == 'admin@gmail.com' && passwd == 'admin') 
-    {
-        alert('Bem vindo!')
-        window.location.href = 'dashboard.html'
-    } 
-
+    if (validacaoLogin == true) {
+        alert('Bem vindo!');
+        window.location.href = 'dashboard.html';
+    }
 }
 
 function login(){
