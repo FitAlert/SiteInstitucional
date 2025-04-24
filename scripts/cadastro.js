@@ -32,7 +32,7 @@ function validarEmail(){
 
     for (i = 0; i < email.length; i++) {
         if(email.includes('@')){
-            temarroba = true;
+            temArroba = true;
             break;
         }
         else{
