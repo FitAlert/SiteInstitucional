@@ -34,7 +34,7 @@ function calcular() {
 
     resultado = `
     <div class="geral">
-                <h2>O Que Você Está Perdendo</h2>
+                <h2>O que você está perdendo:</h2>
                 <br><br>
                 <span style="color:green;">
                     <b>Aumento no faturamento potencial:</b> R$${aumentoFaturamento.toFixed(2)}
@@ -55,7 +55,7 @@ function calcular() {
                         <div class="dados">
                             <div class="box">
                                     <div class="label_box">
-                                            <b> Ticket médio</b>
+                                            <b>Ticket médio:</b>
                                     </div>
                                     R$${ticket.toFixed(2)}
                             </div>
@@ -68,13 +68,13 @@ function calcular() {
                     
                             <div class="box">
                                     <div class="label_box" >
-                                        <b>Taxa de conversão </b>
+                                        <b>Taxa de conversão:</b>
                                     </div>
                                      25%
                             </div>
                             <div class="box">
                                     <div class="label_box">
-                                        <b>Conversão de clientes</b>
+                                        <b>Conversão de clientes:</b>
                                     </div>
                                         ${visitantesConvertidosSemProvador.toFixed()} em vendas.
                             </div>
@@ -89,7 +89,7 @@ function calcular() {
                     </div>
                     
                     <div class="resp2">
-                        <h2>2. Com monitoramento no provador de forma otimizada</h2>
+                        <h2>2. Com monitoramento otimizado nos provadores</h2>
                     
                             <div class="dados">
                                 <div class="box">
