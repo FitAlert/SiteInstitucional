@@ -17,7 +17,7 @@ function calcular() {
 
     // Com base na pesquisa da Alert
     var aumentoTicket = 2;  // Clientes que usam provador dobram o número de itens
-    var taxaConversaoSemProvador = 0.1;
+    var taxaConversaoSemProvador = 0.25;
     var taxaConversaoComProvador = 0.67;
 
     var ticketComMonitoramento = ticket * aumentoTicket;
@@ -70,7 +70,7 @@ function calcular() {
                                     <div class="label_box" >
                                         <b>Taxa de conversão </b>
                                     </div>
-                                     10%
+                                     25%
                             </div>
                             <div class="box">
                                     <div class="label_box">
