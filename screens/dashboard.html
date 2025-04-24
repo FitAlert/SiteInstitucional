@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FitAlert</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="../styles/styleDash.css">
-    <link rel="stylesheet" href="../styles/menu.css">
-    <link rel="stylesheet" href="../styles/menuLateral.css">
-    <script src="../scripts/dashboard.js"></script>
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../scripts/menu.js"></script>
+        <script src="../scripts/dashboard.js"></script>
+        <link rel="stylesheet" href="../styles/styleDash.css">
+        <link rel="stylesheet" href="../styles/menu.css">
+        <link rel="stylesheet" href="../styles/menuLateral.css">
+        <title>FitAlert - Dashboard</title>
 </head>
 
 <body>
@@ -148,7 +149,7 @@
                 <div class="conteudoLateralDireito">
                     <div class="blocoGraficosCima">
                         <div class="cardGrafico">
-                            <canvas id="HorarioPico" width="400" height="200"></canvas>
+                            <canvas id="HorarioPico" width="400" height="217"></canvas>
                         </div>
                         <script>
 
@@ -193,7 +194,7 @@
                         </script>
 
                         <div class="cardGrafico">
-                            <canvas id="cabine" width="400" height="200"></canvas>
+                            <canvas id="cabine" width="400" height="217"></canvas>
                         </div>
                         <script>
 
@@ -238,7 +239,7 @@
 
                     <div class="blocoGraficosBaixo">
                         <div class="cardGrafico">
-                            <canvas id="usoCabine" width="400" height="218"></canvas>
+                            <canvas id="usoCabine" width="400" height="217"></canvas>
                         </div>
                         <script>
 
@@ -289,7 +290,7 @@
                         </script>
 
                         <div class="cardGrafico">
-                            <canvas id="usoSessao" width="400" height="200"></canvas>
+                            <canvas id="usoSessao" width="400" height="217"></canvas>
                         </div>
                         <script>
 
@@ -305,7 +306,7 @@
                                     datasets: [
                                         {
                                             label: 'My First Dataset',
-                                            data: [50, 100],
+                                            data: [36, 64],
                                             backgroundColor: [
                                                 '#eabe94',
                                                 '#724d2a',
@@ -334,5 +335,3 @@
 </body>
 
 </html>
-
-<script src="../scripts/menu.js"></script>
