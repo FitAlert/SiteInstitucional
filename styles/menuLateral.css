@@ -87,7 +87,6 @@ body {
 }
 
 #logout {
-    border-top: 1px solid #e3e9f7;
     padding: 12px;
 }
 
@@ -164,7 +163,6 @@ body {
   .menu.active {
     opacity: 1;
     transform: translateX(0);
-    pointer-events: auto;
   }
   
   .menu ul {

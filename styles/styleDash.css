@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 .containerPrincipal {
-    width: 80%;
-    height: 80%;
+    width: 75%;
+    height: 75%;
     margin: auto;
-    padding: 30px;
     border-radius: 10px;
     font-family: "Montserrat", sans-serif;
     background-color: #ffffff18;
+    padding: 25px;
 }
 
 .containerCabecalho {
@@ -21,10 +22,15 @@
 }
 
 .blocoFiltros {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    background-color: #fcf5ef;
+    box-shadow: 2px 2px 5px #00000036;
+    width: 150px;
+    height: 150px;
 }
 .blocoFiltros select, input {
     display: flex;
@@ -47,6 +53,7 @@
     flex-direction: column;
     align-items: center;
     width: 180px;
+    height: 70px;
     max-height: 100px;
     padding: 5px;
     border-radius: 10px;
@@ -59,14 +66,13 @@
     font-weight: bold;
 }
 .blocoKpi p {
-    margin-top: 30px;
+    margin-top: 10px;
     text-align: center;
-    font-size: 35px;
+    font-size: 33px;
     font-weight: 800;
 }
 
 .containerConteudo {
-    
     margin-top: 10px;
     padding: 10px;
     display: flex;
@@ -76,7 +82,7 @@
 }
 .conteudoLateralEsquerdo {
     width: 150px;
-    height: 400px;
+    height: 450px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -84,8 +90,6 @@
     justify-content: space-evenly;
     gap: 10px;
     border-radius: 10px;
-    background-color: #fcf5ef;
-    box-shadow: 2px 2px 5px #00000036;
 }
 .conteudoLateralEsquerdo h2 {
     font-size: 15px;
@@ -101,7 +105,26 @@
     justify-content: space-between;
     gap: 20px;
 }
+
+.provadoresOcupacao{
+    width: 150px;
+    height: 450px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #fcf5ef;
+    box-shadow: 2px 2px 5px #00000036;
+}
 .blocoProvadores div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 100px;
     padding-left: 20px;
     padding-right: 20px;
     border: none;
