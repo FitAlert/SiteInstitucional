@@ -1,8 +1,12 @@
 function login() {
     window.location = 'login.html'
 }
-
 function cadastro() {
+    window.location = 'cadastro.html'
+}
+
+
+function cadastrar() {
 // Variáveis do usuário.
 var user = inputUser.value;
 var email = inputEmail.value;
