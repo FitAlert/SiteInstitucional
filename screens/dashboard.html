@@ -143,7 +143,7 @@
                             <option value="">Mensal</option>
                             <option value="">Anual</option>
                         </select>
-                        <input type="datetime-local" name="" id="">
+                        <input type="date" name="" id="">
                     </div>
                 </div>
 
@@ -290,12 +290,14 @@
                             });
                         </script>
 
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
                         <div class="cardGrafico">
                             <canvas id="usoSessao" width="400" height="217"></canvas>
                         </div>
                         <script>
-
-                            const pizza = document.getElementById("usoSessao");
+                            Chart.register(ChartDataLabels);
+                            const pizza = document.getElementById("usoSessao").getContext('2d');
 
                             new Chart(pizza, {
                                 type: 'pie',
@@ -320,13 +322,35 @@
                                         title: {
                                             display: true,
                                             text: 'VISITANTES POR SESSÃO'
+                                        },
+                                        datalabels: {
+                                            color: '#fff',
+                                            formatter: (value, context) => {
+                                                return `${value}%`;
+                                            },
+                                            font: {
+                                                weight: 'bold',
+                                                size: 14
+                                            }
                                         }
+                                        /*tooltip: {
+                                            callbacks: {
+                                                label: function(context) {
+                                                    let label = context.label;
+                                                    let value = context.formattedValue;
+                                                    let data = context.dataset.data;
+                                                    let total = data.reduce((sum, val) => sum + val, 0);
+                                                    let percentage = ((context.raw / total) * 100);
+                                                    return `${label}: ${value} (${percentage}%)`;
+                                                }
+                                            }
+                                        }*/
                                     },
                                     responsive: true,
-                                    maintainAspectRatio: false
-                                }
-                            }
-                            )
+                                    maintainAspectRatio: false,
+                                },
+                                plugins: [ChartDataLabels]
+                            });
                         </script>
                     </div>
                 </div>
