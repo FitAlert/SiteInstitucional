@@ -12,7 +12,7 @@
         <title>FITALERT - Dashboard</title>
 </head>
 
-<body>
+<body class="containerBody">
 
     <nav class="navbar">
 
@@ -30,7 +30,7 @@
 
         <div class="links">
             <ul>
-                <li><a href="#grafico">Dashboard</a></li>
+                <li><a href="">Dashboard</a></li>
 
             </ul>
         </div>
@@ -38,7 +38,6 @@
             <button class="btn_cadastrarLoja" onclick="cadastrar()">Cadastrar nova loja</button>
         </div>
     </nav>
-
 
     <div class="conteudoDash" id="grafico">
         <div class="divSidebar">
@@ -76,7 +75,7 @@
                             </li>
                         </ul>
                     </div>
-<hr style="width: 80%; color: #fff;">
+                        <hr style="width: 80%; color: #fff;">
                     <div id="logout">
                         <button onclick="sair()" id="btnLogout">
                             <span class="item-description">
@@ -150,7 +149,7 @@
                 <div class="conteudoLateralDireito">
                     <div class="blocoGraficosCima">
                         <div class="cardGrafico">
-                            <canvas id="HorarioPico" width="400" height="217"></canvas>
+                            <canvas id="HorarioPico" width="350" height="217"></canvas>
                         </div>
                         <script>
 
@@ -195,7 +194,7 @@
                         </script>
 
                         <div class="cardGrafico">
-                            <canvas id="cabine" width="400" height="217"></canvas>
+                            <canvas id="cabine" width="350" height="217"></canvas>
                         </div>
                         <script>
 
@@ -240,7 +239,7 @@
 
                     <div class="blocoGraficosBaixo">
                         <div class="cardGrafico">
-                            <canvas id="usoCabine" width="400" height="217"></canvas>
+                            <canvas id="usoCabine" width="350" height="217"></canvas>
                         </div>
                         <script>
 
@@ -293,7 +292,7 @@
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
                         <div class="cardGrafico">
-                            <canvas id="usoSessao" width="400" height="217"></canvas>
+                            <canvas id="usoSessao" width="350" height="217"></canvas>
                         </div>
                         <script>
                             Chart.register(ChartDataLabels);
