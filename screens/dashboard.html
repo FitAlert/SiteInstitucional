@@ -86,11 +86,20 @@
                 </nav>
             </nav>
         </div>
-
-
+        
+        
         <div class="containerPrincipal">
             <div class="containerCabecalho">
                 <div class="blocoKpi">
+                    <div class="blocoFiltros">
+                        <select>
+                            <option value="">Diário</option>
+                            <option value="" selected>Semanal</option>
+                            <option value="">Mensal</option>
+                            <option value="">Anual</option>
+                        </select>
+                        <input type="date" name="" id="">
+                    </div>
                     <div>
                         <h3>HORÁRIO DE PICO</h3>
                         <p>13h15</p>
@@ -135,15 +144,6 @@
                     </div>
                     </div>
 
-                    <div class="blocoFiltros">
-                        <select>
-                            <option value="">Diário</option>
-                            <option value="" selected>Semanal</option>
-                            <option value="">Mensal</option>
-                            <option value="">Anual</option>
-                        </select>
-                        <input type="date" name="" id="">
-                    </div>
                 </div>
 
                 <div class="conteudoLateralDireito">
@@ -307,7 +307,7 @@
                                     ],
                                     datasets: [
                                         {
-                                            label: 'My First Dataset',
+                                            label: 'Porcentagem de Visitantes',
                                             data: [36, 64],
                                             backgroundColor: [
                                                 '#eabe94',
