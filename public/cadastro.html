@@ -22,10 +22,10 @@
 
     <div class="links">
         <ul>
-            <li><a href="../screens/index.html">HOME</a></li>
-            <li><a href="../screens/index.html#servicos">SERVIÇOS</a></li>
-            <li><a href="../screens/index.html#sobre-nos">SOBRE NÓS</a></li>
-            <li><a href="../screens/index.html#contato">CONTATO</a></li>
+            <li><a href="./index.html">HOME</a></li>
+            <li><a href="./index.html#servicos">SERVIÇOS</a></li>
+            <li><a href="./index.html#sobre-nos">SOBRE NÓS</a></li>
+            <li><a href="./index.html#contato">CONTATO</a></li>
         </ul>
     </div>
     <div class="div_bnt">
@@ -33,6 +33,12 @@
         <button class="btn_login" onclick="login()">Login</button>
     </div>
 </nav>
+
+<div class="login">
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
 
     <div class="card-cadastro">
         <!-- ============= 
@@ -48,8 +54,8 @@
                     <div class="form">
                         <h2>Cadastro</h2>
                             <div class="campo">
-                                <p>Nome de usuário</p>
-                                <input type="text" id="inputUser" placeholder="Nome">
+                                <p>Nome</p>
+                                <input type="text" id="inputNome" placeholder="Nome">
                             </div>
                             <div class="campo">
                                 <p>E-mail</p>
@@ -58,7 +64,7 @@
                             </div>
                             <div class="campo">
                                 <p>Telefone</p>
-                                <input oninput="mascaraTelefone()" type="tel" id="inputTelefone" placeholder="__ ____-____" maxlength="11">
+                                <input type="text" id="inputTelefone" placeholder="(XX) XXXXX-XXXX">
                             </div>
                             <div class="campo">
                                 <p>Senha</p>
