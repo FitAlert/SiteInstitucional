@@ -1,361 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
-    
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="scripts/dashboard.js"></script>
-        <link rel="stylesheet" href="styles/styleDash.css">
-        <link rel="stylesheet" href="styles/menu.css">
-        <link rel="stylesheet" href="styles/menuLateral.css">
-        <title>FITALERT - Dashboard</title>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styleDash.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <script src="scripts/dashboard.js"></script>
+    <script src="scripts/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="shortcut icon" href="images/logos/logo-oficial-branca.png" type="image/x-icon">
+    <title>FITALERT - DASHBOARD</title>
 </head>
 
-<body class="containerBody">
-
-    <nav class="navbar">
-
-        <div class="menu-btn">
-            <div class="btn-line"></div>
-            <div class="btn-line"></div>
-            <div class="btn-line"></div>
-        </div>
-
+<body>
+    <nav>
         <div class="conjunto-logo">
-            <div class="logo">
-            </div>
+            <div class="logo"></div>
             FITALERT
         </div>
-
-        <div class="links">
-            <ul>
-                <li><a href="">Dashboard</a></li>
-
-            </ul>
+        <hr style="color:black" width="100%">
+        <div class="perfil">
+            <div class="img-perfil">
+                <img src="images/logos/logo-oficial-preta.png   " alt="" width="80px" height="80px">
+            </div>
+            <div id="cliente"><b>Bem Vindo!</b></div>
         </div>
-        <div class="div_bnt">
-            <button class="btn_cadastrarLoja" onclick="cadastrar()">Cadastrar nova loja</button>
-        </div>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Nova loja</a></li>
+            <li><a href="#">Alertas</a></li>
+            <li><a href="#">Configurações</a></li>
+        </ul>
+        <button class="sair" onclick="sair()">Sair</button>
     </nav>
 
-    <div class="conteudoDash" id="grafico">
-        <div class="divSidebar">
-            <nav class="menu">
-                <nav id="sidebar">
-                    <div id="sidebar_content">
-                        <div id="user">
-                            <img src="images/Dashboard/147144.png" class="user_avatar" alt="Avatar">
-                            </p>
-                        </div>
+    <main>
+        <header>
+            <div class="pesquisa">
+                <b>Selecionar período:</b>
+                <select>
+                    <option value="">Diário</option>
+                    <option value="" selected>Semanal</option>
+                    <option value="">Mensal</option>
+                    <option value="">Anual</option>
+                </select>
+                <input type="date" name="" id="">
+            </div>
+        </header>
 
-                        <ul id="side_items">
-                            <li class="side-item active">
-                                <a href="#">
-                                    Dashboard
-                                </a>
-                            </li>
-
-                            <li class="side-item">
-                                <a href="#">
-                                    Lojas cadastradas
-                                </a>
-                            </li>
-
-                            <li class="side-item">
-                                <a href="#">
-                                    Alertas
-                                </a>
-                            </li>
-
-                            <li class="side-item">
-                                <a href="#">
-                                    Configurações
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                        <hr style="width: 80%; color: #fff;">
-                    <div id="logout">
-                        <button onclick="sair()" id="btnLogout">
-                            <span class="item-description">
-                                Logout
-                            </span>
-                        </button>
-                    </div>
-                </nav>
-            </nav>
-        </div>
-        
-        
-        <div class="containerPrincipal">
-            <div class="containerCabecalho">
-                <div class="blocoKpi">
-                    <div class="blocoFiltros">
-                        <select>
-                            <option value="">Diário</option>
-                            <option value="" selected>Semanal</option>
-                            <option value="">Mensal</option>
-                            <option value="">Anual</option>
-                        </select>
-                        <input type="date" name="" id="">
-                    </div>
-                    <div>
-                        <h3>HORÁRIO DE PICO</h3>
-                        <p>13h15</p>
-                    </div>
-                    <div>
-                        <h3>FLUXO DE VISITANTES</h3>
-                        <p>22</p>
-                    </div>
-                    <div>
-                        <h3>TEMPO PERMANÊNCIA</h3>
-                        <p>5min36</p>
-                    </div>
-                    <div>
-                        <h3>SESSÃO MAIS VISITADA</h3>
-                        <p>Feminino</p>
-                    </div>
+        <section>
+            <div class="totalKPIS">
+                <div class="kpi">
+                    <h3>HORÁRIO DE PICO</h3>
+                    <p>13h15</p>
+                </div>
+                <div class="kpi">
+                    <h3>FLUXO DE VISITANTES</h3>
+                    <p>22</p>
+                </div>
+                <div class="kpi">
+                    <h3>TEMPO PERMANÊNCIA</h3>
+                    <p>5min36</p>
+                </div>
+                <div class="kpi">
+                    <h3>SESSÃO MAIS VISITADA</h3>
+                    <p>Feminino</p>
                 </div>
             </div>
 
-            <div class="containerConteudo">
-                <div class="conteudoLateralEsquerdo">
-                    <div class="provadoresOcupacao">
-                        <div>
-                            <h2>OCUPAÇÃO DE PROVADORES</h2>
-                        </div>
-                        <div class="blocoProvadores">
-                            <div>
-                                <p>1</p>
-                            </div>
-                            <div style="background-color: rgb(164, 224, 204);">
-                                <p>2</p>
-                            </div>
-                            <div>
-                                <p>3</p>
-                            </div>
-                            <div>
-                                <p>4</p>
-                            </div>
-                            <div>
-                                <p>5</p>
-                            </div>
-                    </div>
-                    </div>
-
+            <div class="geral">
+                <div class="ocupacao">
+                    <h3>Ocupação Provadores</h3>
+                    <div class="prov">1</div>
+                    <div class="prov">2</div>
+                    <div class="prov">3</div>
+                    <div class="prov">4</div>
+                    <div class="prov">5</div>
                 </div>
 
-                <div class="conteudoLateralDireito">
-                    <div class="blocoGraficosCima">
-                        <div class="cardGrafico">
-                            <canvas id="HorarioPico" width="350" height="217"></canvas>
-                        </div>
-                        <script>
+                <div class="graficos">
+                    <div class="linha l1">
+                        <div class="gg"><canvas id="HorarioPico"></canvas></div>
 
-                            const linhas = document.getElementById("HorarioPico");
-
-                            new Chart(linhas, {
-                                type: "line",
-                                data: {
-                                    labels: [
-                                        "08:00",
-                                        "10:00",
-                                        "12:00",
-                                        "14:00",
-                                        "16:00",
-                                        "18:00",
-                                        "20:00",
-                                    ],
-                                    datasets: [
-                                        {
-                                            label: "Provadores ocupados",
-                                            data: [1, 3, 5, 5, 2, 2, 0],
-                                            backgroundColor: "#624b36",
-                                            borderColor: "#7f7f7f",
-                                            borderWidth: 1.5,
-                                        },
-                                    ],
-                                },
-                                options: {
-                                    plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'HORÁRIO DE PICO'
-                                        }
-                                    },
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
-                                        },
-                                    },
-                                },
-                            });
-                        </script>
-
-                        <div class="cardGrafico">
-                            <canvas id="cabine" width="350" height="217"></canvas>
-                        </div>
-                        <script>
-
-                            const barras = document.getElementById("cabine");
-
-                            new Chart(barras, {
-                                type: "bar",
-                                data: {
-                                    labels: [
-                                        "1",
-                                        "2",
-                                        "3",
-                                        "4",
-                                        "5",
-                                    ],
-                                    datasets: [
-                                        {
-                                            label: ["Provador",],
-                                            data: [4, 10, 3, 5, 6],
-                                            borderColor: "#7f7f7f",
-                                            backgroundColor: ['#eabe94'],
-                                            borderWidth: 1,
-                                        },
-                                    ],
-                                },
-                                options: {
-                                    plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'MÉDIA DE TEMPO DE PERMANÊNCIA (MINUTOS)'
-                                        }
-                                    },
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
-                                        },
-                                    },
-                                },
-                            });
-                        </script>
+                        <div class="gg"><canvas id="cabine"></canvas></div>
                     </div>
 
-                    <div class="blocoGraficosBaixo">
-                        <div class="cardGrafico">
-                            <canvas id="usoCabine" width="350" height="217"></canvas>
-                        </div>
-                        <script>
+                    <div class="linha l2">
+                        <div class="gg"><canvas id="usoCabine"></canvas></div>
 
-                            const cabine = document.getElementById("usoCabine");
+                        <div class="gg"><canvas id="usoSessao"></canvas></div>
 
-                            new Chart(cabine, {
-                                type: "bar",
-                                data: {
-                                    labels: [
-                                        "Segunda",
-                                        "Terça",
-                                        "Quarta",
-                                        "Quinta",
-                                        "Sexta",
-                                        "Sábado",
-                                        "Domingo",
-                                    ],
-                                    datasets: [
-                                        {
-                                            label:'Dias da Semana',
-                                            data: [22, 24, 27, 23, 20, 18, 30],
-                                            borderColor: "#7f7f7f",
-                                            backgroundColor: [
-                                                '#724d2a'
-
-                                            ],
-                                            borderWidth: 1,
-                                        },
-                                    ],
-                                },
-                                options: {
-                                    plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'NÚMERO DE VISITANTES (DIÁRIO)'
-                                        }
-                                    },
-                                    indexAxis: 'y',
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
-                                        },
-                                    },
-                                    responsive: true,
-                                    maintainAspectRatio: false
-                                },
-                            });
-                        </script>
-
-                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-                        <div class="cardGrafico">
-                            <canvas id="usoSessao" width="350" height="217"></canvas>
-                        </div>
-                        <script>
-                            Chart.register(ChartDataLabels);
-                            const pizza = document.getElementById("usoSessao").getContext('2d');
-
-                            new Chart(pizza, {
-                                type: 'pie',
-                                data: {
-                                    labels: [
-                                        'Masculino',
-                                        'Feminino'
-                                    ],
-                                    datasets: [
-                                        {
-                                            label: 'Porcentagem de Visitantes',
-                                            data: [36, 64],
-                                            backgroundColor: [
-                                                '#eabe94',
-                                                '#724d2a',
-                                            ],
-                                            hoverOffset: 10
-                                        }],
-                                },
-                                options: {
-                                    plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'VISITANTES POR SESSÃO'
-                                        },
-                                        datalabels: {
-                                            color: '#fff',
-                                            formatter: (value, context) => {
-                                                return `${value}%`;
-                                            },
-                                            font: {
-                                                weight: 'bold',
-                                                size: 14
-                                            }
-                                        }
-                                        /*tooltip: {
-                                            callbacks: {
-                                                label: function(context) {
-                                                    let label = context.label;
-                                                    let value = context.formattedValue;
-                                                    let data = context.dataset.data;
-                                                    let total = data.reduce((sum, val) => sum + val, 0);
-                                                    let percentage = ((context.raw / total) * 100);
-                                                    return `${label}: ${value} (${percentage}%)`;
-                                                }
-                                            }
-                                        }*/
-                                    },
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                },
-                                plugins: [ChartDataLabels]
-                            });
-                        </script>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 </body>
-<script src="scripts/menu.js"></script>
+
 </html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    Chart.register(ChartDataLabels);
+    const pizza = document.getElementById("usoSessao").getContext('2d');
+
+    new Chart(pizza, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Masculino',
+                'Feminino'
+            ],
+            datasets: [
+                {
+                    label: 'Porcentagem de Visitantes',
+                    data: [36, 64],
+                    backgroundColor: [
+                        '#00ffbf',
+                        '#4c00ff',
+                    ],
+                    hoverOffset: 10
+                }],
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'VISITANTES POR SESSÃO'
+                },
+                datalabels: {
+                    color: '#fff',
+                    formatter: (value, context) => {
+                        return `${value}%`;
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    }
+                }
+                /*tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label;
+                            let value = context.formattedValue;
+                            let data = context.dataset.data;
+                            let total = data.reduce((sum, val) => sum + val, 0);
+                            let percentage = ((context.raw / total) * 100);
+                            return `${label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }*/
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        },
+        plugins: [ChartDataLabels]
+    });
+</script>
+
+<script>
+    const linhas = document.getElementById("HorarioPico");
+
+    new Chart(linhas, {
+        type: "line",
+        data: {
+            labels: [
+                "08:00",
+                "10:00",
+                "12:00",
+                "14:00",
+                "16:00",
+                "18:00",
+                "20:00",
+            ],
+            datasets: [
+                {
+                    label: "Provadores ocupados",
+                    data: [1, 3, 5, 5, 2, 2, 0],
+                    backgroundColor: "#ff9900",
+                    borderColor: "#7f7f7f",
+                    borderWidth: 2,
+                },
+            ],
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'HORÁRIO DE PICO'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+    const barras = document.getElementById("cabine");
+
+    new Chart(barras, {
+        type: "bar",
+        data: {
+            labels: [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+            ],
+            datasets: [
+                {
+                    label: ["Provador",],
+                    data: [4, 10, 3, 5, 6],
+                    borderColor: "#7f7f7f",
+                    backgroundColor: ['#ffd900'],
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'MÉDIA DE TEMPO DE PERMANÊNCIA (MINUTOS)'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+
+    const cabine = document.getElementById("usoCabine");
+
+    new Chart(cabine, {
+        type: "bar",
+        data: {
+            labels: [
+                "Segunda",
+                "Terça",
+                "Quarta",
+                "Quinta",
+                "Sexta",
+                "Sábado",
+                "Domingo",
+            ],
+            datasets: [
+                {
+                    label: 'Dias da Semana',
+                    data: [22, 24, 27, 23, 20, 18, 30],
+                    borderColor: "#7f7f7f",
+                    backgroundColor: [
+                        '#a4fc00'
+
+                    ],
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'NÚMERO DE VISITANTES (DIÁRIO)'
+                }
+            },
+            indexAxis: 'y',
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+    });
+</script>
