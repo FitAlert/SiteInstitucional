@@ -47,17 +47,17 @@ function cadastrar(req, res) {
 
     // Faça as validações dos valores
     if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
+        res.status(400).send("Seu nome está indefinido!");
     } else if (telefone == undefined) {
-        res.status(400).send("Seu telefone está undefined!");
+        res.status(400).send("Seu telefone está indefinido!");
     } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu email está indefinido!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
+        res.status(400).send("Sua senha está indefinido!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, telefone, email, senha)
+        usuarioModel.cadastrar(nome, email, telefone, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

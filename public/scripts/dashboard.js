@@ -1,10 +1,3 @@
-
-
-function cadastrar() {
-    window.location = 'vincLoja.html';
-}
-
-
-function sair() {
-    window.location = 'index.html';
+window.onload = () => {
+    span_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 }

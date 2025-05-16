@@ -2,10 +2,10 @@ var mysql = require("mysql2");
 
 // CONEXÃO DO BANCO MYSQL SERVER
 var mySqlConfig = {
-    host: "127.0.0.1", //inserir host
-    database: "fitAlert", //inserir banco
-    user: "padrao", // inserir usuario 
-    password: "all*", // inserir senha 
+    host: "localhost", //inserir host
+    database: "DB_FitAlert", //inserir banco
+    user: "FitAlert", // inserir usuario 
+    password: "admin123", // inserir senha 
     port: 3306
 };
 
