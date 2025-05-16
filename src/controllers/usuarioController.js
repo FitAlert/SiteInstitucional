@@ -75,7 +75,50 @@ function cadastrar(req, res) {
     }
 }
 
+function vincular(req, res) {
+    var loja = req.body.nomeServer;
+    var cnpj = req.body.telefoneServer;
+    var cidade = req.body.emailServer;
+    var uf = req.body.senhaServer;
+    var rua = req.body.senhaServer;
+    var numero = req.body.senhaServer;
+    var cep = req.body.senhaServer;
+
+     if (loja == undefined) {
+        res.status(400).send("Sua loja está indefinida!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu CNPJ está indefinido!");
+    } else if (cidade == undefined) {
+        res.status(400).send("Sua cidade está indefinida!");
+    } else if (uf == undefined) {
+        res.status(400).send("Seu UF está indefinido!");
+    } else if (rua == undefined) {
+        res.status(400).send("Sua rua está indefinida!");
+    } else if (numero == undefined) {
+        res.status(400).send("Seu número está indefinido!");
+    } else if (cep == undefined) {
+        res.status(400).send("Seu CEP está indefinido!");
+    }
+
+    usuarioModel.vincular(loja, cnpj, cidade, uf, rua, numero, cep)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    vincular
 }
