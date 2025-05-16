@@ -71,6 +71,7 @@ CREATE TABLE TB_Avisos (
 
 ALTER TABLE TB_Usuarios ADD CONSTRAINT chkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES TB_Empresas(idEmpresa);
 
+insert into TB_Sensores values (default, 'Ativo');
 -- SHOW TABLES;
 -- DESC TB_Usuarios;
 -- DESC TB_Enderecos;
