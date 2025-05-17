@@ -3,19 +3,20 @@ USE DB_FitAlert;
 
 -- Criação das tabelas conforme o DER (Diagrama Entidade Relacionamento)
 
-create TABLE TB_Enderecos (
+CREATE TABLE TB_Enderecos (
 idEndereco INT PRIMARY KEY AUTO_INCREMENT,
 uf CHAR(2) NOT NULL,
-cidade VARCHAR(45) NOT NULL,
-rua VARCHAR(45) NOT NULL,
+municipio VARCHAR(45) NOT NULL,
+logradouro VARCHAR(45) NOT NULL,
 numero VARCHAR(5) NOT NULL,
 cep CHAR(8) NOT NULL
 );
+select * from TB_Empresas;
+alter table tb_empresas drop column nomeFantasia;
 
 CREATE TABLE TB_Empresas (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-nomeFantasia VARCHAR(45) NOT NULL,
-razaoSocial VARCHAR(45),
+razaoSocial VARCHAR(45) NOT NULL,
 cnpj CHAR(14) NOT NULL,
 fkEmpresaMatriz INT,
 fkEndereco INT UNIQUE,
@@ -28,8 +29,8 @@ CREATE TABLE TB_Usuarios (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nomeUsuario  VARCHAR(45) NOT NULL,
 fkEmpresa INT,
-email VARCHAR(45) NOT NULL,
-telefone CHAR(11),
+email VARCHAR(45) NOT NULL UNIQUE,
+telefone CHAR(11)  NOT NULL UNIQUE,
 senha VARCHAR(50) NOT NULL,
 CONSTRAINT chkUsuarioEmail CHECK(email like '%@%'),
 FOREIGN KEY (fkEmpresa) references TB_Empresas(idEmpresa)

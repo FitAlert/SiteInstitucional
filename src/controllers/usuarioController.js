@@ -76,13 +76,13 @@ function cadastrar(req, res) {
 }
 
 function vincular(req, res) {
-    var loja = req.body.nomeServer;
-    var cnpj = req.body.telefoneServer;
-    var cidade = req.body.emailServer;
-    var uf = req.body.senhaServer;
-    var rua = req.body.senhaServer;
-    var numero = req.body.senhaServer;
-    var cep = req.body.senhaServer;
+    var loja = req.body.lojaServer;
+    var cnpj = req.body.cnpjServer;
+    var cidade = req.body.cidadeServer;
+    var uf = req.body.ufServer;
+    var rua = req.body.ruaServer;
+    var numero = req.body.numeroServer;
+    var cep = req.body.cepServer;
 
      if (loja == undefined) {
         res.status(400).send("Sua loja está indefinida!");
@@ -98,7 +98,9 @@ function vincular(req, res) {
         res.status(400).send("Seu número está indefinido!");
     } else if (cep == undefined) {
         res.status(400).send("Seu CEP está indefinido!");
-    }
+    } else {
+
+    
 
     usuarioModel.vincular(loja, cnpj, cidade, uf, rua, numero, cep)
             .then(
@@ -116,6 +118,7 @@ function vincular(req, res) {
                 }
             );
     }
+}
 
 module.exports = {
     autenticar,
