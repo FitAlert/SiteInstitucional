@@ -15,15 +15,19 @@ function vincular(loja, cnpj, cidade, uf, rua, numero, cep) {
     var instrucaoSql = `
         INSERT INTO TB_Empresas (razaoSocial, cnpj) VALUES ('${loja}', '${cnpj}');
     `;
-    var instrucaoSql2 = `
-        INSERT INTO TB_Enderecos (uf, cidade, rua, numero, cep) VALUES ('${uf}', '${cidade}', '${rua}', '${numero}', '${cep}');
-    `;
+    
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
-        .then( function() {
+        .then((id) => {
+            var idEmpresa = id.insertId;
+            console.log('ID da empresa: ', idEmpresa);
+
+            var instrucaoSql2 = `
+            INSERT INTO TB_Enderecos (uf, municipio, logradouro, numero, cep, fkEmpresa) VALUES ('${uf}', '${cidade}', '${rua}', '${numero}', '${cep}', '${idEmpresa}');
+            `;
             console.log("Executando a instrução SQL: \n" + instrucaoSql2);
-            return database.executar(instrucaoSql2);
-    })
+            return database.executar(instrucaoSql2)
+    }) 
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql

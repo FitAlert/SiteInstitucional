@@ -9,21 +9,20 @@ uf CHAR(2) NOT NULL,
 municipio VARCHAR(45) NOT NULL,
 logradouro VARCHAR(45) NOT NULL,
 numero VARCHAR(5) NOT NULL,
-cep CHAR(8) NOT NULL
+cep CHAR(8) NOT NULL,
+fkEmpresa INT
 );
-select * from TB_Empresas;
-alter table tb_empresas drop column nomeFantasia;
 
 CREATE TABLE TB_Empresas (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 razaoSocial VARCHAR(45) NOT NULL,
 cnpj CHAR(14) NOT NULL,
 fkEmpresaMatriz INT,
-fkEndereco INT UNIQUE,
 codigoAtivacao VARCHAR(50),
-CONSTRAINT fkEmpresaMatriz FOREIGN KEY (fkEmpresaMatriz) REFERENCES TB_Empresas(idEmpresa),
-CONSTRAINT fkEmpresaEndereco FOREIGN KEY (fkEndereco) REFERENCES TB_Enderecos(idEndereco)
+CONSTRAINT fkEmpresaMatriz FOREIGN KEY (fkEmpresaMatriz) REFERENCES TB_Empresas(idEmpresa)
 );
+
+ALTER TABLE tb_enderecos ADD CONSTRAINT fkEnderecoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES TB_Empresas(idEmpresa);
 
 CREATE TABLE TB_Usuarios (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
