@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/styleDash.css">
     <link rel="stylesheet" href="styles/menu.css">
-    <script src="scripts/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="shortcut icon" href="images/logos/logo-oficial-branca.png" type="image/x-icon">
     <title>FITALERT - DASHBOARD</title>
@@ -28,7 +27,18 @@
         <ul>
             <li><a href="./dashboard.html">Dashboard</a></li>
             <li><a href="./vincLoja.html">Nova loja</a></li>
-            <li><a href="#">Alertas</a></li>
+           <li id="li_alerta">Alertas
+                <span id="span_alerta">7</span>
+                <div class="boxAlerta" id="boxAlerta">
+                    <div><b>1 </b>- Alertas loremns Lorem ipsum dolor</div>
+                    <div><b>2</b> - Alertas loremns</div>
+                    <div><b>3</b> - Alertas loremns</div>
+                    <div><b>4</b> - Alertas loremns</div>
+                    <div><b>5</b> - Alertas loremns</div>
+                    <div><b>6</b> - Alertas loremns</div>
+                    <div><b>7</b> - Alertas loremns</div>
+                </div>
+            </li>
             <li><a href="#">Configurações</a></li>
         </ul>
         <button class="sair" onclick="sair()">Sair</button>
@@ -279,3 +289,4 @@
         },
     });
 </script>
+    <script src="scripts/dashboard.js"></script>
