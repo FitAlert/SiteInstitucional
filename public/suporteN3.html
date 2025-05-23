@@ -12,12 +12,12 @@
 
 <body>
     <nav>
-        <div class="conjunto-logo">
+        <div class="conjunto-logo" style="width: 65%;">
             <div class="logo"></div>
             FITALERT
         </div>
         <hr style="color:black" width="100%">
-        <div class="perfil" style="height: 50px; padding: 10% 0 30% 0; ">
+        <div class="perfil" style="height: 50px; padding: 10% 0 10% 0; ">
             <div id="cliente"><b>Bem vindo ADM, <span id="span_usuario">user</span>!</b><br></div>
         </div>
         <ul>
@@ -30,7 +30,16 @@
 
     <main class="bobIA">
         <h1>BobIA</h1>
-        <div id="resposta" class="resposta"></div>
+        <div class="chatConversa">
+            <div class="conjunto">
+                <div id="perguntaFeita" class="pergunta"></div>
+                <div id="resposta" class="resposta"></div>
+            </div>
+            <div class="conjunto">
+                <div id="perguntaFeita" class="pergunta"></div>
+                <div id="resposta" class="resposta"></div>
+            </div>
+        </div>
         
         <div class="text-button">
             <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
@@ -42,7 +51,17 @@
 </body>
 </html>
 
-<script>    
+<script>
+
+var perguntaUsuario = pergunta.value;
+var respostaChat = resposta.value
+var chat = 
+{
+    pergunta: perguntaUsuario,
+    resposta: data.resultado 
+}
+
+sessionStorage.setItem('perguntas')
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
 
@@ -58,5 +77,6 @@
 
             resposta.style.display = 'block';
             document.getElementById('resposta').innerText = data.resultado;
+            document.getElementById('perguntaFeita').innerText = perguntaUsuario;
         }
 </script>
