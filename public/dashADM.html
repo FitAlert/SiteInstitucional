@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styleDash.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="shortcut icon" href="images/logos/logo-oficial-branca.png" type="image/x-icon">
+    <title>FITALERT - Suporte</title>
+</head>
+
+<body>
+    <nav>
+        <div class="conjunto-logo">
+            <div class="logo"></div>
+            FITALERT
+        </div>
+        <hr style="color:black" width="100%">
+        <div class="perfil" style="height: 50px; padding: 10% 0 30% 0; ">
+            <div id="cliente"><b>Bem vindo ADM, <span id="span_usuario">user</span>!</b><br></div>
+        </div>
+        <ul>
+            <li><a href="./dashboard.html">Documantação</a></li>
+            <li><a href="./vincLoja.html">Fluxo de atendimento</a></li>
+            <li><a href="#">Suporte</a></li>
+        </ul>
+        <button class="sair" onclick="sair()">Sair</button>
+    </nav>
+
+    <main class="bobIA">
+        <h1>BobIA</h1>
+        <div id="resposta" class="resposta"></div>
+        
+        <div class="text-button">
+            <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+            <button onclick="gerarResposta()">&UpArrow;</button>
+        </div>
+        <script>
+        
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+
+            const response = await fetch('/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
+
+    </script>
+    </main>
+</body>
+
+</html>
+    <script src="scripts/dashboard.js"></script>
