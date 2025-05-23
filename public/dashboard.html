@@ -48,13 +48,11 @@
         <header>
             <div class="pesquisa">
                 <b>Selecionar período:</b>
-                <select>
-                    <option value="">Diário</option>
-                    <option value="" selected>Semanal</option>
-                    <option value="">Mensal</option>
-                    <option value="">Anual</option>
-                </select>
-                <input type="date" name="" id="">
+                <p>de:</p>
+                <input type="date" name="" id="inputInicio">   
+                <p>até</p>
+                <input type="date" name="" id="inputFim">
+                <button onclick="filtrar()"> filtrar </button>
             </div>
         </header>
 
@@ -108,9 +106,12 @@
 </body>
 
 </html>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
+
+
     Chart.register(ChartDataLabels);
     const pizza = document.getElementById("usoSessao").getContext('2d');
 
