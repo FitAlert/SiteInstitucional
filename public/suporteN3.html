@@ -36,8 +36,13 @@
             <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
             <button onclick="gerarResposta()">&UpArrow;</button>
         </div>
-        <script>
         
+    
+    </main>
+</body>
+</html>
+
+<script>    
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
 
@@ -54,10 +59,4 @@
             resposta.style.display = 'block';
             document.getElementById('resposta').innerText = data.resultado;
         }
-
-    </script>
-    </main>
-</body>
-
-</html>
-    <script src="scripts/dashboard.js"></script>
+</script>
