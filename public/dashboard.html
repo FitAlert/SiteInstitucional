@@ -120,6 +120,11 @@ var fim = dataAtual()
     function filtrar(){
     inicio = inputInicio.value
     fim = inputFim.value
+
+    if(fim == ''){
+        fim = dataAtual()
+    }
+
     buscarFemininoMasculino()
     }
 
