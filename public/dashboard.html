@@ -11,7 +11,7 @@
     <title>FITALERT - DASHBOARD</title>
 </head>
 
-<body>
+<body onload="buscarFemininoMasculino()">
     <nav>
         <div class="conjunto-logo">
             <div class="logo"></div>
@@ -111,11 +111,53 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
+var idUsuario = sessionStorage.ID_USUARIO;
+var idEmpresa = sessionStorage.ID_EMPRESA;
 
-    Chart.register(ChartDataLabels);
-    const pizza = document.getElementById("usoSessao").getContext('2d');
+var inicio = dataAtual()
+var fim = dataAtual()
 
-    new Chart(pizza, {
+    function filtrar(){
+    inicio = inputInicio.value
+    fim = inputFim.value
+    buscarFemininoMasculino()
+    }
+
+    function buscarFemininoMasculino(){
+    
+    fetch(`http://localhost:3333/metricas/buscarFemininoMasculino/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
+
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        plotarGraficoPizza(data);
+    })
+    .catch(function(err){
+        console.log(err);
+    })
+
+    }
+
+    var graficoPizza; 
+    function plotarGraficoPizza(dados)
+ {
+    console.log("Dados brutos recebidos:", dados);
+
+    var masculino = dados[0].Masculino; 
+    var feminino = dados[0].Feminino;  
+    var total = masculino + feminino
+
+    var percentualMasculino = ((masculino / total) * 100).toFixed(0);
+    var percentualFeminino = ((feminino / total) * 100).toFixed(0);
+
+    const ctx = document.getElementById("usoSessao").getContext('2d');
+
+    if (graficoPizza) {
+        graficoPizza.destroy(); // essa funcao é para nao duplicar gráficos
+    }
+
+    graficoPizza = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: [
@@ -125,7 +167,7 @@
             datasets: [
                 {
                     label: 'Porcentagem de Visitantes',
-                    data: [36, 64],
+                    data: [percentualMasculino, percentualFeminino],
                     backgroundColor: [
                         '#00ffbf',
                         '#4c00ff',
@@ -148,28 +190,26 @@
                         weight: 'bold',
                         size: 14
                     }
-                }
-                /*tooltip: {
+                },
+                tooltip: {
                     callbacks: {
                         label: function(context) {
-                            let label = context.label;
-                            let value = context.formattedValue;
-                            let data = context.dataset.data;
-                            let total = data.reduce((sum, val) => sum + val, 0);
-                            let percentage = ((context.raw / total) * 100);
-                            return `${label}: ${value} (${percentage}%)`;
+                            var idx = context.dataIndex;
+                            var labels = ['Masculino', 'Feminino'];
+                            var valoresAbsolutos = [masculino, feminino];
+                            return `${labels[idx]}: ${valoresAbsolutos[idx]} visitantes`;
                         }
                     }
-                }*/
+                }
             },
             responsive: true,
             maintainAspectRatio: false,
         },
         plugins: [ChartDataLabels]
     });
-</script>
+    }    
 
-<script>
+
     const linhas = document.getElementById("HorarioPico");
 
     new Chart(linhas, {
@@ -289,5 +329,16 @@
             maintainAspectRatio: false
         },
     });
+
+    function dataAtual() {
+    const data = new Date();
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
+    return `${ano}-${mes}-${dia}`;
+    }
+
+    window.onload = () => {
+    buscarFemininoMasculino();
+};
 </script>
-    <script src="scripts/dashboard.js"></script>
