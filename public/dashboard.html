@@ -11,7 +11,7 @@
     <title>FITALERT - DASHBOARD</title>
 </head>
 
-<body onload="buscarFemininoMasculino()">
+<body>
     <nav>
         <div class="conjunto-logo">
             <div class="logo"></div>
@@ -71,8 +71,8 @@
                     <p>5min36</p>
                 </div>
                 <div class="kpi">
-                    <h3>SESSÃO MAIS VISITADA</h3>
-                    <p>Feminino</p>
+                    <h3>SEÇÃO MAIS VISITADA</h3>
+                    <p id="secaoVisitada">Feminino</p>
                 </div>
             </div>
 
@@ -118,100 +118,129 @@ var inicio = dataAtual()
 var fim = dataAtual()
 
     function filtrar(){
-    inicio = inputInicio.value
-    fim = inputFim.value
 
-    if(fim == ''){
-        fim = dataAtual()
+        inicio = inputInicio.value
+        fim = inputFim.value
+
+        if(fim == ''){
+            fim = dataAtual()
+        }
+
+        buscarFemininoMasculino();
+        buscarSecaoMaisVisitada();
     }
 
-    buscarFemininoMasculino()
-    }
 
     function buscarFemininoMasculino(){
     
-    fetch(`http://localhost:3333/metricas/buscarFemininoMasculino/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
+        fetch(`/metricas/buscarFemininoMasculino/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
 
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        plotarGraficoPizza(data);
-    })
-    .catch(function(err){
-        console.log(err);
-    })
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            plotarGraficoPizza(data);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
 
     }
+
+    // ----- buscando a 4º KPI -----
+    function buscarSecaoMaisVisitada() {
+        fetch(`/metricas/buscarSecaoMaisVisitada/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(function (resposta) {
+            console.log(resposta);
+
+            if (resposta.ok) {
+                console.warn('Select funcionou!')
+                return resposta.json();
+            } else {
+                console.error('Erro ao buscar dados.')
+            }
+        })
+        .then (function (secaoDados) {
+            console.log(secaoDados);
+            secaoVisitada.innerHTML = secaoDados[0].Secao;
+        })
+    }
+
 
     var graficoPizza; 
-    function plotarGraficoPizza(dados)
- {
-    console.log("Dados brutos recebidos:", dados);
 
-    var masculino = dados[0].Masculino; 
-    var feminino = dados[0].Feminino;  
-    var total = masculino + feminino
+    function plotarGraficoPizza(dados) {
+            
+        console.log("Dados brutos recebidos:", dados);
 
-    var percentualMasculino = ((masculino / total) * 100).toFixed(0);
-    var percentualFeminino = ((feminino / total) * 100).toFixed(0);
+        var masculino = dados[0].Masculino; 
+        var feminino = dados[0].Feminino;  
+        var total = masculino + feminino
 
-    const ctx = document.getElementById("usoSessao").getContext('2d');
+        var percentualMasculino = ((masculino / total) * 100).toFixed(0);
+        var percentualFeminino = ((feminino / total) * 100).toFixed(0);
 
-    if (graficoPizza) {
-        graficoPizza.destroy(); // essa funcao é para nao duplicar gráficos
-    }
+        const ctx = document.getElementById("usoSessao").getContext('2d');
 
-    graficoPizza = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: [
-                'Masculino',
-                'Feminino'
-            ],
-            datasets: [
-                {
-                    label: 'Porcentagem de Visitantes',
-                    data: [percentualMasculino, percentualFeminino],
-                    backgroundColor: [
-                        '#00ffbf',
-                        '#4c00ff',
-                    ],
-                    hoverOffset: 10
-                }],
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'VISITANTES POR SESSÃO'
-                },
-                datalabels: {
-                    color: '#fff',
-                    formatter: (value, context) => {
-                        return `${value}%`;
+        if (graficoPizza) {
+            graficoPizza.destroy(); // essa funcao é para nao duplicar gráficos
+        }
+
+        graficoPizza = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Masculino',
+                    'Feminino'
+                ],
+                datasets: [
+                    {
+                        label: 'Porcentagem de Visitantes',
+                        data: [percentualMasculino, percentualFeminino],
+                        backgroundColor: [
+                            '#00ffbf',
+                            '#4c00ff',
+                        ],
+                        hoverOffset: 10
+                    }],
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'VISITANTES POR SESSÃO'
                     },
-                    font: {
-                        weight: 'bold',
-                        size: 14
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            var idx = context.dataIndex;
-                            var labels = ['Masculino', 'Feminino'];
-                            var valoresAbsolutos = [masculino, feminino];
-                            return `${labels[idx]}: ${valoresAbsolutos[idx]} visitantes`;
+                    datalabels: {
+                        color: '#fff',
+                        formatter: (value, context) => {
+                            return `${value}%`;
+                        },
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var idx = context.dataIndex;
+                                var labels = ['Masculino', 'Feminino'];
+                                var valoresAbsolutos = [masculino, feminino];
+                                return `${labels[idx]}: ${valoresAbsolutos[idx]} visitantes`;
+                            }
                         }
                     }
-                }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
             },
-            responsive: true,
-            maintainAspectRatio: false,
-        },
-        plugins: [ChartDataLabels]
-    });
+            plugins: [ChartDataLabels]
+        });
     }    
 
 
@@ -253,6 +282,7 @@ var fim = dataAtual()
             },
         },
     });
+
     const barras = document.getElementById("cabine");
 
     new Chart(barras, {
@@ -345,5 +375,6 @@ var fim = dataAtual()
 
     window.onload = () => {
     buscarFemininoMasculino();
+    buscarSecaoMaisVisitada()
 };
 </script>
