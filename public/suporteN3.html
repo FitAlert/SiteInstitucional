@@ -17,11 +17,11 @@
             FITALERT
         </div>
         <hr style="color:black" width="100%">
-        <div class="perfil" style="height: 50px; padding: 10% 0 10% 0; ">
+        <div class="perfil" style="height: 50px; padding: 10% 0 10% 0;">
             <div id="cliente"><b>Bem vindo ADM, <span id="span_usuario">user</span>!</b><br></div>
         </div>
         <ul>
-            <li><a href="./dashboard.html">Documantação</a></li>
+            <li><a href="" download="nome_do_arquivo.pdf">Documentação</a></li>
             <li><a href="./vincLoja.html">Fluxo de atendimento</a></li>
             <li><a href="#">Suporte</a></li>
         </ul>
@@ -30,53 +30,79 @@
 
     <main class="bobIA">
         <h1>BobIA</h1>
-        <div class="chatConversa">
-            <div class="conjunto">
-                <div id="perguntaFeita" class="pergunta"></div>
-                <div id="resposta" class="resposta"></div>
-            </div>
-            <div class="conjunto">
-                <div id="perguntaFeita" class="pergunta"></div>
-                <div id="resposta" class="resposta"></div>
-            </div>
+        <div class="chatConversa" id="chatConversa">
+            <!-- Aqui as perguntas e respostas vão aparecer -->
         </div>
-        
+
         <div class="text-button">
-            <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+            <textarea id="pergunta" placeholder="Digite a pergunta..."></textarea>
             <button onclick="gerarResposta()">&UpArrow;</button>
         </div>
-        
-    
     </main>
-</body>
-</html>
 
-<script>
-
-var perguntaUsuario = pergunta.value;
-var respostaChat = resposta.value
-var chat = 
-{
-    pergunta: perguntaUsuario,
-    resposta: data.resultado 
-}
-
-sessionStorage.setItem('perguntas')
-        async function gerarResposta() {
-            const pergunta = document.getElementById('pergunta').value;
-
-            const response = await fetch('/perguntar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ pergunta })
-            });
-
-            const data = await response.json();
-
-            resposta.style.display = 'block';
-            document.getElementById('resposta').innerText = data.resultado;
-            document.getElementById('perguntaFeita').innerText = perguntaUsuario;
+    <script>
+        function sair(){
+            window.location = 'index.html'
         }
-</script>
+        function renderizarChat() {
+            const chatConversa = document.getElementById('chatConversa');
+            chatConversa.innerHTML = ''; // limpa antes de renderizar
+
+            const chat = JSON.parse(sessionStorage.getItem('chat')) || [];
+
+            chat.forEach(item => {
+                const conjunto = document.createElement('div');
+                conjunto.className = 'conjunto';
+
+                const perguntaDiv = document.createElement('div');
+                perguntaDiv.className = 'pergunta';
+                perguntaDiv.innerText = item.pergunta;
+
+                const respostaDiv = document.createElement('div');
+                respostaDiv.className = 'resposta';
+                respostaDiv.innerText = item.resposta;
+
+                conjunto.appendChild(perguntaDiv);
+                conjunto.appendChild(respostaDiv);
+
+                chatConversa.appendChild(conjunto);
+            });
+        }
+
+        async function gerarResposta() {
+            const perguntaInput = document.getElementById('pergunta');
+            const pergunta = perguntaInput.value;
+
+            if (pergunta == "") {
+                return;
+            } else {
+                const response = await fetch('/perguntar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ pergunta })
+                });
+
+                const data = await response.json();
+
+                const chat = JSON.parse(sessionStorage.getItem('chat')) || [];
+
+                chat.push({
+                    pergunta: pergunta,
+                    resposta: data.resultado
+                });
+
+                sessionStorage.setItem('chat', JSON.stringify(chat));
+
+                perguntaInput.value = ''; // limpa a pergunta
+                renderizarChat(); // atualiza o chat na tela
+            }
+        }
+
+        // Renderiza o chat quando a página carrega
+        window.onload = renderizarChat;
+    </script>
+</body>
+
+</html>

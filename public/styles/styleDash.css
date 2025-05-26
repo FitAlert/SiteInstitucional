@@ -330,6 +330,7 @@ main section .geral .graficos .linha .gg {
 /*DASH ADM*/
 
 .bobIA{
+margin-top: 50px;
  width: 77%;
  height: 100vh ;
  display: flex;
@@ -343,7 +344,7 @@ main section .geral .graficos .linha .gg {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .text-button textarea{
@@ -351,7 +352,7 @@ main section .geral .graficos .linha .gg {
     height: 100%;
     border-radius: 10px;
     padding: 13px 0 0 15px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .text-button button{
@@ -360,34 +361,40 @@ main section .geral .graficos .linha .gg {
     border-radius:10px;
     font-weight: bold;
     font-size: 25px;
+    background-color: rgb(230, 205, 159);
+
 }
 
-.chatConversa{
+.chatConversa {
     width: 70%;
-    height: 100%;
-    background-color: #cacaca;
     padding: 20px;
-    margin-bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* espaço entre blocos */
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
-.chatConversa .conjunto{
-    width: 100%;
-    height: 150px;
+.chatConversa .conjunto {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
 }
 
-.pergunta{
-    width: 60%;
-    height:10px;
-    right: 20px;
-    border: 2px solid #000;
-    margin-left: 40%;
+.pergunta {
+    align-self: flex-end; 
+    background-color: #bebebe;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 60%;
+    text-align: right;
 }
 
-.resposta{
-    position: relative;
-    width: 60%;
-    height:10px;
-    left: 0;
-    top: 50px;
-    border: 2px solid #000;
+.resposta {
+    align-self: flex-start; 
+    background-color: #e7e7e7;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 60%;
+    text-align: left;
 }
