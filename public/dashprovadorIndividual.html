@@ -45,19 +45,9 @@
     </nav>
 
     <main>
-        <header>
-            <div class="pesquisa">
-                <b>Selecionar período:</b>
-                <p>de:</p>
-                <input type="date" name="" id="inputInicio">   
-                <p>até</p>
-                <input type="date" name="" id="inputFim">
-                <button onclick="filtrar()"> filtrar </button>
-            </div>
-        </header>
 
-        <section>
-            <div class="totalKPIS">
+        <section style="margin-top: 25px;">
+            <div class="totalKPIS" style="display: flex; justify-content: center; align-items: center; gap: 50px;">
                 <div class="kpi">
                     <h3>HORÁRIO DE PICO</h3>
                     <p>13h15</p>
@@ -66,39 +56,19 @@
                     <h3>FLUXO DE VISITANTES</h3>
                     <p>22</p>
                 </div>
-                <div class="kpi">
-                    <h3>TEMPO PERMANÊNCIA</h3>
-                    <p>5min36</p>
-                </div>
-                <div class="kpi">
-                    <h3>SEÇÃO MAIS VISITADA</h3>
-                    <p id="secaoVisitada">Feminino</p>
-                </div>
+              
             </div>
 
             <div class="geral">
-                <div class="ocupacao">
-                    <h3>Provadores</h3>
-                    <div class="prov" onclick="provador1()">1</div>
-                    <div class="prov">2</div>
-                    <div class="prov">3</div>
-                    <div class="prov">4</div>
-                    <div class="prov">5</div>
-                </div>
+               
 
                 <div class="graficos">
-                    <div class="linha l1">
+                    <div class="linha l1" style="flex-direction: column; margin-top: -220px;">
                         <div class="gg"><canvas id="HorarioPico"></canvas></div>
 
                         <div class="gg"><canvas id="cabine"></canvas></div>
                     </div>
 
-                    <div class="linha l2">
-                        <div class="gg"><canvas id="usoCabine"></canvas></div>
-
-                        <div class="gg"><canvas id="usoSessao"></canvas></div>
-
-                    </div>
                 </div>
             </div>
         </section>
@@ -377,9 +347,4 @@ var fim = dataAtual()
     buscarFemininoMasculino();
     buscarSecaoMaisVisitada()
 };
-
-function provador1(){
-    window.location = 'dashprovadorindividual.html'
-}
-
 </script>

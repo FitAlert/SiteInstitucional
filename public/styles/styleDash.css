@@ -184,7 +184,7 @@ header {
 }
 
 header .pesquisa {
-    width: 55%;
+    width: 67%;
     height: 50px;
     display: flex;
     align-items: center;
@@ -192,8 +192,28 @@ header .pesquisa {
     gap: 10px;
     border-radius: 5px;
     padding: 5px;
+    
 }
 
+header .pesquisa button{
+    width: 150px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+       background-color: #f7bf5654;
+
+    border: none;
+}
+
+header .pesquisa button:hover{
+    background-color: rgb(230, 205, 159);
+}
+header .pesquisa b{
+    display: flex;
+    align-items: center;
+}
 header .pesquisa b,
 input,
 select {
