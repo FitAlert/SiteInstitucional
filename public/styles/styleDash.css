@@ -18,7 +18,7 @@ nav {
     box-shadow: 0 0 10px 2px #ccc;
 }
 
-nav  .conjunto-logo{
+nav .conjunto-logo {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,7 +29,7 @@ nav  .conjunto-logo{
     position: absolute;
 }
 
-nav  .conjunto-logo .logo{
+nav .conjunto-logo .logo {
     background-image: url(../images/logos/logo-oficial-preta.png);
     width: 70px;
     height: 70px;
@@ -169,7 +169,7 @@ nav .sair {
     cursor: pointer;
 }
 
-nav .sair:hover{
+nav .sair:hover {
     background-color: #f7bf5654;
 }
 
@@ -185,7 +185,7 @@ header {
 
 header .pesquisa {
     width: 55%;
-    height: 50px;   
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -194,7 +194,8 @@ header .pesquisa {
     padding: 5px;
 }
 
-header .pesquisa b, input,
+header .pesquisa b,
+input,
 select {
     width: 50%;
     height: 70%;
@@ -329,17 +330,18 @@ main section .geral .graficos .linha .gg {
 
 /*DASH ADM*/
 
-.bobIA{
-margin-top: 50px;
- width: 77%;
- height: 100vh ;
- display: flex;
- flex-direction: column;
- align-items: center;
+.bobIA {
+    margin-top: 50px;
+    width: 77%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.text-button{
-    width:75%;
+.text-button {
+    width: 75%;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -347,7 +349,7 @@ margin-top: 50px;
     margin-bottom: 5%;
 }
 
-.text-button textarea{
+.text-button textarea {
     width: 85%;
     height: 100%;
     border-radius: 10px;
@@ -355,10 +357,10 @@ margin-top: 50px;
     font-size: 18px;
 }
 
-.text-button button{
+.text-button button {
     height: 100%;
     width: 10%;
-    border-radius:10px;
+    border-radius: 10px;
     font-weight: bold;
     font-size: 25px;
     background-color: rgb(230, 205, 159);
@@ -370,7 +372,8 @@ margin-top: 50px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* espaço entre blocos */
+    gap: 10px;
+    /* espaço entre blocos */
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -378,11 +381,11 @@ margin-top: 50px;
 .chatConversa .conjunto {
     display: flex;
     flex-direction: column;
-    gap: 5px; 
+    gap: 5px;
 }
 
 .pergunta {
-    align-self: flex-end; 
+    align-self: flex-end;
     background-color: #bebebe;
     padding: 10px;
     border-radius: 5px;
@@ -391,7 +394,7 @@ margin-top: 50px;
 }
 
 .resposta {
-    align-self: flex-start; 
+    align-self: flex-start;
     background-color: #e7e7e7;
     padding: 10px;
     border-radius: 5px;
