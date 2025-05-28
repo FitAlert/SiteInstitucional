@@ -31,7 +31,7 @@ function buscarMediaSecao(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar dados para o grafico de media de secao.", erro.sqlMessage);
+        console.log("Houve um erro ao buscar dados para o grafico de media.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }

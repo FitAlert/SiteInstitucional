@@ -20,13 +20,14 @@ function buscarFemininoMasculino(idEmpresa, inicio, fim) {
 
 function buscarMediaSecao(idEmpresa, inicio, fim) {
     var instrucaoSql = `
-    SELECT p.secao,  ROUND(COUNT(r.idRegistro) / (DATEDIFF('${fim}', '${inicio}') + 1), 2) AS media_visitas_por_dia
+    SELECT p.idProvador,COUNT(r.idRegistro) AS total_visitas
     FROM TB_Provadores p
     JOIN TB_Sensores s ON p.fkSensor = s.idSensor
     LEFT JOIN TB_Registros r 
-    ON s.idSensor = r.fkSensor AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
+    ON s.idSensor = r.fkSensor 
+    AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
     WHERE p.idEmpresa = ${idEmpresa}
-    GROUP BY p.secao;
+    GROUP BY p.idProvador;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
