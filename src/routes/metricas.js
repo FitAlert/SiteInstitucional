@@ -12,4 +12,8 @@ router.get("/buscarSecaoMaisVisitada/:idEmpresa", function (req, res) {
 })
 
 
+router.get("/buscarMediaSecao/:idEmpresa", function (req, res) {
+    metricasController.buscarMediaSecao(req, res);
+})
+
 module.exports = router;

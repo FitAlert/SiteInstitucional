@@ -13,7 +13,25 @@ function buscarFemininoMasculino(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar erros e acertos.", erro.sqlMessage);
+        console.log("Houve um erro ao busacr dados pro grafico de pizza", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMediaSecao(req, res) {
+
+    var idEmpresa = req.params.idEmpresa;
+    var { inicio, fim } = req.query;
+
+    metricasModel.buscarMediaSecao(idEmpresa, inicio, fim).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar dados para o grafico de media de secao.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -51,5 +69,6 @@ function buscarSecaoMaisVisitada(req, res) { // KPI de Seção mais visitada (gr
 
 module.exports = {
     buscarFemininoMasculino,
-    buscarSecaoMaisVisitada
+    buscarSecaoMaisVisitada,
+    buscarMediaSecao
 }

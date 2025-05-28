@@ -18,6 +18,22 @@ function buscarFemininoMasculino(idEmpresa, inicio, fim) {
     return database.executar(instrucaoSql);
 }
 
+function buscarMediaSecao(idEmpresa, inicio, fim) {
+
+    var instrucaoSql = `SELECT p.secao, 
+    ROUND(COUNT(r.idRegistro) / COUNT(DISTINCT DATE(r.data_entrada)), 2) AS media_visitas_por_dia
+    FROM TB_Provadores p
+    JOIN TB_Sensores s 
+    ON p.fkSensor = s.idSensor
+    JOIN TB_Registros r 
+    ON s.idSensor = r.fkSensor
+    WHERE p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
+    GROUP BY p.secao;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida) {
     console.log('Acessei o model!');
 
@@ -29,7 +45,7 @@ function buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida) {
                 on r.fkSensor = s.idSensor 
             join tb_provadores p 
                 on s.idSensor = p.fkSensor
-            where p.idEmpresa = ${idEmpresa} and r.data_entrada between '${data_entrada} 00:00:00' and '${data_saida} 23:59:59'
+            where p.idEmpresa = ${idEmpresa} and r.data_entrada between '${inicio} 00:00:00' and '${fim} 23:59:59'
             group by p.secao
             order by Dados desc
             limit 1;
@@ -41,5 +57,6 @@ function buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida) {
 
 module.exports = {
     buscarFemininoMasculino,
-    buscarSecaoMaisVisitada
+    buscarSecaoMaisVisitada,
+    buscarMediaSecao
 }

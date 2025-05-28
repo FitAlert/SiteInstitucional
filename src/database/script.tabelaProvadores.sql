@@ -61,6 +61,150 @@ data_saida DATETIME,
 CONSTRAINT fkRegistroSensor FOREIGN KEY (fkSensor) REFERENCES TB_Sensores(idSensor)
 );
 
+
+CREATE TABLE TB_Avisos (
+	idAviso INT PRIMARY KEY AUTO_INCREMENT,
+	titulo VARCHAR(100),
+	descricao VARCHAR(150),
+	fkUsuario INT,
+	FOREIGN KEY (fkUsuario) REFERENCES TB_Usuarios(idUsuario)
+);
+
+ALTER TABLE TB_Usuarios ADD CONSTRAINT chkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES TB_Empresas(idEmpresa);
+
+insert into TB_Sensores values (default, 'Ativo');
+insert into TB_Sensores values (default, 'Ativo');
+insert into TB_Sensores values (default, 'Ativo');
+insert into TB_Sensores values (default, 'Ativo');
+insert into TB_Sensores values (default, 'Ativo');
+
+INSERT INTO TB_Empresas values
+(DEFAULT, 'Piticas', '11111111111111', null, 'abc');
+
+INSERT INTO TB_PROVADORES values 
+(1, 1, 'masculino', 1);
+
+INSERT INTO TB_PROVADORES values 
+(2, 1, 'masculino', 2),
+(3, 1, 'masculino', 3),
+(4, 1, 'masculino', 4),
+(5, 1, 'masculino', 5);
+
+INSERT INTO TB_PROVADORES values 
+(6, 1, 'feminino', 6),
+(7, 1, 'feminino', 7),
+(8, 1, 'feminino', 8),
+(9, 1, 'feminino', 9);
+
+
+
+INSERT INTO tb_registros values
+(default, 1, 1, '2025-05-23 09:59:47', '2025-05-23 10:00:47'),
+(default, 1, 1, '2025-05-23 10:59:47', '2025-05-23 11:00:47'),
+(default, 1, 1, '2025-05-23 11:59:47', '2025-05-23 12:00:47'),
+(default, 1, 1, '2025-05-23 13:59:47', '2025-05-23 14:00:47'),
+(default, 1, 1, '2025-05-23 14:59:47', '2025-05-23 15:00:47'),
+(default, 1, 1, '2025-05-23 16:59:47', '2025-05-23 17:00:47'),
+(default, 1, 1, '2025-05-23 19:24:47', '2025-05-23 20:00:47')
+;
+
+INSERT INTO tb_registros values
+(default, 1, 1, '2025-05-24 09:59:47', '2025-05-24 10:00:47');
+
+INSERT INTO tb_registros values
+(default, 9, 9, '2025-05-24 09:59:47', '2025-05-24 10:00:47');
+
+INSERT INTO tb_registros values
+(default, 2, 1, '2025-05-23 09:59:47', '2025-05-23 10:00:47'),
+(default, 3, 1, '2025-05-23 10:59:47', '2025-05-23 11:00:47'),
+(default, 4, 1, '2025-05-23 11:59:47', '2025-05-23 12:00:47'),
+(default, 5, 1, '2025-05-23 13:59:47', '2025-05-23 14:00:47'),
+(default, 6, 1, '2025-05-23 14:59:47', '2025-05-23 15:00:47'),
+(default, 7, 1, '2025-05-23 16:59:47', '2025-05-23 17:00:47'),
+(default, 8, 1, '2025-05-23 19:24:47', '2025-05-23 20:00:47');
+
+SELECT count(r.ativo), p.secao from tb_registros r join tb_sensores s on r.fksensor = s.idsensor join tb_provadores p on p.fksensor = s.idsensor group by p.secao; 
+
+SELECT
+    COUNT(CASE WHEN p.secao = 'Masculino' THEN r.ativo END) AS Masculino,
+    COUNT(CASE WHEN p.secao = 'Feminino' THEN r.ativo END) AS Feminino
+FROM tb_registros r
+JOIN tb_sensores s ON r.fkSensor = s.idSensor
+JOIN tb_provadores p ON p.fkSensor = s.idSensor
+WHERE p.idEmpresa = 1
+  AND r.data_entrada BETWEEN '2025-05-23 00:00:00' AND '2025-05-23 23:59:59';
+
+update tb_registros set data_saida = '2025-05-23 13:59:47' WHERE idRegistro = 1;
+
+select * from tb_registros;
+
+
+
+
+
+CREATE DATABASE DB_FitAlert;
+USE DB_FitAlert;
+
+-- Criação das tabelas conforme o DER (Diagrama Entidade Relacionamento)
+
+CREATE TABLE TB_Enderecos (
+idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+uf CHAR(2) NOT NULL,
+municipio VARCHAR(45) NOT NULL,
+logradouro VARCHAR(45) NOT NULL,
+numero VARCHAR(5) NOT NULL,
+cep CHAR(8) NOT NULL,
+fkEmpresa INT
+);
+
+CREATE TABLE TB_Empresas (
+idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+razaoSocial VARCHAR(45) NOT NULL,
+cnpj CHAR(14) NOT NULL,
+fkEmpresaMatriz INT,
+codigoAtivacao VARCHAR(50),
+CONSTRAINT fkEmpresaMatriz FOREIGN KEY (fkEmpresaMatriz) REFERENCES TB_Empresas(idEmpresa)
+);
+
+ALTER TABLE tb_enderecos ADD CONSTRAINT fkEnderecoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES TB_Empresas(idEmpresa);
+
+CREATE TABLE TB_Usuarios (
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+nomeUsuario  VARCHAR(45) NOT NULL,
+fkEmpresa INT,
+email VARCHAR(45) NOT NULL UNIQUE,
+telefone CHAR(11)  NOT NULL UNIQUE,
+senha VARCHAR(50) NOT NULL,
+CONSTRAINT chkUsuarioEmail CHECK(email like '%@%'),
+FOREIGN KEY (fkEmpresa) references TB_Empresas(idEmpresa)
+);
+
+CREATE TABLE TB_Sensores (
+idSensor INT PRIMARY KEY AUTO_INCREMENT,
+status_sensor VARCHAR(20) NOT NULL,
+CONSTRAINT chkSensorStatus CHECK(status_sensor in('Inativo', 'Ativo', 'Manutenção'))
+);
+
+CREATE TABLE TB_Provadores (
+idProvador INT,
+idEmpresa INT,
+secao VARCHAR(45) NOT NULL,
+fkSensor INT UNIQUE,
+PRIMARY KEY (idProvador, idEmpresa),
+CONSTRAINT chkProvadorSecao CHECK(secao in('Masculino', 'Feminino', 'Unissex')),
+CONSTRAINT fkProvadorEmpresa FOREIGN KEY (idEmpresa) REFERENCES TB_Empresas(idEmpresa),
+CONSTRAINT fkProvadorSensor FOREIGN KEY (fkSensor) REFERENCES TB_Sensores(idSensor)
+);
+
+CREATE TABLE TB_Registros (
+idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+fkSensor INT,
+ativo CHAR(1) NOT NULL,
+data_entrada DATETIME DEFAULT CURRENT_TIMESTAMP,
+data_saida DATETIME,
+CONSTRAINT fkRegistroSensor FOREIGN KEY (fkSensor) REFERENCES TB_Sensores(idSensor)
+);
+
 CREATE TABLE TB_Avisos (
 	idAviso INT PRIMARY KEY AUTO_INCREMENT,
 	titulo VARCHAR(100),

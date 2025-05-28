@@ -147,6 +147,21 @@ var fim = dataAtual()
 
     }
 
+    function buscarMediaSecao(){
+    
+    fetch(`/metricas/buscarMediaSecao/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
+
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        plotarGraficoSecao(data);
+    })
+    .catch(function(err){
+        console.log(err);
+    })
+}
+
     // ----- buscando a 4º KPI -----
     function buscarSecaoMaisVisitada() {
         fetch(`/metricas/buscarSecaoMaisVisitada/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
@@ -172,8 +187,9 @@ var fim = dataAtual()
     }
 
 
-    var graficoPizza; 
+// plotando os gráficos
 
+    var graficoPizza; 
     function plotarGraficoPizza(dados) {
             
         console.log("Dados brutos recebidos:", dados);
@@ -242,6 +258,8 @@ var fim = dataAtual()
             plugins: [ChartDataLabels]
         });
     }    
+
+
 
 
     const linhas = document.getElementById("HorarioPico");
@@ -320,29 +338,35 @@ var fim = dataAtual()
         },
     });
 
-    const cabine = document.getElementById("usoCabine");
+    var graficoSecao;
 
-    new Chart(cabine, {
+    function plotarGraficoSecao(dados){
+
+        var secao = []
+        var mediaSecao= []
+
+        for(var i = 0; i < dados.length; i++){
+        secao.push(dados[i].secao);
+        mediaSecao.push(Number(dados[i].media_visitas_por_dia));
+
+        }
+
+        const cabine = document.getElementById("usoCabine").getContext('2d');;
+
+        if (graficoSecao) {
+            graficoSecao.destroy();
+        }
+
+        graficoSecao =  new Chart(cabine, {
         type: "bar",
         data: {
-            labels: [
-                "Segunda",
-                "Terça",
-                "Quarta",
-                "Quinta",
-                "Sexta",
-                "Sábado",
-                "Domingo",
-            ],
-            datasets: [
-                {
-                    label: 'Dias da Semana',
-                    data: [22, 24, 27, 23, 20, 18, 30],
+            labels: secao,
+            datasets: [{
+                    label: 'Secao',
+                    data: mediaSecao,
                     borderColor: "#7f7f7f",
                     backgroundColor: [
-                        '#a4fc00'
-
-                    ],
+                        '#a4fc00'],
                     borderWidth: 1,
                 },
             ],
@@ -351,7 +375,7 @@ var fim = dataAtual()
             plugins: {
                 title: {
                     display: true,
-                    text: 'NÚMERO DE VISITANTES (DIÁRIO)'
+                    text: 'NÚMERO DE VISITANTES MÉDIO'
                 }
             },
             indexAxis: 'y',
@@ -364,7 +388,9 @@ var fim = dataAtual()
             maintainAspectRatio: false
         },
     });
+    }
 
+    
     function dataAtual() {
     const data = new Date();
     const dia = String(data.getDate()).padStart(2, '0');
@@ -375,7 +401,8 @@ var fim = dataAtual()
 
     window.onload = () => {
     buscarFemininoMasculino();
-    buscarSecaoMaisVisitada()
+    buscarSecaoMaisVisitada();
+    buscarMediaSecao()
 };
 
 function provador1(){
