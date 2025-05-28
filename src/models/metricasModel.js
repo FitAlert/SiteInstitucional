@@ -19,20 +19,20 @@ function buscarFemininoMasculino(idEmpresa, inicio, fim) {
 }
 
 function buscarMediaSecao(idEmpresa, inicio, fim) {
-
-    var instrucaoSql = `SELECT p.secao, 
-    ROUND(COUNT(r.idRegistro) / COUNT(DISTINCT DATE(r.data_entrada)), 2) AS media_visitas_por_dia
+    var instrucaoSql = `
+    SELECT p.secao,  ROUND(COUNT(r.idRegistro) / (DATEDIFF('${fim}', '${inicio}') + 1), 2) AS media_visitas_por_dia
     FROM TB_Provadores p
-    JOIN TB_Sensores s 
-    ON p.fkSensor = s.idSensor
-    JOIN TB_Registros r 
-    ON s.idSensor = r.fkSensor
-    WHERE p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
-    GROUP BY p.secao;`;
+    JOIN TB_Sensores s ON p.fkSensor = s.idSensor
+    LEFT JOIN TB_Registros r 
+    ON s.idSensor = r.fkSensor AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
+    WHERE p.idEmpresa = ${idEmpresa}
+    GROUP BY p.secao;
+    `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
 
 function buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida) {
     console.log('Acessei o model!');
