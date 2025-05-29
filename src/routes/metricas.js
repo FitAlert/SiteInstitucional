@@ -16,4 +16,8 @@ router.get("/buscarMediaSecao/:idEmpresa", function (req, res) {
     metricasController.buscarMediaSecao(req, res);
 })
 
+router.get("/buscarPermanencia/:idEmpresa", function (req, res) {
+    metricasController.buscarPermanencia(req, res);
+})
+
 module.exports = router;

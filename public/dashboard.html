@@ -162,6 +162,21 @@ var fim = dataAtual()
     })
 }
 
+function buscarPermanencia(){
+    
+    fetch(`/metricas/buscarPermanencia/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
+
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        plotarGraficoPermanencia(data);
+    })
+    .catch(function(err){
+        console.log(err);
+    })
+}
+
     // ----- buscando a 4º KPI -----
     function buscarSecaoMaisVisitada() {
         fetch(`/metricas/buscarSecaoMaisVisitada/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
@@ -301,42 +316,56 @@ var fim = dataAtual()
         },
     });
 
-    const barras = document.getElementById("cabine");
+    var graficoPermanencia
 
-    new Chart(barras, {
-        type: "bar",
-        data: {
-            labels: [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-            ],
-            datasets: [
-                {
-                    label: ["Provador",],
-                    data: [4, 10, 3, 5, 6],
-                    borderColor: "#7f7f7f",
-                    backgroundColor: ['#ffd900'],
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'MÉDIA DE TEMPO DE PERMANÊNCIA (MINUTOS)'
-                }
+    function plotarGraficoPermanencia(dados){
+        const barras = document.getElementById("cabine");
+
+
+        var provador = []
+        var permanencia= []
+
+        for(var i = 0; i < dados.length; i++){
+        provador.push(dados[i].idProvador);
+        permanencia.push(Number(dados[i].tempo_permanencia_minutos));
+
+        }
+
+        if (graficoPermanencia) {
+            graficoPermanencia.destroy();
+        }
+
+      graficoPermanencia =  new Chart(barras, {
+            type: "bar",
+            data: {
+                labels: provador,
+                datasets: [
+                    {
+                        label: ["Provador",],
+                        data: permanencia,
+                        borderColor: "#7f7f7f",
+                        backgroundColor: ['#ffd900'],
+                        borderWidth: 1,
+                    },
+                ],
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'MÉDIA DE TEMPO DE PERMANÊNCIA (MINUTOS)'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
                 },
             },
-        },
-    });
+        });
+    }
+
+   
 
     var graficoSecao;
 
@@ -402,7 +431,8 @@ var fim = dataAtual()
     window.onload = () => {
     buscarFemininoMasculino();
     buscarSecaoMaisVisitada();
-    buscarMediaSecao()
+    buscarMediaSecao();
+    buscarPermanencia()
 };
 
 function provador1(){
