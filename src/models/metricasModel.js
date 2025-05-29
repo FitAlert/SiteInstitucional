@@ -37,15 +37,11 @@ function buscarMediaSecao(idEmpresa, inicio, fim) {
 
 function buscarPermanencia(idEmpresa, inicio, fim) {
     var instrucaoSql = `
-    SELECT 
-        p.idProvador,
-        SUM(TIMESTAMPDIFF(MINUTE, r.data_entrada, r.data_saida)) AS tempo_permanencia_minutos
+    SELECT p.idProvador,SUM(TIMESTAMPDIFF(MINUTE, r.data_entrada, r.data_saida)) AS tempo_permanencia_minutos
     FROM TB_Provadores p
     JOIN TB_Sensores s ON p.fkSensor = s.idSensor
     JOIN TB_Registros r ON s.idSensor = r.fkSensor
-    WHERE p.idEmpresa = ${idEmpresa}
-      AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
-      AND r.data_saida IS NOT NULL
+    WHERE p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
     GROUP BY p.idProvador
     ORDER BY p.idProvador;
     `;
