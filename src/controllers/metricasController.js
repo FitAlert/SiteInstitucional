@@ -54,6 +54,24 @@ function buscarPermanencia(req, res) {
     });
 }
 
+function buscarHorarioPico(req, res) {
+
+    var idEmpresa = req.params.idEmpresa;
+    var { inicio, fim } = req.query;
+
+    metricasModel.buscarHorarioPico(idEmpresa, inicio, fim).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar dados para o grafico de media.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarSecaoMaisVisitada(req, res) { // KPI de Seção mais visitada (gráfico de Pizza)
     var idEmpresa = req.params.idEmpresa;
     var data_entrada = req.query.inicio;
@@ -89,5 +107,6 @@ module.exports = {
     buscarFemininoMasculino,
     buscarSecaoMaisVisitada,
     buscarMediaSecao,
-    buscarPermanencia
+    buscarPermanencia,
+    buscarHorarioPico
 }

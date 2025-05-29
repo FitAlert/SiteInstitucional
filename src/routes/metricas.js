@@ -20,4 +20,8 @@ router.get("/buscarPermanencia/:idEmpresa", function (req, res) {
     metricasController.buscarPermanencia(req, res);
 })
 
+router.get("/buscarHorarioPico/:idEmpresa", function (req, res) {
+    metricasController.buscarHorarioPico(req, res);
+})
+
 module.exports = router;

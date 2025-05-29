@@ -72,9 +72,26 @@ function buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida) {
     return database.executar(instrucaoSql);
 }
 
+function buscarHorarioPico(idEmpresa, inicio, fim) {
+
+    var instrucaoSql = `
+    SELECT HOUR(r.data_entrada) AS hora_do_dia, COUNT(DISTINCT r.fkSensor) AS provadores_ocupados
+    FROM TB_Registros r
+    JOIN TB_Sensores s ON r.fkSensor = s.idSensor
+    JOIN TB_Provadores p ON s.idSensor = p.fkSensor
+    WHERE r.ativo = '1' AND p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
+    GROUP BY hora_do_dia
+    ORDER BY hora_do_dia;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarFemininoMasculino,
     buscarSecaoMaisVisitada,
     buscarMediaSecao,
-    buscarPermanencia
+    buscarPermanencia,
+    buscarHorarioPico
 }
