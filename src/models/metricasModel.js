@@ -50,28 +50,6 @@ function buscarPermanencia(idEmpresa, inicio, fim) {
     return database.executar(instrucaoSql);
 }
 
-
-function buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida) {
-    console.log('Acessei o model!');
-
-    var instrucaoSql = `
-            select
-	            p.secao as Secao,
-                count(r.ativo) as Dados
-            from tb_registros r join tb_sensores s 
-                on r.fkSensor = s.idSensor 
-            join tb_provadores p 
-                on s.idSensor = p.fkSensor
-            where p.idEmpresa = ${idEmpresa} and r.data_entrada between '${inicio} 00:00:00' and '${fim} 23:59:59'
-            group by p.secao
-            order by Dados desc
-            limit 1;
-    `;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
 function buscarHorarioPico(idEmpresa, inicio, fim) {
 
     var instrucaoSql = `
@@ -90,7 +68,6 @@ function buscarHorarioPico(idEmpresa, inicio, fim) {
 
 module.exports = {
     buscarFemininoMasculino,
-    buscarSecaoMaisVisitada,
     buscarMediaSecao,
     buscarPermanencia,
     buscarHorarioPico

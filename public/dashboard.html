@@ -127,7 +127,9 @@ var fim = dataAtual()
         }
 
         buscarFemininoMasculino();
-        buscarSecaoMaisVisitada();
+        buscarHorarioPico();
+        buscarMediaSecao();
+        buscarPermanencia();
     }
 
 
@@ -192,29 +194,6 @@ function buscarHorarioPico(){
     })
 }
 
-    // ----- buscando a 4º KPI -----
-    function buscarSecaoMaisVisitada() {
-        fetch(`/metricas/buscarSecaoMaisVisitada/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-        .then(function (resposta) {
-            console.log(resposta);
-
-            if (resposta.ok) {
-                console.warn('Select funcionou!')
-                return resposta.json();
-            } else {
-                console.error('Erro ao buscar dados.')
-            }
-        })
-        .then (function (secaoDados) {
-            console.log(secaoDados);
-            secaoVisitada.innerHTML = secaoDados[0].Secao;
-        })
-    }
 
 
 // plotando os gráficos
@@ -454,7 +433,6 @@ function buscarHorarioPico(){
 
     window.onload = () => {
     buscarFemininoMasculino();
-    buscarSecaoMaisVisitada();
     buscarMediaSecao();
     buscarPermanencia(),
     buscarHorarioPico()

@@ -72,40 +72,10 @@ function buscarHorarioPico(req, res) {
     });
 }
 
-function buscarSecaoMaisVisitada(req, res) { // KPI de Seção mais visitada (gráfico de Pizza)
-    var idEmpresa = req.params.idEmpresa;
-    var data_entrada = req.query.inicio;
-    var data_saida = req.query.fim;
-
-    if (idEmpresa == undefined) {
-        console.error('ID da empresa está indefinido!')
-    } else if (data_entrada == undefined) {
-        console.error('Data de entrada está indefinido!')
-    } else if (data_saida == undefined) {
-        console.error('Data de saída está indefinido!')
-    } else {
-        metricasModel.buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            )
-            .catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao buscar dados da seção mais visitada!",
-                        erro.sqlMessage
-                    );
-                }
-            )
-    }
-}
 
 
 module.exports = {
     buscarFemininoMasculino,
-    buscarSecaoMaisVisitada,
     buscarMediaSecao,
     buscarPermanencia,
     buscarHorarioPico
