@@ -51,26 +51,6 @@ function buscarPermanencia(idEmpresa, inicio, fim) {
 }
 
 
-function buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida) {
-    console.log('Acessei o model!');
-
-    var instrucaoSql = `
-            select
-	            p.secao as Secao,
-                count(r.ativo) as Dados
-            from tb_registros r join tb_sensores s 
-                on r.fkSensor = s.idSensor 
-            join tb_provadores p 
-                on s.idSensor = p.fkSensor
-            where p.idEmpresa = ${idEmpresa} and r.data_entrada between '${inicio} 00:00:00' and '${fim} 23:59:59'
-            group by p.secao
-            order by Dados desc
-            limit 1;
-    `;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
 
 function buscarHorarioPico(idEmpresa, inicio, fim) {
 
@@ -82,6 +62,29 @@ function buscarHorarioPico(idEmpresa, inicio, fim) {
     WHERE r.ativo = '1' AND p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
     GROUP BY hora_do_dia
     ORDER BY hora_do_dia;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+// ---------- KPIs ----------
+
+function buscarSecaoMaisVisitada(idEmpresa, data_entrada, data_saida) {
+    console.log('Acessei o model!');
+
+    var instrucaoSql = `
+            select
+                p.secao as Secao,
+                count(r.ativo) as Dados
+            from tb_registros r join tb_sensores s 
+                on r.fkSensor = s.idSensor 
+            join tb_provadores p 
+                on s.idSensor = p.fkSensor
+            where p.idEmpresa = ${idEmpresa} and r.data_entrada between '${data_entrada} 00:00:00' and '${data_saida} 23:59:59'
+            group by p.secao
+            order by Dados desc
+            limit 1;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
