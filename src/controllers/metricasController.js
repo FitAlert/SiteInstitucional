@@ -72,11 +72,143 @@ function buscarHorarioPico(req, res) {
     });
 }
 
+// --------------------- KPI --------------------------
+
+// KPI 1
+function buscarHorarioPicoKPI(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+    var data_entrada = req.query.inicio;
+    var data_saida = req.query.fim;
+
+    if (idEmpresa == undefined) {
+        console.log('ID da empresa está indefinido!');
+    } if (data_entrada == undefined) {
+        console.log('data_entrada está indenifido!');
+    } if (data_saida == undefined) {
+        console.log('data_saida está indefinido!')
+    } else {
+        metricasModel.buscarHorarioPicoKPI(idEmpresa, data_entrada, data_saida)
+        .then(
+            function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve erro ao buscar dados da KPI 1",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+        )
+    }
+};
+
+// KPI 2
+function buscarFluxoVisitanteKPI(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+    var data_entrada = req.query.inicio;
+    var data_saida = req.query.fim;
+
+    if (idEmpresa == undefined) {
+        console.log('ID da empresa está indefinido!');
+    } if (data_entrada == undefined) {
+        console.log('data_entrada está indenifido!');
+    } if (data_saida == undefined) {
+        console.log('data_saida está indefinido!')
+    } else {
+        metricasModel.buscarFluxoVisitanteKPI(idEmpresa, data_entrada, data_saida)
+        .then(
+            function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve erro ao buscar dados da KPI 2",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+        )
+    }
+};
+
+// KPI 3
+function buscarTempoParmanenciaKPI(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+    var data_entrada = req.query.inicio;
+    var data_saida = req.query.fim;
+
+    if (idEmpresa == undefined) {
+        console.log('ID da empresa está indefinido!');
+    } if (data_entrada == undefined) {
+        console.log('data_entrada está indenifido!');
+    } if (data_saida == undefined) {
+        console.log('data_saida está indefinido!')
+    } else {
+        metricasModel.buscarTempoParmanenciaKPI(idEmpresa, data_entrada, data_saida)
+        .then(
+            function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve erro ao buscar dados da KPI 3",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+        )
+    }
+};
+
+// KPI 4
+function buscarSecaoMaisVisitadaKPI(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+    var data_entrada = req.query.inicio;
+    var data_saida = req.query.fim;
+
+    if (idEmpresa == undefined) {
+        console.log('ID da empresa está indefinido!');
+    } if (data_entrada == undefined) {
+        console.log('data_entrada está indenifido!');
+    } if (data_saida == undefined) {
+        console.log('data_saida está indefinido!')
+    } else {
+        metricasModel.buscarSecaoMaisVisitadaKPI(idEmpresa, data_entrada, data_saida)
+        .then(
+            function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve erro ao buscar dados da KPI 4",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+        )
+    }
+};
 
 
 module.exports = {
+    // GRÁFICOs
     buscarFemininoMasculino,
     buscarMediaSecao,
     buscarPermanencia,
-    buscarHorarioPico
+    buscarHorarioPico,
+
+    // KPIs
+    buscarHorarioPicoKPI,
+    buscarFluxoVisitanteKPI,
+    buscarTempoParmanenciaKPI,
+    buscarSecaoMaisVisitadaKPI
 }

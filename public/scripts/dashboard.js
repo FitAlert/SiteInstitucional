@@ -1,7 +1,3 @@
-window.onload = () => {
-    span_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-}
-
 const alerta = document.getElementById('li_alerta');
 const boxAlerta = document.getElementById('boxAlerta');
 

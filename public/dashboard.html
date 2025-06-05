@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/styleDash.css">
     <link rel="stylesheet" href="styles/menu.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./scripts/dashboard.js"></script>
     <link rel="shortcut icon" href="images/logos/logo-oficial-branca.png" type="image/x-icon">
     <title>FITALERT - DASHBOARD</title>
 </head>
@@ -60,19 +61,19 @@
             <div class="totalKPIS">
                 <div class="kpi">
                     <h3>HORÁRIO DE PICO</h3>
-                    <p>13h15</p>
+                    <p id="horario_pico_kpi">Aguardando cliente</p>
                 </div>
                 <div class="kpi">
                     <h3>FLUXO DE VISITANTES</h3>
-                    <p>22</p>
+                    <p id="fluxo_visitantes_kpi">Aguardando cliente</p>
                 </div>
                 <div class="kpi">
                     <h3>TEMPO PERMANÊNCIA</h3>
-                    <p>5min36</p>
+                    <p id="tempo_permanencia_kpi">Aguardando cliente</p>
                 </div>
                 <div class="kpi">
                     <h3>SEÇÃO MAIS VISITADA</h3>
-                    <p id="secaoVisitada">Feminino</p>
+                    <p id="secao_visitada_kpi">Aguardando cliente</p>
                 </div>
             </div>
 
@@ -111,8 +112,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
-var idUsuario = sessionStorage.ID_USUARIO;
-var idEmpresa = sessionStorage.ID_EMPRESA;
+const idUsuario = sessionStorage.ID_USUARIO;
+const idEmpresa = sessionStorage.ID_EMPRESA;
+const nomeUsuario = sessionStorage.NOME_USUARIO;
 
 var inicio = dataAtual()
 var fim = dataAtual()
@@ -126,10 +128,17 @@ var fim = dataAtual()
             fim = dataAtual()
         }
 
+        // GRÁFICOS
         buscarFemininoMasculino();
         buscarHorarioPico();
         buscarMediaSecao();
         buscarPermanencia();
+
+        // KPIs
+        buscarHorarioPicoKPI();
+        buscarFluxoVisitanteKPI();
+        buscarTempoParmanenciaKPI();
+        buscarSecaoMaisVisitadaKPI();
     }
 
 
@@ -228,8 +237,8 @@ function buscarHorarioPico(){
                         label: 'Porcentagem de Visitantes',
                         data: [percentualMasculino, percentualFeminino],
                         backgroundColor: [
-                            '#00ffbf',
                             '#4c00ff',
+                            '#00ffbf',
                         ],
                         hoverOffset: 10
                     }],
@@ -420,6 +429,141 @@ function buscarHorarioPico(){
             maintainAspectRatio: false
         },
     });
+    };
+
+
+    // -------------------------------------------- KPIS -------------------------------------------------------- //
+
+    // KPI 1
+    function buscarHorarioPicoKPI() {
+        fetch(`metricas/buscarHorarioPicoKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(function (resposta) {
+            console.log(resposta);
+            
+            if (resposta.ok) {
+                console.log('Busquei o horário de pico', resposta)
+                return resposta.json();
+            } else {
+                throw "Erro ao buscar dados no data base";
+            }
+        })
+        .then(
+            function (dadoskpi1) {
+                console.log(dadoskpi1);
+                if (dadoskpi1[0].horario_de_pico == null) {
+                    horario_pico_kpi.innerHTML = 'Aguardando cliente';
+                } else {
+                    horario_pico_kpi.innerHTML = dadoskpi1[0].horario_de_pico;
+                }
+        })
+        .catch(
+            function (erro) {
+                console.log(erro);
+        })
+    };
+
+    // KPI 2
+    function buscarFluxoVisitanteKPI() {
+        fetch(`metricas/buscarFluxoVisitanteKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(function (resposta) {
+            console.log(resposta);
+            
+            if (resposta.ok) {
+                console.log('Busquei o fluxo de visitantes', resposta)
+                return resposta.json();
+            } else {
+                throw "Erro ao buscar dados no data base";
+            }
+        })
+        .then(
+            function (dadoskpi2) {
+                console.log(dadoskpi2);
+                if (dadoskpi2[0].fluxo_visitantes == null || dadoskpi2[0].fluxo_visitantes == 0) {
+                    fluxo_visitantes_kpi.innerHTML = 'Aguardando cliente';
+                } else {
+                    fluxo_visitantes_kpi.innerHTML = dadoskpi2[0].fluxo_visitantes;
+                }
+        })
+        .catch(
+            function (erro) {
+                console.log(erro);
+        })
+    };
+
+    // KPI 3
+    function buscarTempoParmanenciaKPI() {
+        fetch(`metricas/buscarTempoParmanenciaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(function (resposta) {
+            console.log(resposta);
+            
+            if (resposta.ok) {
+                console.log('Busquei o tempo de permanência', resposta)
+                return resposta.json();
+            } else {
+                throw "Erro ao buscar dados no data base";
+            }
+        })
+        .then(
+            function (dadoskpi3) {
+                console.log(dadoskpi3);
+                if (dadoskpi3[0].tempo_medio == null) {
+                    tempo_permanencia_kpi.innerHTML = 'Aguardando cliente';
+                } else {
+                    tempo_permanencia_kpi.innerHTML = dadoskpi3[0].tempo_medio;
+                }
+        })
+        .catch(
+            function (erro) {
+                console.log(erro);
+        })
+    };
+
+    // KPI 4
+    function buscarSecaoMaisVisitadaKPI() {
+        fetch(`metricas/buscarSecaoMaisVisitadaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(function (resposta) {
+            console.log(resposta);
+            
+            if (resposta.ok) {
+                console.log('Busquei a seção mais visitada', resposta)
+                return resposta.json();
+            } else {
+                throw "Erro ao buscar dados no data base";
+            }
+        })
+        .then(
+            function (dadoskpi4) {
+                console.log(dadoskpi4);
+                if (dadoskpi4[0].secao == null) {
+                    secao_visitada_kpi.innerHTML = 'Aguardando cliente';
+                } else {
+                    secao_visitada_kpi.innerHTML = dadoskpi4[0].secao;
+                }
+        })
+        .catch(
+            function (erro) {
+                console.log(erro);
+        })
     }
 
     
@@ -432,10 +576,19 @@ function buscarHorarioPico(){
     }
 
     window.onload = () => {
+    span_usuario.innerHTML = nomeUsuario;
+
+    // -- GRÁFICOS
     buscarFemininoMasculino();
     buscarMediaSecao();
     buscarPermanencia(),
     buscarHorarioPico()
+
+    // -- KPIs
+    buscarHorarioPicoKPI(),
+    buscarFluxoVisitanteKPI(),
+    buscarTempoParmanenciaKPI(),
+    buscarSecaoMaisVisitadaKPI()
 };
 
 function provador1(){
