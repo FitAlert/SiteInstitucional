@@ -66,25 +66,29 @@
                     const data = await response.json();
 
                     if (!response.ok) {
-                        // Aqui pega o erro enviado pelo backend, se quiser exibir
+                        // Aqui pega o erro enviado pelo backend ou seja o  /perguntar, se quiser exibir
                         console.error('Erro da API:', data.error);
                         alert('Erro ao obter resposta: ' + data.error);
                         return;
                     }
 
                     if (!data.resultado) {
+                        // Caso a resposta não seja entregue para que logo seja armazenado num array
                         console.error('Resposta inválida:', data);
                         alert('Resposta inválida da API.');
                         return;
                     }
 
+                    //Está retornando os valores do sessionStorage de objeto em array de objetos, ele pega o valor armazenado e caso não tenha nada ele armazena um array vazio
                     const chat = JSON.parse(sessionStorage.getItem('chat')) || [];
 
+                    //Adicina um novo objeto no final do array, como as seguintes informações abaixo
                     chat.push({
                         pergunta: pergunta,
                         resposta: data.resultado
                     });
 
+                    // converte os dados de pergunta e resposta e adiciona o no JSON como como string e salva no sessionStorage
                     sessionStorage.setItem('chat', JSON.stringify(chat));
 
                     perguntaInput.value = ''; // limpa a pergunta
@@ -102,6 +106,7 @@
 
             const chat = JSON.parse(sessionStorage.getItem('chat')) || [];
 
+            // Para cada item da lista Faça (Crie uma div que tem uma classe e e dentro dessa div coloque oi a resposta ou a pergunta)
             chat.forEach(item => {
                 const conjunto = document.createElement('div');
                 conjunto.className = 'conjunto';
