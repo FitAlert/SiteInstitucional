@@ -23,7 +23,8 @@
         <ul>
             <li><a href="" download="documentacao.pdf">Documentação</a></li>
             <li><a href="" download="fluxo_de_atendimento.pdf">Fluxo de atendimento</a></li>
-            <li><a href="documentos/Manual de Instalação - FitAlert.pdf" download="manual_de_instalacao.pdf" target="_blank">Manual</a></li>
+            <li><a href="documentos/Manual de Instalação - FitAlert.pdf" download="manual_de_instalacao.pdf"
+                    target="_blank">Manual</a></li>
             <li><a href="https://www.atlassian.com/br/company/contact" target="_blank">Suporte</a></li>
         </ul>
         <button class="sair" onclick="sair()">Sair</button>
@@ -42,9 +43,59 @@
     </main>
 
     <script>
-        function sair(){
+        function sair() {
             window.location = 'index.html'
         }
+
+        async function gerarResposta() {
+            const perguntaInput = document.getElementById('pergunta');
+            const pergunta = perguntaInput.value;
+
+            if (pergunta == "") {
+                return;
+            } else {
+                try {
+                    const response = await fetch('/perguntar', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ pergunta })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        // Aqui pega o erro enviado pelo backend, se quiser exibir
+                        console.error('Erro da API:', data.error);
+                        alert('Erro ao obter resposta: ' + data.error);
+                        return;
+                    }
+
+                    if (!data.resultado) {
+                        console.error('Resposta inválida:', data);
+                        alert('Resposta inválida da API.');
+                        return;
+                    }
+
+                    const chat = JSON.parse(sessionStorage.getItem('chat')) || [];
+
+                    chat.push({
+                        pergunta: pergunta,
+                        resposta: data.resultado
+                    });
+
+                    sessionStorage.setItem('chat', JSON.stringify(chat));
+
+                    perguntaInput.value = ''; // limpa a pergunta
+                    renderizarChat(); // atualiza o chat na tela
+                } catch (error) {
+                    console.error('Erro ao gerar resposta:', error);
+                    alert('Erro ao conectar com o servidor.');
+                }
+            }
+        }
+
         function renderizarChat() {
             const chatConversa = document.getElementById('chatConversa');
             chatConversa.innerHTML = ''; // limpa antes de renderizar
@@ -68,37 +119,6 @@
 
                 chatConversa.appendChild(conjunto);
             });
-        }
-
-        async function gerarResposta() {
-            const perguntaInput = document.getElementById('pergunta');
-            const pergunta = perguntaInput.value;
-
-            if (pergunta == "") {
-                return;
-            } else {
-                const response = await fetch('/perguntar', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ pergunta })
-                });
-
-                const data = await response.json();
-
-                const chat = JSON.parse(sessionStorage.getItem('chat')) || [];
-
-                chat.push({
-                    pergunta: pergunta,
-                    resposta: data.resultado
-                });
-
-                sessionStorage.setItem('chat', JSON.stringify(chat));
-
-                perguntaInput.value = ''; // limpa a pergunta
-                renderizarChat(); // atualiza o chat na tela
-            }
         }
 
         // Renderiza o chat quando a página carrega
