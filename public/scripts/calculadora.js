@@ -32,105 +32,91 @@ function calcular() {
 
     var clientesPerda= visitantesConvertidosComProvador - visitantesConvertidosSemProvador
 
-    resultado = `
+   resultado = `
     <div class="geral">
-                <h2>O que você está perdendo:</h2>
-                <br><br>
-                <span style="color:green;">
-                    <b>Aumento no faturamento potencial:</b> R$${aumentoFaturamento.toFixed(2)}
-                </span><br><br>
-                <span style="color:green;">
-                    <b>Aumento no ticket médio:</b> R$${(ticketComMonitoramento).toFixed(2)}
-                </span><br><br>
-                <span>
-                    <b>Você está perdendo cerca de </b><span style="color:red;"> ${clientesPerda.toFixed()} clientes</span>
-                </span>
-            </div>
+        <h2>Monitoramento nos Provadores</h2>
+        <p><b style="color: red;">Clientes perdidos:</b> ${clientesPerda.toFixed()}<br> <br>
+        <b style="color: green;">Aumento potencial no faturamento:</b> R$${aumentoFaturamento.toFixed(2)}</p>
+    </div>
 
-                <div class="container">
-                    <div class="resp1">
-                        <h2>1. Sem monitoramento em provadores</h2>
-                    
-                    
-                        <div class="dados">
-                            <div class="box">
-                                    <div class="label_box">
-                                            <b>Ticket médio:</b>
-                                    </div>
-                                    R$${ticket.toFixed(2)}
-                            </div>
-                            <div class="box">
-                                    <div class="label_box">
-                                        <b>Visitantes mensais:</b>
-                                    </div>
-                                    ${clientes.toFixed()}
-                            </div>
-                    
-                            <div class="box">
-                                    <div class="label_box" >
-                                        <b>Taxa de conversão:</b>
-                                    </div>
-                                     25%
-                            </div>
-                            <div class="box">
-                                    <div class="label_box">
-                                        <b>Conversão de clientes:</b>
-                                    </div>
-                                        ${visitantesConvertidosSemProvador.toFixed()} em vendas.
-                            </div>
+    <div class="graficos-topo">
+        <div class="grafico-box">
+            <canvas id="graficoFaturamento"></canvas>
+        </div>
 
-                            <div class="box">
-                                 <div class="label_box">
-                                    <b>Faturamento mensal:</b>
-                                    </div>
-                                 R$${faturamentoSemMonitoramento.toFixed(2)}<br>
-                                    </div>
-                        </div>
-                    </div>
-                    
-                    <div class="resp2">
-                        <h2>2. Com monitoramento otimizado nos provadores</h2>
-                    
-                            <div class="dados">
-                                <div class="box">
-                                    <div class="label_box">
-                                        <b>Ticket médio potencial:</b>
-                                    </div>
-                                    R$${ticketComMonitoramento.toFixed(2)} 
-                                  (2x o valor atual)
-                                </div>
-                    
-                                <div class="box">
-                                    <div class="label_box">
-                                        <b>Visitantes mensais:</b>
-                                    </div>
-                                    ${clientes}
-                                </div>
-                    
-                                <div class="box">
-                                    <div class="label_box">
-                                        <b>Taxa de conversão:</b>
-                                        </div>
-                                    67%
-                                </div>
-                    
-                                <div class="box" >
-                                    <div class="label_box" >
-                                        <b>Conversão de clientes:</b>
-                                    </div>
-                                    ${visitantesConvertidosComProvador.toFixed()} em vendas
-                            </div>
+        <div class="grafico-box">
+        <canvas id="graficoConversao"></canvas>
+        </div>
+    </div>
 
-                             <div class="box">
-                                 <div class="label_box">
-                                    <b>Faturamento mensal:</b>
-                                    </div>
-                                 R$${aumentoFaturamento.toFixed(2)}<br>
-                            </div>
-                         </div> 
-                    </div> 
-                </div> 
-            `;
-    }
+    <div class="grafico-full">
+        <canvas id="graficoTicket"></canvas>
+    </div>
+    `;
+
     divMensagem.innerHTML = resultado;
+
+    // Gráfico de Faturamento
+    new Chart(document.getElementById('graficoFaturamento'), {
+        type: 'bar',
+        data: {
+            labels: ['Sem Monitoramento', 'Com Monitoramento'],
+            datasets: [{
+                label: 'Faturamento (R$)',
+                data: [faturamentoSemMonitoramento, aumentoFaturamento],
+                backgroundColor: ['#e74c3c', '#2ecc71']
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Faturamento Mensal Comparado'
+                }
+            }
+        }
+    });
+
+    // Gráfico de Conversão
+    new Chart(document.getElementById('graficoConversao'), {
+        type: 'bar',
+        data: {
+            labels: ['Sem Monitoramento', 'Com Monitoramento'],
+            datasets: [{
+                label: 'Clientes Convertidos',
+                data: [visitantesConvertidosSemProvador, visitantesConvertidosComProvador],
+                backgroundColor: ['#f39c12', '#2980b9']
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Conversão de Clientes'
+                }
+            }
+        }
+    });
+
+    // Gráfico de Ticket Médio
+    new Chart(document.getElementById('graficoTicket'), {
+        type: 'bar',
+        data: {
+            labels: ['Sem Monitoramento', 'Com Monitoramento'],
+            datasets: [{
+                label: 'Ticket Médio (R$)',
+                data: [ticket, ticketComMonitoramento],
+                backgroundColor: ['#9b59b6', '#1abc9c']
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Comparativo de Ticket Médio'
+                }
+            }
+        }
+    });
+}
 }

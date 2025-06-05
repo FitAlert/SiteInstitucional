@@ -150,3 +150,26 @@
   margin-bottom: 10px;
   color: #5a3a2a;
 }
+
+.graficos-topo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.grafico-box,
+.grafico-full {
+  width: 100%;
+  max-width: 350px; /* Tamanho padrão igual para todos */
+  background-color: #fdf5f0;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.grafico-full {
+  margin: 40px auto 0;
+}
