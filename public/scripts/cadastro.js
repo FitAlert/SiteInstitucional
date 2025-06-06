@@ -93,7 +93,6 @@ function cadastrar() {
             finalizarAguardar();
           }
         }
-    
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {

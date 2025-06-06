@@ -16,6 +16,7 @@ fkEmpresa INT
 CREATE TABLE TB_Empresas (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 razaoSocial VARCHAR(45) NOT NULL,
+nomeFantasia VARCHAR(45) NOT NULL,
 cnpj CHAR(14) NOT NULL,
 fkEmpresaMatriz INT,
 codigoAtivacao VARCHAR(50),
