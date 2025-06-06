@@ -75,53 +75,7 @@ function cadastrar(req, res) {
     }
 }
 
-function vincular(req, res) {
-    var loja = req.body.lojaServer;
-    var cnpj = req.body.cnpjServer;
-    var cidade = req.body.cidadeServer;
-    var uf = req.body.ufServer;
-    var rua = req.body.ruaServer;
-    var numero = req.body.numeroServer;
-    var cep = req.body.cepServer;
-
-     if (loja == undefined) {
-        res.status(400).send("Sua loja está indefinida!");
-    } else if (cnpj == undefined) {
-        res.status(400).send("Seu CNPJ está indefinido!");
-    } else if (cidade == undefined) {
-        res.status(400).send("Sua cidade está indefinida!");
-    } else if (uf == undefined) {
-        res.status(400).send("Seu UF está indefinido!");
-    } else if (rua == undefined) {
-        res.status(400).send("Sua rua está indefinida!");
-    } else if (numero == undefined) {
-        res.status(400).send("Seu número está indefinido!");
-    } else if (cep == undefined) {
-        res.status(400).send("Seu CEP está indefinido!");
-    } else {
-
-    
-
-    usuarioModel.vincular(loja, cnpj, cidade, uf, rua, numero, cep)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-}
-
 module.exports = {
     autenticar,
-    cadastrar,
-    vincular
+    cadastrar
 }
