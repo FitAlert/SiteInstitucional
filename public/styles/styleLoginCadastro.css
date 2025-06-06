@@ -99,7 +99,7 @@ body {
     color: var(--branco);
     margin: 5% 1% 3%;
     position: absolute;
-    top: -2px;
+    top: -10px;
 }
 
 .formLogin input {

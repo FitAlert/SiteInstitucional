@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="scripts/login.js"></script>
     <title>FITALERT - Login</title>
 </head>
+
 <body>
 
     <!--Navbar barra de navegação-->
@@ -43,43 +45,44 @@
         CARD LOGIN
         ============= -->
         <div class="card card-login">
-        <!-- ============= 
+            <!-- ============= 
         CONTAINER 
             ============= -->
             <div class="container">
-                    <!-- =============
+                <!-- =============
                     FORMULÁRIO
                     ============= -->
-                    <div class="formLogin">
-                        <p class="title">Login</p>
-                        <div id="aviso" class="aviso" style="display: none"></div>
-                        <div class="campoPai">
-                            <div class="campo">
-                                <p id="p1">Email</p>
-                                <input type="text" id="inputEmail">
-                            </div>
-                            <div class="campo">
-                                <p id="p2">Senha</p>
-                                <input type="password" id="inputSenha">
-                            </div>
+                <div class="formLogin">
+                    <p class="title">Login</p>
+                    <div id="aviso" class="aviso" style="display: none"></div>
+                    <div class="campoPai">
+                        <div class="campo">
+                            <p id="p1">Email</p>
+                            <input type="text" id="inputEmail">
                         </div>
-                        <br>
+                        <div class="campo">
+                            <p id="p2">Senha</p>
+                            <input type="password" id="inputSenha">
+                        </div>
                     </div>
-                    <!-- =============
+                    <br>
+                </div>
+                <!-- =============
                         BOTÃO
                     ============= -->
-                    <button class="card botao" onclick="entrar()">Entrar</button>
-                    <br>
-                    <a href="cadastro.html" id="SemConta">Não tem conta ainda? Cadastre-se agora!</a>
+                <button class="card botao" onclick="entrar()">Entrar</button>
+                <br>
+                <a href="cadastro.html" id="SemConta">Não tem conta ainda? Cadastre-se agora!</a>
             </div>
-        
+
         </div>
     </div>
 </body>
+
 </html>
 
 <script>
-     const email = document.querySelector('#inputEmail');
+    const email = document.querySelector('#inputEmail');
     const p1 = document.querySelector('#p1');
     const senha = document.querySelector('#inputSenha');
     const p2 = document.querySelector('#p2');
@@ -89,14 +92,22 @@
 
     email.addEventListener('focus', (event) => {
         p1Status = true;
-        p2Status = false;
+        if (senha.value == "") {
+            p2Status = false;
+        } else {
+            p2Status = true;
+        }
         animationCadastro();
         event.preventDefault();
     });
 
     senha.addEventListener('focus', (event) => {
         p2Status = true;
-        p1Status = false;
+        if (email.value == "") {
+            p1Status = false;
+        } else {
+            p1Status = true;
+        }
         animationCadastro();
         event.preventDefault();
     });
