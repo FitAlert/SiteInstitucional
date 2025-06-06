@@ -40,6 +40,8 @@ body {
 
 
 .card {
+    width: 100%;
+    height: 80vh;
     display: flex;
     /* border: 3px solid black; */
     justify-content: center;
@@ -52,9 +54,8 @@ body {
     border-radius: 25px;
     display: flex;
     width: 33%;
-    height: 100%;
+    height: 70%;
     align-items: center;
-    margin: 60px auto;
     backdrop-filter: blur(20px);
 }
 
@@ -67,8 +68,6 @@ body {
 }
 
 .formLogin {
-    padding-top: 30px;
-    padding-bottom: 60px;
     width: 70%;
     height: 100%;
     display: flex;
@@ -78,22 +77,46 @@ body {
 .formLogin .title {
     font-size: 30px;
     font-weight: bold;
-    margin: 0 0 10px 0;
     color: var(--branco);
+    text-align: center;
+}
+
+.formLogin .campoPai {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+
+.formLogin .campo {
+    margin: 20px 0;
+    position: relative;
 }
 
 .formLogin p {
     font-size: 17px;
     color: var(--branco);
     margin: 5% 1% 3%;
+    position: absolute;
+    top: -2px;
 }
 
 .formLogin input {
-    width: 97%;
+    width: 23vw;
     height: 35px;
-    border-radius: 7px;
-    border-style: none;
     padding-left: 15px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    color: #ffff;
+    outline: none;
+    transition: 0.3s;
+}
+
+.formLogin .campo .animationPL{
+    top: -30px;
+    transition: 0.3s;
 }
 
 .formLogin a {
@@ -192,7 +215,6 @@ Card pai responsavel por deixar a central de cadastro no centro da tela
     color: var(--branco);
     margin: 1%;
     position: absolute;
-    transition: 0.3s;
 }
 
 .conjunto .campo input {
@@ -204,12 +226,9 @@ Card pai responsavel por deixar a central de cadastro no centro da tela
     border-bottom: 1px solid #fff;
     color: #ffff;
     outline: none;
-    transition: 0.3s
 }
 
-.conjunto .campo input::placeholder{
-    color: #fff;
-}
+.conjunto .campo input::placeholder{color: #fff;}
 
 .conjunto .campo .animationP{
     top: -20px;

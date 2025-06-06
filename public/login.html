@@ -47,18 +47,22 @@
         CONTAINER 
             ============= -->
             <div class="container">
-            <br><br>
-            <div class="logo"></div>
                     <!-- =============
                     FORMULÁRIO
                     ============= -->
                     <div class="formLogin">
                         <p class="title">Login</p>
                         <div id="aviso" class="aviso" style="display: none"></div>
-                        <p>Email</p>
-                        <input type="text" id="inputEmail" placeholder="exemplo@gmail.com">
-                        <p>Senha</p>
-                        <input type="password" id="inputSenha" placeholder="*****">
+                        <div class="campoPai">
+                            <div class="campo">
+                                <p id="p1">Email</p>
+                                <input type="text" id="inputEmail">
+                            </div>
+                            <div class="campo">
+                                <p id="p2">Senha</p>
+                                <input type="password" id="inputSenha">
+                            </div>
+                        </div>
                         <br>
                     </div>
                     <!-- =============
@@ -73,3 +77,39 @@
     </div>
 </body>
 </html>
+
+<script>
+     const email = document.querySelector('#inputEmail');
+    const p1 = document.querySelector('#p1');
+    const senha = document.querySelector('#inputSenha');
+    const p2 = document.querySelector('#p2');
+
+    var p1Status = false;
+    var p2Status = false;
+
+    email.addEventListener('focus', (event) => {
+        p1Status = true;
+        p2Status = false;
+        animationCadastro();
+        event.preventDefault();
+    });
+
+    senha.addEventListener('focus', (event) => {
+        p2Status = true;
+        p1Status = false;
+        animationCadastro();
+        event.preventDefault();
+    });
+    function animationCadastro() {
+        if (p1Status == true) {
+            p1.classList.add('animationPL')
+        } else {
+            p1.classList.remove('animationPL')
+        }
+        if (p2Status == true) {
+            p2.classList.add('animationPL')
+        } else {
+            p2.classList.remove('animationPL')
+        }
+    }
+</script>
