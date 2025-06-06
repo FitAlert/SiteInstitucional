@@ -12,82 +12,211 @@
 </head>
 
 <body>
- <!--Navbar barra de navegação-->
- <nav class="navbar">
-    <div class="conjunto-logo">
-        <div class="logo">
+    <!--Navbar barra de navegação-->
+    <nav class="navbar">
+        <div class="conjunto-logo">
+            <div class="logo">
+            </div>
+            FITALERT
         </div>
-        FITALERT
-    </div>
 
-    <div class="links">
-        <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="index.html#servicos">SERVIÇOS</a></li>
-            <li><a href="index.html#sobre-nos">SOBRE NÓS</a></li>
-            <li><a href="index.html#contato">CONTATO</a></li>
-        </ul>
-    </div>
-    <div class="div_bnt">
-        <button class="btn_cadastro" onclick="cadastro()">Cadastro</button>
-        <button class="btn_login" onclick="login()">Login</button>
-    </div>
-</nav>
+        <div class="links">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="index.html#servicos">SERVIÇOS</a></li>
+                <li><a href="index.html#sobre-nos">SOBRE NÓS</a></li>
+                <li><a href="index.html#contato">CONTATO</a></li>
+            </ul>
+        </div>
+        <div class="div_bnt">
+            <button class="btn_cadastro" onclick="cadastro()">Cadastro</button>
+            <button class="btn_login" onclick="login()">Login</button>
+        </div>
+    </nav>
 
-<div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
+    <div class="login">
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
 
-    <div class="card-cadastro">
-        <!-- ============= 
+            <div class="card-cadastro">
+                <!-- ============= 
                CONTAINER 
             ============= -->
-        <div class="container">
-            <!-- =============
+                <div class="container">
+                    <!-- =============
                     FORMULÁRIO
                     ============= -->
-
-            <!-- Navegação -->
-                <div class="formCadastro">
-                    <div class="form">
-                        <h2>Cadastro</h2>
-                            <div class="campo">
-                                <p>Nome</p>
-                                <input type="text" id="inputNome" placeholder="Nome">
+                    <div class="formCadastro">
+                        <div class="form">
+                            <h2>Cadastro</h2>
+                            <div class="conjunto">
+                                <div class="campo">
+                                    <p id="p1">Nome</p>
+                                    <input type="text" id="inputNome">
+                                </div>
+                                <div class="campo">
+                                    <p id="p2">E-mail</p>
+                                    <input type="email" id="inputEmail" oninput="validarEmail()">
+                                    <div id="divEmail" style="color: #ffff;"></div>
+                                </div>
                             </div>
-                            <div class="campo">
-                                <p>E-mail</p>
-                                <input type="email" id="inputEmail" placeholder="exemplo@gmail.com" oninput="validarEmail()">
-                                <div id="divEmail" style="color: #ffff;"></div>
+                            <div class="conjunto">
+                                <div class="campo">
+                                    <p id="p3">Telefone</p>
+                                    <input type="text" id="inputTelefone">
+                                </div>
+                                <div class="campo">
+                                    <p id="p6">Código</p>
+                                    <input type="text" id="inputCodigo" oninput="validarCodigo()">
+                                    <div id="divCodigo" style="color: #ffff;"></div>
+                                </div>
                             </div>
-                            <div class="campo">
-                                <p>Telefone</p>
-                                <input type="text" id="inputTelefone" placeholder="(XX) XXXXX-XXXX">
+                            <div class="conjunto">
+                                <div class="campo">
+                                    <p id="p4">Senha</p>
+                                    <input oninput="validacaoSenha()" type="password" id="inputSenha">
+                                </div>
+                                <div class="campo">
+                                    <p id="p5">Confirmar senha</p>
+                                    <input oninput="validacaoSenha()" type="password" id="inputSenhaConfirm">
+                                </div>
                             </div>
-                            <div class="campo">
-                                <p>Senha</p>
-                                <input oninput="validacaoSenha()" type="password" id="inputSenha" placeholder="*****">
-                            </div>
-                            <div class="campo">
-                                <p>Confirmar senha</p>
-                                <input oninput="validacaoSenha()" type="password" id="inputSenhaConfirm" placeholder="*****">
-                            </div>
+                        </div>
                     </div>
-                </div> 
-                <div class="navigation">
-            </div>
-            <div id="divResultado" style="color: #ffff;"></div>
-            <!-- =============
+                    <div class="navigation">
+                    </div>
+                    <div id="divResultado" style="color: #ffff;"></div><br>
+                    <!-- =============
             BOTÃO
             ============= -->
-            
-            <button class="card botao" onclick="cadastrar()">Cadastrar</button>
-            <a href="login.html">Já sou cadastrado</a>
 
-        </div>
-    </div>
+                    <button class="botao" onclick="cadastrar()">Cadastrar</button>
+                    <a href="login.html">Já sou cadastrado</a>
+
+                </div>
+            </div>
 </body>
 
 </html>
+
+<script>
+    const nome = document.querySelector('#inputNome');
+    const p1 = document.querySelector('#p1');
+    const email = document.querySelector('#inputEmail');
+    const p2 = document.querySelector('#p2');
+    const telefone = document.querySelector('#inputTelefone');
+    const p3 = document.querySelector('#p3');
+    const senha = document.querySelector('#inputSenha');
+    const p4 = document.querySelector('#p4');
+    const confirmarSenha = document.querySelector('#inputSenhaConfirm');
+    const p5 = document.querySelector('#p5');
+    const codigo = document.querySelector('#inputCodigo');
+    const p6 = document.querySelector('#p6');
+
+    var p1Status = false;
+    var p2Status = false;
+    var p3Status = false;
+    var p4Status = false;
+    var p5Status = false;
+    var p6Status = false;
+
+    nome.addEventListener('focus', (event) => {
+        p1Status = true;
+        p2Status = false;
+        p3Status = false;
+        p4Status = false;
+        p5Status = false;
+        p6Status = false;
+        animationCadastro();
+        event.preventDefault();
+    });
+
+    email.addEventListener('focus', (event) => {
+        p2Status = true;
+        p1Status = false;
+        p3Status = false;
+        p4Status = false;
+        p5Status = false;
+        p6Status = false;
+        animationCadastro();
+        event.preventDefault();
+    });
+
+    telefone.addEventListener('focus', (event) => {
+        p3Status = true;
+        p1Status = false;
+        p2Status = false;
+        p4Status = false;
+        p5Status = false;
+        p6Status = false;
+        animationCadastro();
+        event.preventDefault();
+    });
+
+    senha.addEventListener('focus', (event) => {
+        p4Status = true;
+        p1Status = false;
+        p2Status = false;
+        p3Status = false;
+        p5Status = false;
+        p6Status = false;
+        animationCadastro();
+        event.preventDefault();
+    });
+
+    confirmarSenha.addEventListener('focus', (event) => {
+        p5Status = true;
+        p1Status = false;
+        p2Status = false;
+        p3Status = false;
+        p4Status = false;
+        p6Status = false;
+        animationCadastro();
+        event.preventDefault();
+    });
+
+    codigo.addEventListener('focus', (event) => {
+        p5Status = false;
+        p1Status = false;
+        p2Status = false;
+        p3Status = false;
+        p4Status = false;
+        p6Status = true;
+        animationCadastro();
+        event.preventDefault();
+    });
+    function animationCadastro() {
+        if (p1Status == true) {
+            p1.classList.add('animationP')
+        } else {
+            p1.classList.remove('animationP')
+        }
+        if (p2Status == true) {
+            p2.classList.add('animationP')
+        } else {
+            p2.classList.remove('animationP')
+        }
+        if (p3Status == true) {
+            p3.classList.add('animationP')
+        } else {
+            p3.classList.remove('animationP')
+        }
+        if (p4Status == true) {
+            p4.classList.add('animationP')
+        } else {
+            p4.classList.remove('animationP')
+        }
+        if (p5Status == true) {
+            p5.classList.add('animationP')
+        } else {
+            p5.classList.remove('animationP')
+        }
+        if (p6Status == true) {
+            p6.classList.add('animationP')
+        } else {
+            p6.classList.remove('animationP')
+        }
+    }
+</script>

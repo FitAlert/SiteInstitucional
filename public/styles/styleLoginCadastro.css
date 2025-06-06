@@ -9,6 +9,8 @@ body {
     font-family: "Montserrat", sans-serif;
     background-image: url(../images/telaLogin/cadastro-logim-background.jpeg);
     background-size: cover;
+    height: 100vh;
+    width: 100vw;
 }
 
 :root {
@@ -133,21 +135,16 @@ Card pai responsavel por deixar a central de cadastro no centro da tela
 */
 .card-cadastro{
     width: 100%;
-    height: 650px;
+    height: 80vh;
     display: flex;
     align-items: center;
-    margin: 60px 0 ;
     justify-content: center;
 }
 
-/*
-Container responsaver por gerenciar a parte de cadastro de usuario e loja deixando elas ao centro
-e o position relative fara qu eo contúdo dentro dela sejam relativos ao ela, ou seja não vai sair para fora dessa caixa e sim ficar de certa forma escondido por isso o overflow: hidden, pois ele impede que apareça a o scroll 
-*/
 .card-cadastro .container{
     display: flex;
-    width: 33%;
-    height:100%;
+    width: 50%;
+    height: 80%;
     border: 2px solid var(--azul);
     border-radius: 25px;
     justify-content: center;
@@ -158,43 +155,65 @@ e o position relative fara qu eo contúdo dentro dela sejam relativos ao ela, ou
 
 .formCadastro {
     display: flex;
-    /* border: 2px solid black; */
     width: 100%;
-    height: 500px;
-    padding: 40px 60px 0px 60px;
+    height: 100%;
+    padding: 15px 30px 0px 30px;
     justify-content: center;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    /* border: 2px solid green; */
-    width: 95%;
+    width: 100%;
 }
 
 .form h2 {
     font-size: 30px;
     font-weight: bold;
-    margin: 0 0 10px 0;
+    text-align: center;
     color: var(--branco);
 }
 
-.campo {
-    margin: 7px 0;
+.conjunto{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
 }
 
-.campo p {
+.conjunto .campo {
+    margin: 20px 0;
+    position: relative;
+}
+
+.conjunto .campo p {
     font-size: 16px;
     color: var(--branco);
     margin: 1%;
+    position: absolute;
+    transition: 0.3s;
 }
 
-.campo input {
-    width: 100%;
+.conjunto .campo input {
+    width: 20vw;
     height: 35px;
-    border-radius: 7px;
-    border-style: none;
     padding-left: 15px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    color: #ffff;
+    outline: none;
+    transition: 0.3s
+}
+
+.conjunto .campo input::placeholder{
+    color: #fff;
+}
+
+.conjunto .campo .animationP{
+    top: -20px;
+    transition: 0.3s;
 }
 
 .container a {
