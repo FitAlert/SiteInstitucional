@@ -65,11 +65,11 @@
                             <div class="conjunto">
                                 <div class="campo">
                                     <p id="p3">Telefone</p>
-                                    <input type="text" id="inputTelefone">
+                                    <input type="text" id="inputTelefone" maxlength="11">
                                 </div>
                                 <div class="campo">
                                     <p id="p6">Código</p>
-                                    <input type="text" id="inputCodigo" >
+                                    <input type="text" id="inputCodigo">
                                     <div id="divCodigo" style="color: #ffff;"></div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="navigation">
                     </div>
-                    <div id="divResultado" style="color: #ffff;"></div><br>
+                    <div id="divResultado" class="divResultado"></div><br>
                     <!-- =============
             BOTÃO
             ============= -->
@@ -124,66 +124,186 @@
 
     nome.addEventListener('focus', (event) => {
         p1Status = true;
-        p2Status = false;
-        p3Status = false;
-        p4Status = false;
-        p5Status = false;
-        p6Status = false;
+        if (email.value == "") {
+            p2Status = false
+        } else {
+            p2Status = true
+        }
+        if (telefone.value == "") {
+            p3Status = false;
+        } else {
+            p3Status = true;
+        }
+        if (senha.value == "") {
+            p4Status = false;
+        } else {
+            p4Status = true;
+        }
+        if (confirmarSenha.value == "") {
+            p5Status = false;
+        } else {
+            p5Status = true;
+        }
+        if (codigo.value == "") {
+            p6Status = false;
+        } else {
+            p6Status = true;
+        }
         animationCadastro();
         event.preventDefault();
     });
 
     email.addEventListener('focus', (event) => {
         p2Status = true;
-        p1Status = false;
-        p3Status = false;
-        p4Status = false;
-        p5Status = false;
-        p6Status = false;
+        if (nome.value == "") {
+            p1Status = false
+        } else {
+            p1Status = true
+        }
+        if (telefone.value == "") {
+            p3Status = false;
+        } else {
+            p3Status = true;
+        }
+        if (senha.value == "") {
+            p4Status = false;
+        } else {
+            p4Status = true;
+        }
+        if (confirmarSenha.value == "") {
+            p5Status = false;
+        } else {
+            p5Status = true;
+        }
+        if (codigo.value == "") {
+            p6Status = false;
+        } else {
+            p6Status = true;
+        }
         animationCadastro();
         event.preventDefault();
     });
 
     telefone.addEventListener('focus', (event) => {
-        p3Status = true;
-        p1Status = false;
-        p2Status = false;
-        p4Status = false;
-        p5Status = false;
-        p6Status = false;
+        p3Status = true; 
+        if (nome.value == "") {
+            p1Status = false
+        } else {
+            p1Status = true
+        }
+        if (email.value == "") {
+            p2Status = false;
+        } else {
+            p2Status = true;
+        }
+        if (senha.value == "") {
+            p4Status = false;
+        } else {
+            p4Status = true;
+        }
+        if (confirmarSenha.value == "") {
+            p5Status = false;
+        } else {
+            p5Status = true;
+        }
+        if (codigo.value == "") {
+            p6Status = false;
+        } else {
+            p6Status = true;
+        }
         animationCadastro();
         event.preventDefault();
     });
 
     senha.addEventListener('focus', (event) => {
         p4Status = true;
-        p1Status = false;
-        p2Status = false;
-        p3Status = false;
-        p5Status = false;
-        p6Status = false;
+        if (nome.value == "") {
+            p1Status = false
+        } else {
+            p1Status = true
+        }
+        if (email.value == "") {
+            p2Status = false;
+        } else {
+            p2Status = true;
+        }
+        if (telefone.value == "") {
+            p3Status = false;
+        } else {
+            p3Status = true;
+        }
+        if (confirmarSenha.value == "") {
+            p5Status = false;
+        } else {
+            p5Status = true;
+        }
+        if (codigo.value == "") {
+            p6Status = false;
+        } else {
+            p6Status = true;
+        }
         animationCadastro();
         event.preventDefault();
     });
 
     confirmarSenha.addEventListener('focus', (event) => {
         p5Status = true;
-        p1Status = false;
-        p2Status = false;
-        p3Status = false;
-        p4Status = false;
-        p6Status = false;
+        if (nome.value == "") {
+            p1Status = false
+        } else {
+            p1Status = true
+        }
+        if (email.value == "") {
+            p2Status = false;
+        } else {
+            p2Status = true;
+        }
+        if (telefone.value == "") {
+            p3Status = false;
+        } else {
+            p3Status = true;
+        }
+        if (senha.value == "") {
+            p4Status = false;
+        } else {
+            p4Status = true;
+        }
+        if (codigo.value == "") {
+            p6Status = false;
+        } else {
+            p6Status = true;
+        }
         animationCadastro();
         event.preventDefault();
     });
 
     codigo.addEventListener('focus', (event) => {
-        p5Status = false;
-        p1Status = false;
-        p2Status = false;
-        p3Status = false;
-        p4Status = false;
         p6Status = true;
+        if (nome.value == "") {
+            p1Status = false
+        } else {
+            p1Status = true
+        }
+        if (email.value == "") {
+            p2Status = false;
+        } else {
+            p2Status = true;
+        }
+        if (telefone.value == "") {
+            p3Status = false;
+        } else {
+            p3Status = true;
+        }
+        if (senha.value == "") {
+            p4Status = false;
+        } else {
+            p4Status = true;
+        }
+        if (confirmarSenha.value == "") {
+            p5Status = false;
+        } else {
+            p5Status = true;
+        }
         animationCadastro();
         event.preventDefault();
     });

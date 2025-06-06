@@ -10,16 +10,20 @@ function cadastro() {
 
 
 function validarEmail(){
-    divEmail.innerHTML = "";
-    email = inputEmail.value
+    divResultado.innerHTML = "";
+    var email = inputEmail.value;
+    var res = document.getElementById('divResultado');
+
 
     for (i = 0; i < email.length; i++) {
         if(email.includes('@')){
+          res.style.display = 'none';
             temArroba = true;
             break;
         }
         else{
-            divEmail.innerHTML = `Digite um email válido. <br>`;
+          res.style.display = 'flex'
+            divResultado.innerHTML = `Digite um email válido. <br>`;
         }
     }
 }
@@ -29,24 +33,32 @@ function validacaoSenha() {
     
     var senha = inputSenha.value;
     var senhaConfirmar = inputSenhaConfirm.value;
+    var res = document.getElementById('divResultado');
     var validacao = true;
 
     for (i = 0; i < senha.length; i++) {
         if(senha.length < 8){
+          res.style.display = 'flex'
             divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>`;
             validacao = false;
             break;
         }
         else{
+          res.style.display = 'none'
             divResultado.innerHTML = ``;
             break;
         }
     }
 
     if (senhaConfirmar !== senha) {
+          res.style.display = 'flex'
+
         divResultado.innerHTML += `As senhas não correspondem.`;
         validacao = false;
-    } 
+    } else{
+          res.style.display = 'none'
+
+    }
 }
 
 
@@ -71,8 +83,8 @@ function cadastrar() {
       confirmacaoSenhaVar == "" ||
       codigoVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
+      divResultado.style.display = "flex";
+      divResultado.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
       finalizarAguardar();
@@ -88,8 +100,8 @@ function cadastrar() {
             console.log("Código de ativação válido.");
             break;
           } else {
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+            divResultado.style.display = "block";
+            divResultado.innerHTML = "(Mensagem de erro para código inválido)";
             finalizarAguardar();
           }
         }
@@ -114,9 +126,8 @@ function cadastrar() {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
 
-          mensagem_erro.innerHTML =
+          divResultado.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
@@ -158,5 +169,5 @@ function cadastrar() {
     }
 
  function sumirMensagem() {
- cardErro.style.display = "none";
+ divResultado.style.display = "none";
   }
