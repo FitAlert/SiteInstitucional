@@ -1,13 +1,23 @@
 var mysql = require("mysql2");
 
 // CONEXÃO DO BANCO MYSQL SERVER
+
 var mySqlConfig = {
     host: "localhost", //inserir host
     database: "DB_FitAlert", //inserir banco
-    user: "aluno", // inserir usuario 
-    password: "Sptech#2024", // inserir senha 
-    port: 3307
+    user: "FitAlert", // inserir usuario 
+    password: "fitalert", // inserir senha 
+    port: 3306
 };
+
+
+// var mySqlConfig = {
+//     host: "localhost", //inserir host
+//     database: "DB_FitAlert", //inserir banco
+//     user: "aluno", // inserir usuario 
+//     password: "Sptech#2024", // inserir senha 
+//     port: 3307
+// };
 
 function executar(instrucao) {
 
