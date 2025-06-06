@@ -46,7 +46,7 @@ function entrar() {
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nomeUsuario;
                 sessionStorage.ID_USUARIO = json.idUsuario;
-                sessionStorage.ID_EMPRESA = json.idUsuario;
+                sessionStorage.ID_EMPRESA = json.fkEmpresa;
 
                 setTimeout(function () {
                     window.location.href = "dashboard.html";
