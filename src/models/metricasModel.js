@@ -137,6 +137,9 @@ function buscarSecaoMaisVisitadaKPI(idEmpresa, data_entrada, data_saida) {
     return database.executar(instrucaoSql);
 };
 
+// provadores individuais
+
+
 module.exports = {
     // GRÁFICOS
     buscarFemininoMasculino,
