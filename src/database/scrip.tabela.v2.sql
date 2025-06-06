@@ -81,6 +81,9 @@ CREATE TABLE TB_Avisos (
 INSERT INTO TB_Sensores (status_sensor) VALUES
 ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo');
 
+INSERT INTO TB_Sensores (status_sensor)
+VALUES ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo');
+
 -- Empresa
 INSERT INTO TB_Empresas VALUES (DEFAULT, 'Piticas', '11111111111111', NULL, 'abc');
 
@@ -101,6 +104,7 @@ INSERT INTO TB_Provadores VALUES
 (9, 1, 'feminino', 9),
 (11, 1, 'feminino', 11);
 
+SELECT * FROM TB_Provadores;
 -- Registros diversos
 INSERT INTO TB_Registros VALUES
 (DEFAULT, 1, 1, '2025-05-23 09:59:47', '2025-05-23 10:00:47'),
@@ -144,8 +148,39 @@ INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES
 (9, '1', '2025-05-28 10:30:00', '2025-05-28 10:45:00'),
 (10, '1', '2025-05-28 10:40:00', '2025-05-28 10:55:00');
 
+-- VIEW
+CREATE VIEW VW_Dashboard AS
+SELECT
+	r.fkSensor, r.ativo, r.data_entrada, r.data_saida,
+    s.status_sensor,
+    p.idProvador, p.idEmpresa, p.secao
+FROM TB_Registros r JOIN TB_Sensores s 
+ON r.fkSensor = s.idSensor
+JOIN TB_Provadores p 
+ON p.fkSensor = s.idSensor;
 
+-- SELECT HORÁRIO DE PICO
+SELECT 
+    HOUR(data_entrada) AS hora_pico,
+    COUNT(*) AS total_entradas
+FROM VW_Dashboard
+WHERE idProvador = 1
+  AND data_entrada >= '2025-05-23 00:00:00'
+  AND data_entrada <  '2025-05-24 00:00:00'
+GROUP BY HOUR(data_entrada)
+ORDER BY total_entradas DESC
+LIMIT 1;
 
+select * from VW_Dashboard;
+
+-- SELECT FLUXO DE VISITANTES
+SELECT 
+    idProvador,
+    ROUND(AVG(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)), 2) AS media_permanencia_minutos
+FROM VW_Dashboard
+WHERE idProvador = 1
+AND data_entrada >= '2025-05-23 00:00:00'
+  AND data_entrada <  '2025-05-24 00:00:00';
 
 
 
