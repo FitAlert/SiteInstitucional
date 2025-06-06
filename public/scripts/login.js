@@ -1,100 +1,102 @@
-iniciou = false;
+var iniciou = false;
+var bloquear = true;
 
 function entrar() {
- //   aguardar();
+    //   aguardar();
 
- var emailVar = inputEmail.value;
- var senhaVar = inputSenha.value;
- var validacao = false;
+    var emailVar = inputEmail.value;
+    var senhaVar = inputSenha.value;
 
- if (iniciou == false) {
-     iniciou = true;
-     tentativas = 0;
- }
+    if (bloquear) {
 
-    if (emailVar == "" || senhaVar == "") {
-        cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir.";
-        finalizarAguardar();
-        return false;
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
-
-    console.log("FORM LOGIN: ", emailVar);
-    console.log("FORM SENHA: ", senhaVar);
-
-    fetch("/usuarios/autenticar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            emailServer: emailVar,
-            senhaServer: senhaVar
-        })
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
-
-        if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nomeUsuario;
-                sessionStorage.ID_USUARIO = json.idUsuario;
-                sessionStorage.ID_EMPRESA = json.fkEmpresa;
-
-                setTimeout(function () {
-                    mostrarAviso(`Login Realizado!`)
-                    window.location.href = "dashboard.html";
-                }, 1000); // apenas para exibir o loading
-
-            });
-
-        } else {
-            while ((!resposta.ok) && tentativas < 3) {
-                tentativas++;
-                mostrarAviso(`Credenciais incorretas. Tente novamente. Tentativa: ${tentativas}`);
-                break;
-            }
-           
-            if (tentativas >= 3) {
-                mostrarAviso('Máximo de 3 tentativas atingido. Tente novamente mais tarde.');
-            }
-            
-            console.log("Houve um erro ao tentar realizar o login!");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                finalizarAguardar(texto);
-            });
+        if (iniciou == false) {
+            iniciou = true;
+            tentativas = 0;
         }
 
-    }).catch(function (erro) {
-        console.log(erro);
-    })
+        if (emailVar == "" || senhaVar == "") {
+            aviso.style.display = "block"
+            mostrarAviso("Preencha todos os campos para prosseguir.");
+        } else {
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
 
-    return false;
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            })
+            .then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.ID_EMPRESA = json.fkEmpresa;
+
+                        mostrarAviso(`Login Realizado!`)
+
+                        setTimeout(() => {
+                            aviso.style.display = "none"
+                        }, 1600)
+
+                        setTimeout(function () {
+                            window.location.href = "dashboard.html";
+                        }, 1500); // apenas para exibir o loading
+
+                    });
+
+                } else {
+                    while ((!resposta.ok) && tentativas < 3) {
+                        tentativas++;
+                        mostrarAviso(`Credenciais incorretas. Tente novamente. Tentativa: ${tentativas}`);
+                        break;
+                    }
+
+                    if (tentativas >= 3) {
+                        mostrarAviso('Máximo de 3 tentativas atingido. Tente novamente mais tarde.');
+                        bloquear = false;
+                    }
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+                }
+
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            })
+        }
+    }
+
+
 }
+
 
 function sumirMensagem() {
-    cardErro.style.display = "none"
+    aviso.style.display = "none"
 }
 
-function login(){
+function login() {
     window.location = 'login.html'
 }
 
-function cadastro(){
+function cadastro() {
     window.location = 'cadastro.html'
 }
 
-function mostrarAviso(mensagem){
+function mostrarAviso(mensagem) {
     var aviso = document.getElementById("aviso");
     aviso.innerHTML = mensagem;
-    aviso.style.display = "block";
+    aviso.style.display = "flex";
 }
