@@ -212,6 +212,10 @@ INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES
 (12, '1', '2025-06-06 23:15:00', '2025-06-06 23:29:00'),
 (12, '1', '2025-06-06 23:30:00', '2025-06-06 23:45:00');
 
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES
+(12, '1', '2025-06-06 14:00:00', '2025-06-06 14:12:00');
+
+-- SELECT TEMPO PERMANÊNCIA SENSOR 12
 SELECT 
     idProvador,
     ROUND(AVG(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)), 2) AS media_permanencia_minutos
@@ -219,6 +223,12 @@ FROM VW_Dashboard
 WHERE idProvador = 12
   AND TIMESTAMPDIFF(MINUTE, data_entrada, data_saida) BETWEEN 1 AND 30;
 
+SELECT COUNT(*) AS total_usuarios
+FROM TB_Registros
+WHERE fkSensor = 12
+AND DATE(data_entrada) = '2025-06-06';
+
+  
 
 -- VIEW
 CREATE VIEW VW_Dashboard AS
@@ -231,12 +241,7 @@ ON r.fkSensor = s.idSensor
 JOIN TB_Provadores p 
 ON p.fkSensor = s.idSensor;
 
-
-
-/* 
-	PROVADOR 1
- SELECT HORÁRIO DE PICO
-*/
+-- SELECT HORÁRIO DE PICO PROVADOR 1
 SELECT 
     HOUR(data_entrada) AS hora_pico,
     COUNT(*) AS total_entradas
@@ -248,12 +253,7 @@ GROUP BY HOUR(data_entrada)
 ORDER BY total_entradas DESC
 LIMIT 1;
 
-select * from VW_Dashboard;
-
-/* 
-	PROVADOR 1
-SELECT FLUXO DE VISITANTES
-*/
+-- SELECT PROVADOR 1 FLUXO DE VISITANTES
 SELECT 
     idProvador,
     ROUND(AVG(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)), 2) AS media_permanencia_minutos
@@ -278,6 +278,16 @@ WHERE idProvador = 1
   AND data_entrada >= '2025-05-23 00:00:00'
   AND data_entrada <  '2025-05-24 00:00:00'
   AND TIMESTAMPDIFF(MINUTE, data_entrada, data_saida) BETWEEN 1 AND 30;
+  
+  -- SELECT TEMPO MÉDIO DE CADA PROVADOR
+  SELECT 
+    idProvador,
+    ROUND(AVG(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)), 2) AS media_permanencia_minutos
+FROM VW_Dashboard
+WHERE TIMESTAMPDIFF(MINUTE, data_entrada, data_saida) BETWEEN 1 AND 30
+GROUP BY idProvador
+ORDER BY idProvador;
+
 
 
 
