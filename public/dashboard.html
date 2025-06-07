@@ -60,20 +60,20 @@
             <div class="totalKPIS">
                 <div class="kpi">
                     <h3>HORÁRIO DE PICO</h3>
-                    <p id="horario_pico_kpi">Aguardando cliente</p>
+                    <p id="horario_pico_kpi" class="descricao_kpi">Aguardando cliente</p>
                 </div>
-                <div class="kpi">
+                <div class="kpi" id="kpiFluxo">
                     <h3>FLUXO DE VISITANTES</h3>
-                    <p id="fluxo_visitantes_kpi">Aguardando cliente</p>
+                    <p id="fluxo_visitantes_kpi" class="descricao_kpi">Aguardando cliente</p>
                     <p id="fluxo_visitantes_quartil"></p>
                 </div>
                 <div class="kpi">
                     <h3>TEMPO PERMANÊNCIA</h3>
-                    <p id="tempo_permanencia_kpi">Aguardando cliente</p>
+                    <p id="tempo_permanencia_kpi" class="descricao_kpi">Aguardando cliente</p>
                 </div>
                 <div class="kpi">
                     <h3>SEÇÃO MAIS VISITADA</h3>
-                    <p id="secao_visitada_kpi">Aguardando cliente</p>
+                    <p id="secao_visitada_kpi" class="descricao_kpi">Aguardando cliente</p>
                 </div>
             </div>
 
@@ -619,11 +619,14 @@ function buscarHorarioPico(){
         // Se o tamanho da lista for par mediana é a a média dos dois numeros do meio da lista
 
         if (fluxoData < mediana) {
-        fluxo_visitantes_quartil.innerHTML ="Abaixo da mediana";
+        fluxo_visitantes_quartil.innerHTML =`Abaixo da mediana`;
+        document.getElementById("kpiFluxo").style.backgroundColor = "salmon";
         } else if (fluxoData === mediana) {
-        fluxo_visitantes_quartil.innerHTML = "Na mediana";
+        fluxo_visitantes_quartil.innerHTML = `Na mediana`;
+        document.getElementById("kpiFluxo").style.backgroundColor = "lightBlue";
         } else {
-        fluxo_visitantes_quartil.innerHTML = "Acima da mediana";
+        fluxo_visitantes_quartil.innerHTML = `Acima da mediana`;
+        document.getElementById("kpiFluxo").style.backgroundColor = "lightGreen";
         }
 
     }
