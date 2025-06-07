@@ -43,6 +43,8 @@ CREATE TABLE TB_Sensores (
     CONSTRAINT chkSensorStatus CHECK(status_sensor IN ('Inativo', 'Ativo', 'Manutenção'))
 );
 
+select * from TB_Sensores;
+
 -- PROVADORES
 CREATE TABLE TB_Provadores (
     idProvador INT,
@@ -81,8 +83,13 @@ CREATE TABLE TB_Avisos (
 INSERT INTO TB_Sensores (status_sensor) VALUES
 ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo');
 
-INSERT INTO TB_Sensores (status_sensor)
-VALUES ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo');
+INSERT INTO TB_Sensores (status_sensor) VALUES 
+('Ativo'), ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo'), ('Ativo');
+
+INSERT INTO TB_Sensores (status_sensor) VALUES 
+('Ativo');
+
+SELECT MAX(idSensor) AS novoSensorID FROM TB_Sensores;
 
 -- Empresa
 INSERT INTO TB_Empresas VALUES (DEFAULT, 'Piticas', '11111111111111', NULL, 'abc');
@@ -103,6 +110,9 @@ INSERT INTO TB_Provadores VALUES
 (8, 1, 'feminino', 8),
 (9, 1, 'feminino', 9),
 (11, 1, 'feminino', 11);
+
+INSERT INTO TB_Provadores VALUES (12, 1, 'feminino', 12);
+
 
 SELECT * FROM TB_Provadores;
 -- Registros diversos
@@ -148,6 +158,68 @@ INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES
 (9, '1', '2025-05-28 10:30:00', '2025-05-28 10:45:00'),
 (10, '1', '2025-05-28 10:40:00', '2025-05-28 10:55:00');
 
+-- 50 INSERTS PARA O SENSOR 12
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES
+(12, '1', '2025-06-06 10:00:00', '2025-06-06 10:10:00'),
+(12, '1', '2025-06-06 10:15:00', '2025-06-06 10:30:00'),
+(12, '1', '2025-06-06 10:35:00', '2025-06-06 10:48:00'),
+(12, '1', '2025-06-06 10:50:00', '2025-06-06 11:03:00'),
+(12, '1', '2025-06-06 11:05:00', '2025-06-06 11:20:00'),
+(12, '1', '2025-06-06 11:25:00', '2025-06-06 11:37:00'),
+(12, '1', '2025-06-06 11:40:00', '2025-06-06 11:55:00'),
+(12, '1', '2025-06-06 12:00:00', '2025-06-06 12:12:00'),
+(12, '1', '2025-06-06 12:15:00', '2025-06-06 12:28:00'),
+(12, '1', '2025-06-06 12:30:00', '2025-06-06 12:42:00'),
+(12, '1', '2025-06-06 12:45:00', '2025-06-06 12:58:00'),
+(12, '1', '2025-06-06 13:00:00', '2025-06-06 13:14:00'),
+(12, '1', '2025-06-06 13:15:00', '2025-06-06 13:28:00'),
+(12, '1', '2025-06-06 13:30:00', '2025-06-06 13:45:00'),
+(12, '1', '2025-06-06 13:50:00', '2025-06-06 14:03:00'),
+(12, '1', '2025-06-06 14:05:00', '2025-06-06 14:18:00'),
+(12, '1', '2025-06-06 14:20:00', '2025-06-06 14:32:00'),
+(12, '1', '2025-06-06 14:35:00', '2025-06-06 14:48:00'),
+(12, '1', '2025-06-06 14:50:00', '2025-06-06 15:03:00'),
+(12, '1', '2025-06-06 15:05:00', '2025-06-06 15:20:00'),
+(12, '1', '2025-06-06 15:25:00', '2025-06-06 15:38:00'),
+(12, '1', '2025-06-06 15:40:00', '2025-06-06 15:55:00'),
+(12, '1', '2025-06-06 16:00:00', '2025-06-06 16:14:00'),
+(12, '1', '2025-06-06 16:15:00', '2025-06-06 16:28:00'),
+(12, '1', '2025-06-06 16:30:00', '2025-06-06 16:43:00'),
+(12, '1', '2025-06-06 16:45:00', '2025-06-06 16:58:00'),
+(12, '1', '2025-06-06 17:00:00', '2025-06-06 17:12:00'),
+(12, '1', '2025-06-06 17:15:00', '2025-06-06 17:27:00'),
+(12, '1', '2025-06-06 17:30:00', '2025-06-06 17:45:00'),
+(12, '1', '2025-06-06 17:50:00', '2025-06-06 18:03:00'),
+(12, '1', '2025-06-06 18:05:00', '2025-06-06 18:20:00'),
+(12, '1', '2025-06-06 18:25:00', '2025-06-06 18:38:00'),
+(12, '1', '2025-06-06 18:40:00', '2025-06-06 18:55:00'),
+(12, '1', '2025-06-06 19:00:00', '2025-06-06 19:12:00'),
+(12, '1', '2025-06-06 19:15:00', '2025-06-06 19:28:00'),
+(12, '1', '2025-06-06 19:30:00', '2025-06-06 19:43:00'),
+(12, '1', '2025-06-06 19:45:00', '2025-06-06 20:00:00'),
+(12, '1', '2025-06-06 20:05:00', '2025-06-06 20:20:00'),
+(12, '1', '2025-06-06 20:25:00', '2025-06-06 20:38:00'),
+(12, '1', '2025-06-06 20:40:00', '2025-06-06 20:55:00'),
+(12, '1', '2025-06-06 21:00:00', '2025-06-06 21:12:00'),
+(12, '1', '2025-06-06 21:15:00', '2025-06-06 21:28:00'),
+(12, '1', '2025-06-06 21:30:00', '2025-06-06 21:42:00'),
+(12, '1', '2025-06-06 21:45:00', '2025-06-06 21:58:00'),
+(12, '1', '2025-06-06 22:00:00', '2025-06-06 22:13:00'),
+(12, '1', '2025-06-06 22:15:00', '2025-06-06 22:27:00'),
+(12, '1', '2025-06-06 22:30:00', '2025-06-06 22:43:00'),
+(12, '1', '2025-06-06 22:45:00', '2025-06-06 22:58:00'),
+(12, '1', '2025-06-06 23:00:00', '2025-06-06 23:13:00'),
+(12, '1', '2025-06-06 23:15:00', '2025-06-06 23:29:00'),
+(12, '1', '2025-06-06 23:30:00', '2025-06-06 23:45:00');
+
+SELECT 
+    idProvador,
+    ROUND(AVG(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)), 2) AS media_permanencia_minutos
+FROM VW_Dashboard
+WHERE idProvador = 12
+  AND TIMESTAMPDIFF(MINUTE, data_entrada, data_saida) BETWEEN 1 AND 30;
+
+
 -- VIEW
 CREATE VIEW VW_Dashboard AS
 SELECT
@@ -159,7 +231,12 @@ ON r.fkSensor = s.idSensor
 JOIN TB_Provadores p 
 ON p.fkSensor = s.idSensor;
 
--- SELECT HORÁRIO DE PICO
+
+
+/* 
+	PROVADOR 1
+ SELECT HORÁRIO DE PICO
+*/
 SELECT 
     HOUR(data_entrada) AS hora_pico,
     COUNT(*) AS total_entradas
@@ -173,7 +250,10 @@ LIMIT 1;
 
 select * from VW_Dashboard;
 
--- SELECT FLUXO DE VISITANTES
+/* 
+	PROVADOR 1
+SELECT FLUXO DE VISITANTES
+*/
 SELECT 
     idProvador,
     ROUND(AVG(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)), 2) AS media_permanencia_minutos
@@ -181,6 +261,24 @@ FROM VW_Dashboard
 WHERE idProvador = 1
 AND data_entrada >= '2025-05-23 00:00:00'
   AND data_entrada <  '2025-05-24 00:00:00';
+  
+/* 
+	PROVADOR 1
+FLUXO DE VISITANTES EXCLUINDO DADOS EXTREMOS (
+UPDATE TB_Registros
+SET data_saida = '2025-05-23 13:59:47'
+WHERE idRegistro = 1
+;)
+*/
+SELECT 
+    idProvador,
+    ROUND(AVG(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)), 2) AS media_permanencia_minutos
+FROM VW_Dashboard
+WHERE idProvador = 1
+  AND data_entrada >= '2025-05-23 00:00:00'
+  AND data_entrada <  '2025-05-24 00:00:00'
+  AND TIMESTAMPDIFF(MINUTE, data_entrada, data_saida) BETWEEN 1 AND 30;
+
 
 
 
