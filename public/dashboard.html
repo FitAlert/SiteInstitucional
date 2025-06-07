@@ -590,6 +590,13 @@ function buscarHorarioPico(){
     buscarSecaoMaisVisitadaKPI()
 };
 
+window.onload = () => {
+    document.getElementById("span_usuario").textContent = nomeUsuario;
+    filtrar();
+};
+
+
+
 function provador1(){
     window.location = 'dashprovadorindividual.html'
 }
