@@ -137,8 +137,25 @@ function buscarSecaoMaisVisitadaKPI(idEmpresa, data_entrada, data_saida) {
     return database.executar(instrucaoSql);
 };
 
-// provadores individuais
+// quartis
 
+function buscarQuartilFluxo(idEmpresa) {
+    console.log('Acessei o model para KPI 3');
+
+    var instrucaoSql = `
+        SELECT DATE(r.data_entrada) AS dia, COUNT(*) AS total_visitas
+        FROM TB_Registros r
+        JOIN TB_Sensores s ON r.fkSensor = s.idSensor
+        JOIN TB_Provadores p ON p.fkSensor = s.idSensor
+        JOIN TB_Empresas e ON e.idEmpresa = p.idEmpresa
+        WHERE e.idEmpresa = ${idEmpresa}
+        GROUP BY dia
+        ORDER BY total_visitas;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+};
 
 module.exports = {
     // GRÁFICOS
@@ -151,5 +168,8 @@ module.exports = {
     buscarHorarioPicoKPI,
     buscarFluxoVisitanteKPI,
     buscarTempoParmanenciaKPI,
-    buscarSecaoMaisVisitadaKPI
+    buscarSecaoMaisVisitadaKPI,
+
+    // quartis
+    buscarQuartilFluxo
 }

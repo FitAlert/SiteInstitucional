@@ -65,6 +65,7 @@
                 <div class="kpi">
                     <h3>FLUXO DE VISITANTES</h3>
                     <p id="fluxo_visitantes_kpi">Aguardando cliente</p>
+                    <p id="fluxo_visitantes_quartil"></p>
                 </div>
                 <div class="kpi">
                     <h3>TEMPO PERMANÊNCIA</h3>
@@ -138,6 +139,9 @@ var fim = dataAtual()
         buscarFluxoVisitanteKPI();
         buscarTempoParmanenciaKPI();
         buscarSecaoMaisVisitadaKPI();
+
+        // QUARTIS
+        buscarQuartilFluxo();
     }
 
 
@@ -466,6 +470,8 @@ function buscarHorarioPico(){
         })
     };
 
+    var fluxoData;
+
     // KPI 2
     function buscarFluxoVisitanteKPI() {
         fetch(`metricas/buscarFluxoVisitanteKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
@@ -491,6 +497,7 @@ function buscarHorarioPico(){
                     fluxo_visitantes_kpi.innerHTML = 'Aguardando cliente';
                 } else {
                     fluxo_visitantes_kpi.innerHTML = dadoskpi2[0].fluxo_visitantes;
+                    fluxoData = dadoskpi2[0].fluxo_visitantes;
                 }
         })
         .catch(
@@ -565,6 +572,62 @@ function buscarHorarioPico(){
         })
     }
 
+
+    // quartis
+    function buscarQuartilFluxo() {
+        fetch(`metricas/buscarQuartilFluxo/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(function (resposta) {
+            console.log(resposta);
+            
+            if (resposta.ok) {
+                console.log('Busquei a lista de fluxo de visitantes por dia', resposta)
+                return resposta.json();
+            } else {
+                throw "Erro ao buscar dados no data base";
+            }
+        })
+        .then(
+            function (jsonVisitantes) {
+                console.log(jsonVisitantes);
+                var listaVisitas = []
+                for(var i = 0; i < jsonVisitantes.length; i++){
+                listaVisitas.push(Number(jsonVisitantes[i].total_visitas));
+            }
+                    plotarQuartilFluxo(listaVisitas)
+        })
+        .catch(
+            function (erro) {
+                console.log(erro);
+        })
+    };
+
+    function plotarQuartilFluxo(listaVisitas){
+        const meio = Math.floor(listaVisitas.length / 2);
+        let mediana;
+
+        if (listaVisitas.length % 2 !== 0) {
+            mediana = listaVisitas[meio];
+        } else {
+            mediana = (listaVisitas[meio - 1] + listaVisitas[meio]) / 2;
+        }
+         // Se o tamanho da lista for impar mediana é o numero do meio
+        // Se o tamanho da lista for par mediana é a a média dos dois numeros do meio da lista
+
+        if (fluxoData < mediana) {
+        fluxo_visitantes_quartil.innerHTML ="Abaixo da mediana";
+        } else if (fluxoData === mediana) {
+        fluxo_visitantes_quartil.innerHTML = "Na mediana";
+        } else {
+        fluxo_visitantes_quartil.innerHTML = "Acima da mediana";
+        }
+
+    }
+
     
     function dataAtual() {
     const data = new Date();
@@ -587,7 +650,10 @@ function buscarHorarioPico(){
     buscarHorarioPicoKPI(),
     buscarFluxoVisitanteKPI(),
     buscarTempoParmanenciaKPI(),
-    buscarSecaoMaisVisitadaKPI()
+    buscarSecaoMaisVisitadaKPI(),
+
+    // quartis
+    buscarQuartilFluxo()
 };
 
 window.onload = () => {

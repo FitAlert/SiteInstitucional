@@ -37,4 +37,11 @@ router.get("/buscarSecaoMaisVisitadaKPI/:idEmpresa", function (req, res) {
     metricasController.buscarSecaoMaisVisitadaKPI(req, res);
 });
 
+// --------- QUARTIS -----------
+
+router.get("/buscarQuartilFluxo/:idEmpresa", function (req, res) {
+    metricasController.buscarQuartilFluxo(req, res);
+});
+
+
 module.exports = router;
