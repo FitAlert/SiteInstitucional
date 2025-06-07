@@ -52,7 +52,11 @@ function entrar() {
                         }, 1600)
 
                         setTimeout(function () {
-                            window.location.href = "dashboard.html";
+                            if (emailVar == "admin@admin.com" || senhaVar == "admin1234") {
+                                window.location.href = "suporteN3.html";
+                            }
+                            else{  window.location.href = "dashboard.html";}
+                           
                         }, 1500); // apenas para exibir o loading
 
                     });
