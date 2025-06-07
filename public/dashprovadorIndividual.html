@@ -27,7 +27,7 @@
         <ul>
             <li><a href="./dashboard.html">Dashboard</a></li>
             <li><a href="./vincLoja.html">Nova loja</a></li>
-           <li id="li_alerta">Alertas
+            <li id="li_alerta">Alertas
                 <span id="span_alerta">7</span>
                 <div class="boxAlerta" id="boxAlerta">
                     <div><b>1 </b>- Alertas loremns Lorem ipsum dolor</div>
@@ -45,8 +45,9 @@
     </nav>
 
     <main>
-
+        <div class="identificador-provador">Provador 1</div>
         <section style="margin-top: 25px;">
+
             <div class="totalKPIS" style="display: flex; justify-content: center; align-items: center; gap: 50px;">
                 <div class="kpi">
                     <h3>HORÁRIO DE PICO</h3>
@@ -56,11 +57,11 @@
                     <h3>FLUXO DE VISITANTES MÉDIO</h3>
                     <p>22</p>
                 </div>
-              
+
             </div>
 
             <div class="geral">
-               
+
 
                 <div class="graficos">
                     <div class="linha l1" style="flex-direction: column; margin-top: -220px;">
@@ -79,18 +80,18 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
-var idUsuario = sessionStorage.ID_USUARIO;
-var idEmpresa = sessionStorage.ID_EMPRESA;
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var idEmpresa = sessionStorage.ID_EMPRESA;
 
-var inicio = dataAtual()
-var fim = dataAtual()
+    var inicio = dataAtual()
+    var fim = dataAtual()
 
-    function filtrar(){
+    function filtrar() {
 
         inicio = inputInicio.value
         fim = inputFim.value
 
-        if(fim == ''){
+        if (fim == '') {
             fim = dataAtual()
         }
 
@@ -99,19 +100,19 @@ var fim = dataAtual()
     }
 
 
-    function buscarFemininoMasculino(){
-    
+    function buscarFemininoMasculino() {
+
         fetch(`/metricas/buscarFemininoMasculino/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
 
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            plotarGraficoPizza(data);
-        })
-        .catch(function(err){
-            console.log(err);
-        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                plotarGraficoPizza(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
 
     }
 
@@ -123,20 +124,20 @@ var fim = dataAtual()
                 "Content-Type": "application/json",
             }
         })
-        .then(function (resposta) {
-            console.log(resposta);
+            .then(function (resposta) {
+                console.log(resposta);
 
-            if (resposta.ok) {
-                console.warn('Select funcionou!')
-                return resposta.json();
-            } else {
-                console.error('Erro ao buscar dados.')
-            }
-        })
-        .then (function (secaoDados) {
-            console.log(secaoDados);
-            secaoVisitada.innerHTML = secaoDados[0].Secao;
-        })
+                if (resposta.ok) {
+                    console.warn('Select funcionou!')
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao buscar dados.')
+                }
+            })
+            .then(function (secaoDados) {
+                console.log(secaoDados);
+                secaoVisitada.innerHTML = secaoDados[0].Secao;
+            })
     }
 
     const barras = document.getElementById("cabine");
@@ -178,15 +179,15 @@ var fim = dataAtual()
 
 
     function dataAtual() {
-    const data = new Date();
-    const dia = String(data.getDate()).padStart(2, '0');
-    const mes = String(data.getMonth() + 1).padStart(2, '0');
-    const ano = data.getFullYear();
-    return `${ano}-${mes}-${dia}`;
+        const data = new Date();
+        const dia = String(data.getDate()).padStart(2, '0');
+        const mes = String(data.getMonth() + 1).padStart(2, '0');
+        const ano = data.getFullYear();
+        return `${ano}-${mes}-${dia}`;
     }
 
     window.onload = () => {
-    buscarFemininoMasculino();
-    buscarSecaoMaisVisitada()
-};
+        buscarFemininoMasculino();
+        buscarSecaoMaisVisitada()
+    };
 </script>
