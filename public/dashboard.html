@@ -67,9 +67,10 @@
                     <p id="fluxo_visitantes_kpi" class="descricao_kpi">Aguardando cliente</p>
                     <p id="fluxo_visitantes_quartil"></p>
                 </div>
-                <div class="kpi">
+                <div class="kpi" id="kpiPermanencia">
                     <h3>TEMPO PERMANÊNCIA</h3>
                     <p id="tempo_permanencia_kpi" class="descricao_kpi">Aguardando cliente</p>
+                    <p id="tempo_permanencia_quartil"></p>
                 </div>
                 <div class="kpi">
                     <h3>SEÇÃO MAIS VISITADA</h3>
@@ -142,6 +143,7 @@ var fim = dataAtual()
 
         // QUARTIS
         buscarQuartilFluxo();
+        buscarQuartilPermanencia();
     }
 
 
@@ -506,6 +508,8 @@ function buscarHorarioPico(){
         })
     };
 
+    var permanencia; 
+
     // KPI 3
     function buscarTempoParmanenciaKPI() {
         fetch(`metricas/buscarTempoParmanenciaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
@@ -531,6 +535,7 @@ function buscarHorarioPico(){
                     tempo_permanencia_kpi.innerHTML = 'Aguardando cliente';
                 } else {
                     tempo_permanencia_kpi.innerHTML = dadoskpi3[0].tempo_medio;
+                    permanencia = Number(dadoskpi3[0].tempo_medio.split('m')[0]);
                 }
         })
         .catch(
@@ -624,9 +629,77 @@ function buscarHorarioPico(){
         } else if (fluxoData === mediana) {
         fluxo_visitantes_quartil.innerHTML = `Na mediana`;
         document.getElementById("kpiFluxo").style.backgroundColor = "lightBlue";
-        } else {
+        } else if(fluxoData > mediana) {
         fluxo_visitantes_quartil.innerHTML = `Acima da mediana`;
         document.getElementById("kpiFluxo").style.backgroundColor = "lightGreen";
+        }
+        else{
+            fluxo_visitantes_quartil.innerHTML = ``;
+        }
+
+    }
+
+    // Buscar quartil de permanencia
+    var listaPermanencia = []
+
+    function buscarQuartilPermanencia() {
+        fetch(`metricas/buscarQuartilPermanencia/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(function (resposta) {
+            console.log(resposta);
+            
+            if (resposta.ok) {
+                console.log('Busquei a lista de fluxo de visitantes por dia', resposta)
+                return resposta.json();
+            } else {
+                throw "Erro ao buscar dados no data base";
+            }
+        })
+        .then(
+            function (jsonPermanencia) {
+                console.log(jsonPermanencia);
+                listaPermanencia = []
+                for(var i = 0; i < jsonPermanencia.length; i++){
+                listaPermanencia.push(Number(jsonPermanencia[i].tempo_medio_minutos));
+            }
+                    plotarQuartilPermanencia(listaPermanencia)
+        })
+        .catch(
+            function (erro) {
+                console.log(erro);
+        })
+    };
+
+    var mediana; 
+
+    function plotarQuartilPermanencia(listaPermanencia){
+        const meio = Math.floor(listaPermanencia.length / 2);
+        mediana
+
+        if (listaPermanencia.length % 2 !== 0) {
+            mediana = listaPermanencia[meio];
+        } else {
+            mediana = (listaPermanencia[meio - 1] + listaPermanencia[meio]) / 2;
+        }
+         // Se o tamanho da lista for impar mediana é o numero do meio
+        // Se o tamanho da lista for par mediana é a a média dos dois numeros do meio da lista
+
+        if (permanencia < mediana) {
+        tempo_permanencia_quartil.innerHTML =`Abaixo da mediana`;
+        document.getElementById("kpiPermanencia").style.backgroundColor = "salmon";
+        } else if (permanencia === mediana) {
+        tempo_permanencia_quartil.innerHTML = `Na mediana`;
+        document.getElementById("kpiPermanencia").style.backgroundColor = "lightBlue";
+        } else if(permanencia > mediana) {
+        tempo_permanencia_quartil.innerHTML = `Acima da mediana`;
+        document.getElementById("kpiPermanencia").style.backgroundColor = "lightGreen";
+        }
+        else{
+            tempo_permanencia_quartil.innerHTML = ``;
         }
 
     }
@@ -656,7 +729,8 @@ function buscarHorarioPico(){
     buscarSecaoMaisVisitadaKPI(),
 
     // quartis
-    buscarQuartilFluxo()
+    buscarQuartilFluxo(),
+    buscarQuartilPermanencia()
 };
 
 window.onload = () => {

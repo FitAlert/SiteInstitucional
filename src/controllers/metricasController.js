@@ -225,6 +225,31 @@ function buscarQuartilFluxo(req, res) {
     }
 };
 
+function buscarQuartilPermanencia(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    if (idEmpresa == undefined) {
+        console.log('ID da empresa está indefinido!');
+    } else {
+        metricasModel.buscarQuartilPermanencia(idEmpresa)
+        .then(
+            function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve erro ao buscar dados da KPI 2",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+        )
+    }
+};
+
+
 module.exports = {
     // GRÁFICOs
     buscarFemininoMasculino,
@@ -240,5 +265,6 @@ module.exports = {
 
 
     // quartis
-    buscarQuartilFluxo
+    buscarQuartilFluxo,
+    buscarQuartilPermanencia
 }

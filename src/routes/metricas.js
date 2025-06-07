@@ -43,5 +43,10 @@ router.get("/buscarQuartilFluxo/:idEmpresa", function (req, res) {
     metricasController.buscarQuartilFluxo(req, res);
 });
 
+router.get("/buscarQuartilPermanencia/:idEmpresa", function (req, res) {
+    metricasController.buscarQuartilPermanencia(req, res);
+});
+
+
 
 module.exports = router;

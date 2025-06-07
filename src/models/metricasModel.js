@@ -140,7 +140,7 @@ function buscarSecaoMaisVisitadaKPI(idEmpresa, data_entrada, data_saida) {
 // quartis
 
 function buscarQuartilFluxo(idEmpresa) {
-    console.log('Acessei o model para KPI 3');
+    console.log('Acessei o model para quartil permanencia!');
 
     var instrucaoSql = `
         SELECT DATE(r.data_entrada) AS dia, COUNT(*) AS total_visitas
@@ -157,6 +157,19 @@ function buscarQuartilFluxo(idEmpresa) {
     return database.executar(instrucaoSql);
 };
 
+function buscarQuartilPermanencia(idEmpresa){
+    console.log('Acessei a model para o quartil permanencia!')
+
+    var instrucaoSql = `
+    SELECT DATE(data_entrada) AS dia, FLOOR(AVG(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida))) AS tempo_medio_minutos
+    FROM VW_Dashboard
+    WHERE idEmpresa = ${idEmpresa}
+    GROUP BY dia ORDER BY dia;`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     // GRÁFICOS
     buscarFemininoMasculino,
@@ -171,5 +184,6 @@ module.exports = {
     buscarSecaoMaisVisitadaKPI,
 
     // quartis
-    buscarQuartilFluxo
+    buscarQuartilFluxo,
+    buscarQuartilPermanencia
 }
