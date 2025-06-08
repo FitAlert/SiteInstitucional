@@ -27,7 +27,7 @@
         </div>
         <ul>
             <li><a href="./dashboard.html">Dashboard</a></li>
-               <li id="li_alerta">Alertas
+            <li id="li_alerta">Alertas
                 <span id="span_alerta">7</span>
                 <div class="boxAlerta" id="boxAlerta">
                     <div><b>1 </b>- Alertas loremns Lorem ipsum dolor</div>
@@ -49,7 +49,7 @@
             <div class="pesquisa">
                 <b>Selecionar período:</b>
                 <p>de:</p>
-                <input type="date" name="" id="inputInicio">   
+                <input type="date" name="" id="inputInicio">
                 <p>até</p>
                 <input type="date" name="" id="inputFim">
                 <button onclick="filtrar()"> filtrar </button>
@@ -113,23 +113,23 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
-const idUsuario = sessionStorage.ID_USUARIO;
-const idEmpresa = sessionStorage.ID_EMPRESA;
-const nomeUsuario = sessionStorage.NOME_USUARIO;
+    const idUsuario = sessionStorage.ID_USUARIO;
+    const idEmpresa = sessionStorage.ID_EMPRESA;
+    const nomeUsuario = sessionStorage.NOME_USUARIO;
 
-var inicio = dataAtual()
-var fim = dataAtual()
+    var inicio = dataAtual()
+    var fim = dataAtual()
 
-    function filtrar(){
+    function filtrar() {
 
         inicio = inputInicio.value
         fim = inputFim.value
 
-        if(fim == ''){
+        if (fim == '') {
             fim = dataAtual()
         }
-        if(inicio == ''){
-            inicio= dataAtual()
+        if (inicio == '') {
+            inicio = dataAtual()
         }
 
         // GRÁFICOS
@@ -150,78 +150,79 @@ var fim = dataAtual()
     }
 
 
-    function buscarFemininoMasculino(){
-    
+    function buscarFemininoMasculino() {
+
         fetch(`/metricas/buscarFemininoMasculino/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
 
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            plotarGraficoPizza(data);
-        })
-        .catch(function(err){
-            console.log(err);
-        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                plotarGraficoPizza(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
 
     }
 
-    function buscarMediaSecao(){
-    
-    fetch(`/metricas/buscarMediaSecao/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
+    function buscarMediaSecao() {
 
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        plotarGraficoSecao(data);
-    })
-    .catch(function(err){
-        console.log(err);
-    })
-}
+        fetch(`/metricas/buscarMediaSecao/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
 
-function buscarPermanencia(){
-    
-    fetch(`/metricas/buscarPermanencia/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                plotarGraficoSecao(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }
 
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        plotarGraficoPermanencia(data);
-    })
-    .catch(function(err){
-        console.log(err);
-    })
-}
+    function buscarPermanencia() {
 
-function buscarHorarioPico(){
-    
-    fetch(`/metricas/buscarHorarioPico/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
+        fetch(`/metricas/buscarPermanencia/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
 
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        plotarHorarioPico(data);
-    })
-    .catch(function(err){
-        console.log(err);
-    })
-}
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                plotarGraficoPermanencia(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }
+
+    function buscarHorarioPico() {
+
+        fetch(`/metricas/buscarHorarioPico/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
+
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                plotarHorarioPico(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }
 
 
 
-// plotando os gráficos
+    // plotando os gráficos
 
-    var graficoPizza; 
+    // 4
+    var graficoPizza;
     function plotarGraficoPizza(dados) {
-            
+
         console.log("Dados brutos recebidos:", dados);
 
-        var masculino = dados[0].Masculino; 
-        var feminino = dados[0].Feminino;  
+        var masculino = dados[0].Masculino;
+        var feminino = dados[0].Feminino;
         var total = masculino + feminino
 
         var percentualMasculino = ((masculino / total) * 100).toFixed(0);
@@ -255,8 +256,17 @@ function buscarHorarioPico(){
                 plugins: {
                     title: {
                         display: true,
-                        text: 'VISITANTES POR SEÇÃO'
+                        text: 'VISITANTES POR SEÇÃO',
+                        color: 'rgb(0, 0, 0)',
+                        font: {
+                            size: 16
+                        }
                     },
+                    legend: {
+                    labels: {
+                        color: 'rgb(0, 0, 0)'
+                    }
+                },
                     datalabels: {
                         color: '#fff',
                         formatter: (value, context) => {
@@ -269,11 +279,11 @@ function buscarHorarioPico(){
                     },
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 var idx = context.dataIndex;
                                 var labels = ['Masculino', 'Feminino'];
                                 var valoresAbsolutos = [masculino, feminino];
-                                return `${labels[idx]}: ${valoresAbsolutos[idx]} visitantes`;
+                                return `${labels[idx]}: ${valoresAbsolutos[idx]} visitante(s)`;
                             }
                         }
                     }
@@ -283,19 +293,19 @@ function buscarHorarioPico(){
             },
             plugins: [ChartDataLabels]
         });
-    }    
+    }
 
-
+    // 1
     var graficoPico
-    function plotarHorarioPico(dados){
+    function plotarHorarioPico(dados) {
         const linhas = document.getElementById("HorarioPico");
 
         var horario = []
         var visitas = []
 
-        for(var i = 0; i < dados.length; i++){
-        horario.push(dados[i].hora_do_dia);
-        visitas.push(Number(dados[i].provadores_ocupados));
+        for (var i = 0; i < dados.length; i++) {
+            horario.push(dados[i].hora_do_dia);
+            visitas.push(Number(dados[i].provadores_ocupados));
 
         }
 
@@ -322,8 +332,17 @@ function buscarHorarioPico(){
                 plugins: {
                     title: {
                         display: true,
-                        text: 'TOTAL DE VISITAS POR HORA'
+                        text: 'TOTAL DE VISITAS POR HORA',
+                        color: 'rgb(0, 0, 0)',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                    labels: {
+                        color: 'rgb(0, 0, 0)'
                     }
+                }
                 },
                 scales: {
                     y: {
@@ -335,19 +354,19 @@ function buscarHorarioPico(){
     }
 
 
-
+    // 2
     var graficoPermanencia
 
-    function plotarGraficoPermanencia(dados){
+    function plotarGraficoPermanencia(dados) {
         const barras = document.getElementById("cabine");
 
 
         var provador = []
-        var permanencia= []
+        var permanencia = []
 
-        for(var i = 0; i < dados.length; i++){
-        provador.push(dados[i].idProvador);
-        permanencia.push(Number(dados[i].tempo_permanencia_minutos));
+        for (var i = 0; i < dados.length; i++) {
+            provador.push(`Provador ${dados[i].idProvador}`);
+            permanencia.push(Number(dados[i].tempo_permanencia_minutos));
 
         }
 
@@ -355,13 +374,13 @@ function buscarHorarioPico(){
             graficoPermanencia.destroy();
         }
 
-      graficoPermanencia =  new Chart(barras, {
+        graficoPermanencia = new Chart(barras, {
             type: "bar",
             data: {
                 labels: provador,
                 datasets: [
                     {
-                        label: ["Provador",],
+                        label: ["Minuto(s)",],
                         data: permanencia,
                         borderColor: "#7f7f7f",
                         backgroundColor: ['#ffd900'],
@@ -373,7 +392,16 @@ function buscarHorarioPico(){
                 plugins: {
                     title: {
                         display: true,
-                        text: 'MÉDIA DE TEMPO DE PERMANÊNCIA (MINUTOS)'
+                        text: 'TEMPO DE PERMANÊNCIA POR PROVADOR',
+                        color: 'rgb(0, 0, 0)',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: 'rgb(0, 0, 0)'
+                        }
                     }
                 },
                 scales: {
@@ -385,18 +413,18 @@ function buscarHorarioPico(){
         });
     }
 
-   
+
 
     var graficoSecao;
 
-    function plotarGraficoSecao(dados){
+    function plotarGraficoSecao(dados) {
 
         var secao = []
-        var mediaSecao= []
+        var mediaSecao = []
 
-        for(var i = 0; i < dados.length; i++){
-        secao.push(dados[i].idProvador);
-        mediaSecao.push(Number(dados[i].total_visitas));
+        for (var i = 0; i < dados.length; i++) {
+            secao.push(dados[i].idProvador);
+            mediaSecao.push(Number(dados[i].total_visitas));
 
         }
 
@@ -406,37 +434,46 @@ function buscarHorarioPico(){
             graficoSecao.destroy();
         }
 
-        graficoSecao =  new Chart(cabine, {
-        type: "bar",
-        data: {
-            labels: secao,
-            datasets: [{
-                    label: 'Seção',
+        graficoSecao = new Chart(cabine, {
+            type: "bar",
+            data: {
+                labels: secao,
+                datasets: [{
+                    label: 'Visitante(s)',
                     data: mediaSecao,
                     borderColor: "#7f7f7f",
                     backgroundColor: [
                         '#a4fc00'],
                     borderWidth: 1,
                 },
-            ],
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'NÚMERO DE VISITANTES DIÁRIO'
-                }
+                ],
             },
-            indexAxis: 'y',
-            scales: {
-                y: {
-                    beginAtZero: true,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'NÚMERO DE VISITANTES POR PROVADOR',
+                        color: 'rgb(0, 0, 0)',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: 'rgb(0, 0, 0)'
+                        }
+                    }
                 },
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+                responsive: true,
+                maintainAspectRatio: false
             },
-            responsive: true,
-            maintainAspectRatio: false
-        },
-    });
+        });
     };
 
 
@@ -450,29 +487,29 @@ function buscarHorarioPico(){
                 "Content-Type": "application/json",
             }
         })
-        .then(function (resposta) {
-            console.log(resposta);
-            
-            if (resposta.ok) {
-                console.log('Busquei o horário de pico', resposta)
-                return resposta.json();
-            } else {
-                throw "Erro ao buscar dados no data base";
-            }
-        })
-        .then(
-            function (dadoskpi1) {
-                console.log(dadoskpi1);
-                if (dadoskpi1[0].horario_de_pico == null) {
-                    horario_pico_kpi.innerHTML = 'Aguardando cliente';
+            .then(function (resposta) {
+                console.log(resposta);
+
+                if (resposta.ok) {
+                    console.log('Busquei o horário de pico', resposta)
+                    return resposta.json();
                 } else {
-                    horario_pico_kpi.innerHTML = dadoskpi1[0].horario_de_pico;
+                    throw "Erro ao buscar dados no data base";
                 }
-        })
-        .catch(
-            function (erro) {
-                console.log(erro);
-        })
+            })
+            .then(
+                function (dadoskpi1) {
+                    console.log(dadoskpi1);
+                    if (dadoskpi1[0].horario_de_pico == null) {
+                        horario_pico_kpi.innerHTML = 'Aguardando cliente';
+                    } else {
+                        horario_pico_kpi.innerHTML = dadoskpi1[0].horario_de_pico;
+                    }
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                })
     };
 
     var fluxoData;
@@ -485,33 +522,33 @@ function buscarHorarioPico(){
                 "Content-Type": "application/json",
             }
         })
-        .then(function (resposta) {
-            console.log(resposta);
-            
-            if (resposta.ok) {
-                console.log('Busquei o fluxo de visitantes', resposta)
-                return resposta.json();
-            } else {
-                throw "Erro ao buscar dados no data base";
-            }
-        })
-        .then(
-            function (dadoskpi2) {
-                console.log(dadoskpi2);
-                if (dadoskpi2[0].fluxo_visitantes == null || dadoskpi2[0].fluxo_visitantes == 0) {
-                    fluxo_visitantes_kpi.innerHTML = 'Aguardando cliente';
+            .then(function (resposta) {
+                console.log(resposta);
+
+                if (resposta.ok) {
+                    console.log('Busquei o fluxo de visitantes', resposta)
+                    return resposta.json();
                 } else {
-                    fluxo_visitantes_kpi.innerHTML = dadoskpi2[0].fluxo_visitantes;
-                    fluxoData = dadoskpi2[0].fluxo_visitantes;
+                    throw "Erro ao buscar dados no data base";
                 }
-        })
-        .catch(
-            function (erro) {
-                console.log(erro);
-        })
+            })
+            .then(
+                function (dadoskpi2) {
+                    console.log(dadoskpi2);
+                    if (dadoskpi2[0].fluxo_visitantes == null || dadoskpi2[0].fluxo_visitantes == 0) {
+                        fluxo_visitantes_kpi.innerHTML = 'Aguardando cliente';
+                    } else {
+                        fluxo_visitantes_kpi.innerHTML = dadoskpi2[0].fluxo_visitantes;
+                        fluxoData = dadoskpi2[0].fluxo_visitantes;
+                    }
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                })
     };
 
-    var permanencia; 
+    var permanencia;
 
     // KPI 3
     function buscarTempoParmanenciaKPI() {
@@ -521,30 +558,30 @@ function buscarHorarioPico(){
                 "Content-Type": "application/json",
             }
         })
-        .then(function (resposta) {
-            console.log(resposta);
-            
-            if (resposta.ok) {
-                console.log('Busquei o tempo de permanência', resposta)
-                return resposta.json();
-            } else {
-                throw "Erro ao buscar dados no data base";
-            }
-        })
-        .then(
-            function (dadoskpi3) {
-                console.log(dadoskpi3);
-                if (dadoskpi3[0].tempo_medio == null) {
-                    tempo_permanencia_kpi.innerHTML = 'Aguardando cliente';
+            .then(function (resposta) {
+                console.log(resposta);
+
+                if (resposta.ok) {
+                    console.log('Busquei o tempo de permanência', resposta)
+                    return resposta.json();
                 } else {
-                    tempo_permanencia_kpi.innerHTML = dadoskpi3[0].tempo_medio;
-                    permanencia = Number(dadoskpi3[0].tempo_medio.split('m')[0]);
+                    throw "Erro ao buscar dados no data base";
                 }
-        })
-        .catch(
-            function (erro) {
-                console.log(erro);
-        })
+            })
+            .then(
+                function (dadoskpi3) {
+                    console.log(dadoskpi3);
+                    if (dadoskpi3[0].tempo_medio == null) {
+                        tempo_permanencia_kpi.innerHTML = 'Aguardando cliente';
+                    } else {
+                        tempo_permanencia_kpi.innerHTML = dadoskpi3[0].tempo_medio;
+                        permanencia = Number(dadoskpi3[0].tempo_medio.split('m')[0]);
+                    }
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                })
     };
 
     // KPI 4
@@ -555,33 +592,33 @@ function buscarHorarioPico(){
                 "Content-Type": "application/json",
             }
         })
-        .then(function (resposta) {
-            console.log(resposta);
-            
-            if (resposta.ok) {
-                console.log('Busquei a seção mais visitada', resposta)
-                return resposta.json();
-            } else {
-                throw "Erro ao buscar dados no data base";
-            }
-        })
-        .then(
-            function (dadoskpi4) {
-                console.log(dadoskpi4);
-                if (dadoskpi4[0].secao == null) {
-                    secao_visitada_kpi.innerHTML = 'Aguardando cliente';
+            .then(function (resposta) {
+                console.log(resposta);
+
+                if (resposta.ok) {
+                    console.log('Busquei a seção mais visitada', resposta)
+                    return resposta.json();
                 } else {
-                    secao_visitada_kpi.innerHTML = dadoskpi4[0].secao;
+                    throw "Erro ao buscar dados no data base";
                 }
-        })
-        .catch(
-            function (erro) {
-                console.log(erro);
-        })
+            })
+            .then(
+                function (dadoskpi4) {
+                    console.log(dadoskpi4);
+                    if (dadoskpi4[0].secao == null) {
+                        secao_visitada_kpi.innerHTML = 'Aguardando cliente';
+                    } else {
+                        secao_visitada_kpi.innerHTML = dadoskpi4[0].secao;
+                    }
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                })
     }
 
 
-    // quartis
+    // ------------------------------------- QUARTIS ------------------------------------------
     function buscarQuartilFluxo() {
         fetch(`metricas/buscarQuartilFluxo/${idEmpresa}`, {
             method: "GET",
@@ -589,32 +626,32 @@ function buscarHorarioPico(){
                 "Content-Type": "application/json",
             }
         })
-        .then(function (resposta) {
-            console.log(resposta);
-            
-            if (resposta.ok) {
-                console.log('Busquei a lista de fluxo de visitantes por dia', resposta)
-                return resposta.json();
-            } else {
-                throw "Erro ao buscar dados no data base";
-            }
-        })
-        .then(
-            function (jsonVisitantes) {
-                console.log(jsonVisitantes);
-                var listaVisitas = []
-                for(var i = 0; i < jsonVisitantes.length; i++){
-                listaVisitas.push(Number(jsonVisitantes[i].total_visitas));
-            }
+            .then(function (resposta) {
+                console.log(resposta);
+
+                if (resposta.ok) {
+                    console.log('Busquei a lista de fluxo de visitantes por dia', resposta)
+                    return resposta.json();
+                } else {
+                    throw "Erro ao buscar dados no data base";
+                }
+            })
+            .then(
+                function (jsonVisitantes) {
+                    console.log(jsonVisitantes);
+                    var listaVisitas = []
+                    for (var i = 0; i < jsonVisitantes.length; i++) {
+                        listaVisitas.push(Number(jsonVisitantes[i].total_visitas));
+                    }
                     plotarQuartilFluxo(listaVisitas)
-        })
-        .catch(
-            function (erro) {
-                console.log(erro);
-        })
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                })
     };
 
-    function plotarQuartilFluxo(listaVisitas){
+    function plotarQuartilFluxo(listaVisitas) {
         const meio = Math.floor(listaVisitas.length / 2);
         let mediana;
 
@@ -623,20 +660,20 @@ function buscarHorarioPico(){
         } else {
             mediana = (listaVisitas[meio - 1] + listaVisitas[meio]) / 2;
         }
-         // Se o tamanho da lista for impar mediana é o numero do meio
+        // Se o tamanho da lista for impar mediana é o numero do meio
         // Se o tamanho da lista for par mediana é a a média dos dois numeros do meio da lista
 
         if (fluxoData < mediana) {
-        fluxo_visitantes_quartil.innerHTML =`Abaixo da mediana`;
-        document.getElementById("kpiFluxo").style.backgroundColor = "salmon";
+            fluxo_visitantes_quartil.innerHTML = `Abaixo da mediana`;
+            document.getElementById("kpiFluxo").style.backgroundColor = "salmon";
         } else if (fluxoData === mediana) {
-        fluxo_visitantes_quartil.innerHTML = `Na mediana`;
-        document.getElementById("kpiFluxo").style.backgroundColor = "lightBlue";
-        } else if(fluxoData > mediana) {
-        fluxo_visitantes_quartil.innerHTML = `Acima da mediana`;
-        document.getElementById("kpiFluxo").style.backgroundColor = "lightGreen";
+            fluxo_visitantes_quartil.innerHTML = `Na mediana`;
+            document.getElementById("kpiFluxo").style.backgroundColor = "lightBlue";
+        } else if (fluxoData > mediana) {
+            fluxo_visitantes_quartil.innerHTML = `Acima da mediana`;
+            document.getElementById("kpiFluxo").style.backgroundColor = "lightGreen";
         }
-        else{
+        else {
             fluxo_visitantes_quartil.innerHTML = ``;
         }
 
@@ -652,34 +689,34 @@ function buscarHorarioPico(){
                 "Content-Type": "application/json",
             }
         })
-        .then(function (resposta) {
-            console.log(resposta);
-            
-            if (resposta.ok) {
-                console.log('Busquei a lista de fluxo de visitantes por dia', resposta)
-                return resposta.json();
-            } else {
-                throw "Erro ao buscar dados no data base";
-            }
-        })
-        .then(
-            function (jsonPermanencia) {
-                console.log(jsonPermanencia);
-                listaPermanencia = []
-                for(var i = 0; i < jsonPermanencia.length; i++){
-                listaPermanencia.push(Number(jsonPermanencia[i].tempo_medio_minutos));
-            }
+            .then(function (resposta) {
+                console.log(resposta);
+
+                if (resposta.ok) {
+                    console.log('Busquei a lista de fluxo de visitantes por dia', resposta)
+                    return resposta.json();
+                } else {
+                    throw "Erro ao buscar dados no data base";
+                }
+            })
+            .then(
+                function (jsonPermanencia) {
+                    console.log(jsonPermanencia);
+                    listaPermanencia = []
+                    for (var i = 0; i < jsonPermanencia.length; i++) {
+                        listaPermanencia.push(Number(jsonPermanencia[i].tempo_medio_minutos));
+                    }
                     plotarQuartilPermanencia(listaPermanencia)
-        })
-        .catch(
-            function (erro) {
-                console.log(erro);
-        })
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                })
     };
 
-    var mediana; 
+    var mediana;
 
-    function plotarQuartilPermanencia(listaPermanencia){
+    function plotarQuartilPermanencia(listaPermanencia) {
         const meio = Math.floor(listaPermanencia.length / 2);
         mediana
 
@@ -688,63 +725,63 @@ function buscarHorarioPico(){
         } else {
             mediana = (listaPermanencia[meio - 1] + listaPermanencia[meio]) / 2;
         }
-         // Se o tamanho da lista for impar mediana é o numero do meio
+        // Se o tamanho da lista for impar mediana é o numero do meio
         // Se o tamanho da lista for par mediana é a a média dos dois numeros do meio da lista
 
         if (permanencia < mediana) {
-        tempo_permanencia_quartil.innerHTML =`Abaixo da mediana`;
-        document.getElementById("kpiPermanencia").style.backgroundColor = "salmon";
+            tempo_permanencia_quartil.innerHTML = `Abaixo da mediana`;
+            document.getElementById("kpiPermanencia").style.backgroundColor = "salmon";
         } else if (permanencia === mediana) {
-        tempo_permanencia_quartil.innerHTML = `Na mediana`;
-        document.getElementById("kpiPermanencia").style.backgroundColor = "lightBlue";
-        } else if(permanencia > mediana) {
-        tempo_permanencia_quartil.innerHTML = `Acima da mediana`;
-        document.getElementById("kpiPermanencia").style.backgroundColor = "lightGreen";
+            tempo_permanencia_quartil.innerHTML = `Na mediana`;
+            document.getElementById("kpiPermanencia").style.backgroundColor = "lightBlue";
+        } else if (permanencia > mediana) {
+            tempo_permanencia_quartil.innerHTML = `Acima da mediana`;
+            document.getElementById("kpiPermanencia").style.backgroundColor = "lightGreen";
         }
-        else{
+        else {
             tempo_permanencia_quartil.innerHTML = ``;
         }
 
     }
 
-    
+
     function dataAtual() {
-    const data = new Date();
-    const dia = String(data.getDate()).padStart(2, '0');
-    const mes = String(data.getMonth() + 1).padStart(2, '0');
-    const ano = data.getFullYear();
-    return `${ano}-${mes}-${dia}`;
+        const data = new Date();
+        const dia = String(data.getDate()).padStart(2, '0');
+        const mes = String(data.getMonth() + 1).padStart(2, '0');
+        const ano = data.getFullYear();
+        return `${ano}-${mes}-${dia}`;
     }
 
     window.onload = () => {
-    span_usuario.innerHTML = nomeUsuario;
+        span_usuario.innerHTML = nomeUsuario;
 
-    // -- GRÁFICOS
-    buscarFemininoMasculino();
-    buscarMediaSecao();
-    buscarPermanencia(),
-    buscarHorarioPico()
+        // -- GRÁFICOS
+        buscarFemininoMasculino();
+        buscarMediaSecao();
+        buscarPermanencia(),
+        buscarHorarioPico()
 
-    // -- KPIs
-    buscarHorarioPicoKPI(),
-    buscarFluxoVisitanteKPI(),
-    buscarTempoParmanenciaKPI(),
-    buscarSecaoMaisVisitadaKPI(),
+        // -- KPIs
+        buscarHorarioPicoKPI(),
+        buscarFluxoVisitanteKPI(),
+        buscarTempoParmanenciaKPI(),
+        buscarSecaoMaisVisitadaKPI(),
 
-    // quartis
-    buscarQuartilFluxo(),
-    buscarQuartilPermanencia()
-};
+        // quartis
+        buscarQuartilFluxo(),
+        buscarQuartilPermanencia()
+    };
 
-window.onload = () => {
-    document.getElementById("span_usuario").textContent = nomeUsuario;
-    filtrar();
-};
+    window.onload = () => {
+        span_usuario.innerHTML = nomeUsuario;
+        filtrar();
+    };
 
 
 
-function provador1(){
-    window.location = 'dashprovadorindividual.html'
-}
+    function provador1() {
+        window.location = 'dashprovadorindividual.html'
+    }
 
 </script>

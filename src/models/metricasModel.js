@@ -5,13 +5,9 @@ var database = require("../database/config");
 function buscarFemininoMasculino(idEmpresa, inicio, fim) {
 
     var instrucaoSql = `SELECT
-    COUNT(CASE WHEN p.secao = 'Masculino' THEN r.ativo END) AS Masculino,
-    COUNT(CASE WHEN p.secao = 'Feminino' THEN r.ativo END) AS Feminino
-    FROM TB_Registros r
-    JOIN TB_Sensores s 
-    ON r.fkSensor = s.idSensor
-    JOIN TB_Provadores p 
-    ON p.fkSensor = s.idSensor
+    COUNT(CASE WHEN secao = 'Masculino' THEN ativo END) AS Masculino,
+    COUNT(CASE WHEN secao = 'Feminino' THEN ativo END) AS Feminino
+    FROM VW_Dashboard
     WHERE p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -37,13 +33,11 @@ function buscarMediaSecao(idEmpresa, inicio, fim) {
 
 function buscarPermanencia(idEmpresa, inicio, fim) {
     var instrucaoSql = `
-    SELECT p.idProvador,SUM(TIMESTAMPDIFF(MINUTE, r.data_entrada, r.data_saida)) AS tempo_permanencia_minutos
-    FROM TB_Provadores p
-    JOIN TB_Sensores s ON p.fkSensor = s.idSensor
-    JOIN TB_Registros r ON s.idSensor = r.fkSensor
-    WHERE p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
-    GROUP BY p.idProvador
-    ORDER BY p.idProvador;
+    SELECT p.idProvador,SUM(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)) AS tempo_permanencia_minutos
+    FROM VW_Dashboard
+    WHERE p.idEmpresa = ${idEmpresa} AND data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
+    GROUP BY idProvador
+    ORDER BY idProvador;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -53,13 +47,13 @@ function buscarPermanencia(idEmpresa, inicio, fim) {
 function buscarHorarioPico(idEmpresa, inicio, fim) {
 
     var instrucaoSql = `
-    SELECT HOUR(r.data_entrada) AS hora_do_dia, COUNT(DISTINCT r.fkSensor) AS provadores_ocupados
-    FROM TB_Registros r
-    JOIN TB_Sensores s ON r.fkSensor = s.idSensor
-    JOIN TB_Provadores p ON s.idSensor = p.fkSensor
-    WHERE r.ativo = '1' AND p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
-    GROUP BY hora_do_dia
-    ORDER BY hora_do_dia;
+    SELECT 
+	    HOUR(data_entrada) AS hora_do_dia, 
+        COUNT(*) AS provadores_ocupados
+    FROM VW_Dashboard
+    WHERE idEmpresa = ${idEmpresa} AND data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
+    GROUP BY HOUR(data_entrada)
+    ORDER BY HOUR(data_entrada);
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -79,7 +73,7 @@ function buscarHorarioPicoKPI(idEmpresa, data_entrada, data_saida) {
             FROM VW_Dashboard
             WHERE idEmpresa = ${idEmpresa} AND data_entrada BETWEEN '${data_entrada} 00:00:00' AND '${data_saida} 23:59:59'
             GROUP BY DATE_FORMAT(data_entrada, '%H:%i')
-            ORDER BY count(*) DESC
+            ORDER BY COUNT(*) DESC
             LIMIT 1;
     `;
 

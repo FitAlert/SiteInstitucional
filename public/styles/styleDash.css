@@ -281,12 +281,12 @@ main section .totalKPIS .kpi:nth-child(1) {
 }
 
 main section .totalKPIS .kpi:nth-child(2) {
-    border-left: 5px solid #ffd900;
+    border-left: 5px solid #a4fc00;
     border-radius: 5px;
 }
 
 main section .totalKPIS .kpi:nth-child(3) {
-    border-left: 5px solid #a4fc00;
+    border-left: 5px solid #ffd900;
     border-radius: 5px;
 }
 
