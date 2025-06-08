@@ -256,15 +256,13 @@ main section .geral {
 
 .identificador-provador {
   position: fixed;     
-  top: 10px;            
+  top: 70px;            
   left: 20%;          
   background-color: rgba(0, 0, 0, 0.6); 
   color: white;        
   padding: 8px 17px;    
   border-radius: 8px;   
-  font-size: 17px;      
-  z-index: 9999;        
-  pointer-events: none; 
+  font-size: 17px;
 }
 
 main section .totalKPIS {

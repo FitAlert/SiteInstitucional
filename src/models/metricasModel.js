@@ -70,11 +70,11 @@ function buscarHorarioPicoKPI(idEmpresa, data_entrada, data_saida) {
 
     var instrucaoSql = `
             SELECT 	
-                DATE_FORMAT(data_entrada, '%H:%i') AS horario_de_pico,
+                DATE_FORMAT(data_entrada, '%H horas') AS horario_de_pico,
                 COUNT(*) AS Registros
             FROM VW_Dashboard
             WHERE idEmpresa = ${idEmpresa} AND data_entrada BETWEEN '${data_entrada} 00:00:00' AND '${data_saida} 23:59:59'
-            GROUP BY DATE_FORMAT(data_entrada, '%H:%i')
+            GROUP BY DATE_FORMAT(data_entrada, '%H horas')
             ORDER BY COUNT(*) DESC
             LIMIT 1;
     `;
