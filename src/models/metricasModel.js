@@ -8,7 +8,7 @@ function buscarFemininoMasculino(idEmpresa, inicio, fim) {
     COUNT(CASE WHEN secao = 'Masculino' THEN ativo END) AS Masculino,
     COUNT(CASE WHEN secao = 'Feminino' THEN ativo END) AS Feminino
     FROM VW_Dashboard
-    WHERE p.idEmpresa = ${idEmpresa} AND r.data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59';`;
+    WHERE idEmpresa = ${idEmpresa} AND data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -33,9 +33,11 @@ function buscarMediaSecao(idEmpresa, inicio, fim) {
 
 function buscarPermanencia(idEmpresa, inicio, fim) {
     var instrucaoSql = `
-    SELECT p.idProvador,SUM(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)) AS tempo_permanencia_minutos
+    SELECT 
+        idProvador,
+        SUM(TIMESTAMPDIFF(MINUTE, data_entrada, data_saida)) AS tempo_permanencia_minutos
     FROM VW_Dashboard
-    WHERE p.idEmpresa = ${idEmpresa} AND data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
+    WHERE idEmpresa = ${idEmpresa} AND data_entrada BETWEEN '${inicio} 00:00:00' AND '${fim} 23:59:59'
     GROUP BY idProvador
     ORDER BY idProvador;
     `;

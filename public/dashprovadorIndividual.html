@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/menu.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="shortcut icon" href="images/logos/logo-oficial-branca.png" type="image/x-icon">
-    <title>FITALERT - DASHBOARD</title>
+    <title>FITALERT - PROVADOR 1</title>
 </head>
 
 <body>
@@ -26,7 +26,6 @@
         </div>
         <ul>
             <li><a href="./dashboard.html">Dashboard</a></li>
-            <li><a href="./vincLoja.html">Nova loja</a></li>
             <li id="li_alerta">Alertas
                 <span id="span_alerta">7</span>
                 <div class="boxAlerta" id="boxAlerta">
@@ -48,7 +47,7 @@
         <div class="identificador-provador">Provador 1</div>
         <section style="margin-top: 25px;">
 
-            <div class="totalKPIS" style="display: flex; justify-content: center; align-items: center; gap: 50px;">
+            <div class="totalKPIS" style="display: flex; justify-content: center; align-items: center; gap: 60px;">
                 <div class="kpi">
                     <h3>HORÁRIO DE PICO</h3>
                     <p>13h15</p>
@@ -80,11 +79,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
-    var idUsuario = sessionStorage.ID_USUARIO;
-    var idEmpresa = sessionStorage.ID_EMPRESA;
+    const idUsuario = sessionStorage.ID_USUARIO;
+    const idEmpresa = sessionStorage.ID_EMPRESA;
+    const nomeUsuario = sessionStorage.NOME_USUARIO;
 
-    var inicio = dataAtual()
-    var fim = dataAtual()
+    const inicio = dataAtual()
+    const fim = dataAtual()
 
     function filtrar() {
 
@@ -166,7 +166,16 @@
             plugins: {
                 title: {
                     display: true,
-                    text: 'QUANTIDADE DE VISITAS NOS ÚLTIMOS 5 DIAS'
+                    text: 'QUANTIDADE DE VISITAS NOS ÚLTIMOS 5 DIAS',
+                    color: 'rgb(0, 0, 0)',
+                    font: {
+                        size: 16
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: 'rgb(0, 0, 0)'
+                    }
                 }
             },
             scales: {
@@ -187,7 +196,9 @@
     }
 
     window.onload = () => {
-        buscarFemininoMasculino();
-        buscarSecaoMaisVisitada()
+        span_usuario.innerHTML = nomeUsuario;
+
+        // KPI
+
     };
 </script>
