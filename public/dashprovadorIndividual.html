@@ -74,7 +74,7 @@
 
                 <div class="graficos">
                     <div class="linha l1" style="flex-direction: column; margin-top: -220px;">
-                        <div class="gg"><canvas id="cabine"></canvas></div>
+                        <div class="gg"><canvas id="provador1"></canvas></div>
                     </div>
 
                 </div>
@@ -109,6 +109,9 @@
         buscarFluxoProvador();
     }
 
+    // --------------------------------------------- KPI -------------------------------------------------
+
+    // KPI 1
     function buscarHorarioPicoProvador() {
         fetch(`/provadores/buscarHorarioPicoProvador/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
             method: "GET",
@@ -142,6 +145,7 @@
                 })
     };
 
+    // KPI 2
     function buscarFluxoProvador() {
         fetch(`/provadores/buscarFluxoProvador/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
             method: "GET",
@@ -175,54 +179,142 @@
                 })
     };
 
+// -------------------------------------------- GRÁFICO -------------------------------------------------
+    let myChart;
+    let dados_atuais;
+    let data;
 
-    const barras = document.getElementById("cabine");
+    function buscarDadosGrafico() {
+        fetch(`/provadores/buscarDadosGrafico/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+            .then(
+                function (resposta) {
+                    console.log(resposta);
 
-    new Chart(barras, {
-        type: "bar",
-        data: {
-            labels: [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-            ],
-            datasets: [
-                {
-                    label: ["Provador",],
-                    data: [4, 10, 3, 5, 6],
-                    borderColor: "#7f7f7f",
-                    backgroundColor: ['#ffd900'],
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'QUANTIDADE DE VISITAS NOS ÚLTIMOS 5 DIAS',
-                    color: 'rgb(0, 0, 0)',
-                    font: {
-                        size: 16
+                    if (resposta.ok) {
+                        console.log('Busquei os dados de visitantes do provador (gráfico)', resposta)
+                        return resposta.json();
+                    } else {
+                        throw "Erro ao buscar dados no data base";
+                    }
+                })
+            .then(
+                function (dados_grafico) {
+                    console.log(dados_grafico);
+                    dados_grafico.reverse();
+                    plotar_grafico(dados_grafico)
+                })
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                })
+    }
+
+    function plotar_grafico(dados_grafico) {
+        console.log('iniciando plotagem do gráfico...');
+
+        const { dia, mes } = dataAtual()
+
+        var labels = [
+            `Dia 1`,
+            'Dia 2',
+            'Dia 3',
+            'Dia 4',
+            'Dia 5'
+        ];
+
+        data = {
+            labels: labels,
+            datasets: [{
+                label: 'Cliente(s)',
+                backgroundColor: '#ffd900',
+                borderColor: '#7f7f7f',
+                data: []
+            }]
+        }
+
+        for (var i = 0; i < dados_grafico.length; i++) {
+            var dado_atual = dados_grafico[i].quantidade_visitantes;
+
+            data.datasets[0].data.push(dado_atual);
+        }
+        dados_atuais = dados_grafico;
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'QUANTIDADE DE VISITAS NOS ÚLTIMOS 5 DIAS',
+                        color: 'rgb(0, 0, 0)',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: 'rgb(0, 0, 0)'
+                        }
                     }
                 },
-                legend: {
-                    labels: {
-                        color: 'rgb(0, 0, 0)'
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        };
+
+        myChart = new Chart(
+            document.getElementById('provador1'),
+            config
+        );
+
+        setTimeout(() => {
+            atualizarTempoReal()
+        }, 2000)
+    };
+
+    function atualizarTempoReal() {
+        fetch(`/provadores/atualizarTempoReal/${idEmpresa}?inicio=${inicio}&fim=${fim}`, { cache: 'no-store' })
+            .then(
+                function (resposta) {
+                    if (resposta.ok) {
+                        return resposta.json()
+
+            .then(
+                function (novoRegistro) {
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+                    if (novoRegistro[0].quantidade_visitantes == dados_atuais[4].quantidade_visitantes) {
+                        console.log('Dados não mudaram, o gráfico não vai atualizar');
+                    } else {
+                        console.log('Atualizando gráfico...');
+                        data.datasets[0].data[4] = novoRegistro[0].quantidade_visitantes;
+
+                        myChart.update();
+                    }
+
+                    setTimeout(() => atualizarTempoReal(), 2000);
+                })
+                    } else {
+                        console.log('Nenhum dado encontrado para atualizar o gráfico.');
                     }
                 }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
-    });
+            ).catch(
+                function (erro) {
+                    console.log(erro)
+                }
+            )
+    };
 
-
+// ---------------------------------------- FUNÇÕES DIÁRIAS ---------------------------------------
     function dataAtual() {
         const data = new Date();
         const dia = String(data.getDate()).padStart(2, '0');
@@ -239,6 +331,8 @@
         return `${ano}-${mes}-${dia}`;
     }
 
+    
+
     window.onload = () => {
         span_usuario.innerHTML = nomeUsuario;
 
@@ -249,5 +343,8 @@
         // KPI
         buscarHorarioPicoProvador();
         buscarFluxoProvador();
+
+        // GRÁFICO
+        buscarDadosGrafico();
     };
 </script>
