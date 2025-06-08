@@ -4,12 +4,6 @@ Este é o repositório do site institucional da **FitAlert**, uma plataforma vol
 
 ---
 
-## 📸 O site
-
-<p align="center">
-  <img src="images/demonstrcao.png" alt="Página inicial do FitAlert" width="1000"/>
-</p>
-
 ## 📁 Estrutura de Arquivos
 
 | Arquivo/ Pasta       | Descrição |
