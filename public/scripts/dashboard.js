@@ -9,3 +9,12 @@ alerta.addEventListener('click', () => {
         boxAlerta.style.display = 'none';
     }
 });
+
+boxAlerta.addEventListener('click', () => {
+    const displayAtual = window.getComputedStyle(boxAlerta).display;
+    if (displayAtual === 'none') {
+        boxAlerta.style.display = 'flex';
+    } else {
+        boxAlerta.style.display = 'flex';
+    }
+});

@@ -109,13 +109,12 @@ nav ul li span {
     font-weight: bold;
 }
 
-nav ul li .boxAlerta {
+nav ul  .boxAlerta {
     position: absolute;
-    top: -115px;
-    right: -250px;
-    width: 240px;
+    top: 38%;
+    right: -360px;
+    width: 350px;
     height: 230px;
-    border: 1px solid #000;
     background-color: #fff;
     border-radius: 5px;
     display: none;
@@ -123,8 +122,6 @@ nav ul li .boxAlerta {
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    gap: 10px;
     padding: 10px;
     overflow-y: auto;
     scrollbar-width: thin;
@@ -140,7 +137,7 @@ nav ul li .boxAlerta {
     border-radius: 4px;
 }
 
-nav ul li .boxAlerta div {
+nav ul .boxAlerta div {
     width: 100%;
     border-bottom: 1px solid #a1a1a16e;
     font-size: 13px;
