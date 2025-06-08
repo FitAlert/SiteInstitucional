@@ -756,29 +756,26 @@
     window.onload = () => {
         span_usuario.innerHTML = nomeUsuario;
 
+        // Valores dinâmicos no filtro
+        inputInicio.value = dataAtual();
+        inputFim.value = dataAtual();
+
         // -- GRÁFICOS
         buscarFemininoMasculino();
         buscarMediaSecao();
-        buscarPermanencia(),
-        buscarHorarioPico()
+        buscarPermanencia();
+        buscarHorarioPico();
 
         // -- KPIs
-        buscarHorarioPicoKPI(),
-        buscarFluxoVisitanteKPI(),
-        buscarTempoParmanenciaKPI(),
-        buscarSecaoMaisVisitadaKPI(),
+        buscarHorarioPicoKPI();
+        buscarFluxoVisitanteKPI();
+        buscarTempoParmanenciaKPI();
+        buscarSecaoMaisVisitadaKPI();
 
         // quartis
-        buscarQuartilFluxo(),
-        buscarQuartilPermanencia()
+        buscarQuartilFluxo();
+        buscarQuartilPermanencia();
     };
-
-    window.onload = () => {
-        span_usuario.innerHTML = nomeUsuario;
-        filtrar();
-    };
-
-
 
     function provador1() {
         window.location = 'dashprovadorindividual.html'

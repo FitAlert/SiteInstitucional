@@ -242,6 +242,10 @@
     window.onload = () => {
         span_usuario.innerHTML = nomeUsuario;
 
+        // Valores nos inputs
+        inputInicio.value = dataAtual();
+        inputFim.value = dataCincoDias();
+
         // KPI
         buscarHorarioPicoProvador();
         buscarFluxoProvador();
