@@ -166,6 +166,24 @@ function buscarQuartilPermanencia(idEmpresa){
     return database.executar(instrucaoSql);
 }
 
+// ------------------------------ OCUPAÇÃO PROVADOR -----------------------------------------
+
+function validarProvador(idEmpresa) {
+    console.log('Acessei o model para verificar a ocupação do provador 1');
+
+    var instrucaoSql = `
+        SELECT 
+            data_saida 
+        FROM VW_Dashboard 
+        WHERE idEmpresa = ${idEmpresa} AND fkSensor = 1 
+        ORDER BY data_entrada DESC 
+        LIMIT 1;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     // GRÁFICOS
     buscarFemininoMasculino,
@@ -181,5 +199,8 @@ module.exports = {
 
     // quartis
     buscarQuartilFluxo,
-    buscarQuartilPermanencia
+    buscarQuartilPermanencia,
+
+    // OCUPAÇÃO PROVADOR
+    validarProvador
 }

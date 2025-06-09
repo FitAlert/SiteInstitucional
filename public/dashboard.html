@@ -29,16 +29,20 @@
             <li id="li_alerta">Alertas
                 <span id="span_alerta">7</span>
             </li>
-             <div class="boxAlerta" id="boxAlerta">
-                    <button style="width: 25px; border: none; background-color: transparent; align-self: flex-end;" onclick="limparNotificacao()"><img src="images/sessaoDashboard/check.png" alt="" width="20px"></button>
-                    <div><b>1</b> - Alertas loremns Lorem ipsum dolor</div>
-                    <div><b>2</b> - Alertas loremns Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat reprehenderit fuga esse nam quam! Quasi libero veritatis perferendis doloremque nulla delectus laborum voluptas magnam, repellendus aut, odit officiis placeat eius!</div>
-                    <div><b>3</b> - Alertas loremns</div>
-                    <div><b>4</b> - Alertas loremns</div>
-                    <div><b>5</b> - Alertas loremns</div>
-                    <div><b>6</b> - Alertas loremns</div>
-                    <div><b>7</b> - Alertas loremns</div>
-                </div>
+            <div class="boxAlerta" id="boxAlerta">
+                <button style="width: 25px; border: none; background-color: transparent; align-self: flex-end;"
+                    onclick="limparNotificacao()"><img src="images/sessaoDashboard/check.png" alt=""
+                        width="20px"></button>
+                <div><b>1</b> - Alertas loremns Lorem ipsum dolor</div>
+                <div><b>2</b> - Alertas loremns Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+                    reprehenderit fuga esse nam quam! Quasi libero veritatis perferendis doloremque nulla delectus
+                    laborum voluptas magnam, repellendus aut, odit officiis placeat eius!</div>
+                <div><b>3</b> - Alertas loremns</div>
+                <div><b>4</b> - Alertas loremns</div>
+                <div><b>5</b> - Alertas loremns</div>
+                <div><b>6</b> - Alertas loremns</div>
+                <div><b>7</b> - Alertas loremns</div>
+            </div>
             <li><a href="#">Configurações</a></li>
         </ul>
         <button class="sair" onclick="sair()">Sair</button>
@@ -81,7 +85,7 @@
             <div class="geral">
                 <div class="ocupacao">
                     <h3>Provadores</h3>
-                    <div class="prov" onclick="provador1()">1</div>
+                    <div class="prov" id="prov1" onclick="provador1()">1</div>
                     <div class="prov">2</div>
                     <div class="prov">3</div>
                     <div class="prov">4</div>
@@ -113,7 +117,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
-    function sair(){
+    function sair() {
         window.location = 'index.html'
     }
     const idUsuario = sessionStorage.ID_USUARIO;
@@ -125,14 +129,16 @@
 
     function filtrar() {
 
-        inicio = inputInicio.value
-        fim = inputFim.value
-
         if (fim == '') {
             fim = dataAtual()
+        } else {
+            fim = inputFim.value;
         }
+        
         if (inicio == '') {
             inicio = dataAtual()
+        } else {
+            inputInicio.value;
         }
 
         // GRÁFICOS
@@ -266,10 +272,10 @@
                         }
                     },
                     legend: {
-                    labels: {
-                        color: 'rgb(0, 0, 0)'
-                    }
-                },
+                        labels: {
+                            color: 'rgb(0, 0, 0)'
+                        }
+                    },
                     datalabels: {
                         color: '#fff',
                         formatter: (value, context) => {
@@ -342,10 +348,10 @@
                         }
                     },
                     legend: {
-                    labels: {
-                        color: 'rgb(0, 0, 0)'
+                        labels: {
+                            color: 'rgb(0, 0, 0)'
+                        }
                     }
-                }
                 },
                 scales: {
                     y: {
@@ -484,7 +490,8 @@
 
     // KPI 1
     function buscarHorarioPicoKPI() {
-        fetch(`metricas/buscarHorarioPicoKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+        setInterval(() => {
+            fetch(`metricas/buscarHorarioPicoKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -513,13 +520,15 @@
                 function (erro) {
                     console.log(erro);
                 })
+        }, 2000)
     };
 
     var fluxoData;
 
     // KPI 2
     function buscarFluxoVisitanteKPI() {
-        fetch(`metricas/buscarFluxoVisitanteKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+        setInterval (() => {
+            fetch(`metricas/buscarFluxoVisitanteKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -549,13 +558,16 @@
                 function (erro) {
                     console.log(erro);
                 })
+        }, 2000)
+        
     };
 
     var permanencia;
 
     // KPI 3
     function buscarTempoParmanenciaKPI() {
-        fetch(`metricas/buscarTempoParmanenciaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+        setInterval(() => {
+            fetch(`metricas/buscarTempoParmanenciaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -585,11 +597,14 @@
                 function (erro) {
                     console.log(erro);
                 })
+        }, 2000)
+        
     };
 
     // KPI 4
     function buscarSecaoMaisVisitadaKPI() {
-        fetch(`metricas/buscarSecaoMaisVisitadaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+        setInterval(() => {
+            fetch(`metricas/buscarSecaoMaisVisitadaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -618,6 +633,7 @@
                 function (erro) {
                     console.log(erro);
                 })
+        }, 2000)
     }
 
 
@@ -744,6 +760,45 @@
         else {
             tempo_permanencia_quartil.innerHTML = ``;
         }
+    }
+
+    // Botão ficando vermelho caso provador estiver ocupado
+    function validarProvador() {
+        setInterval(() => {
+            fetch(`/metricas/validarProvador/${idEmpresa}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .then(
+                    function (resposta) {
+                        console.log(resposta);
+
+                        if (resposta.ok) {
+                            console.log('Busquei a lista de fluxo de visitantes por dia', resposta)
+                            return resposta.json();
+                        } else {
+                            throw "Erro ao buscar dados no data base";
+                        }
+                    }
+                )
+                .then(
+                    function (ocupacao_provador) {
+                        console.log(ocupacao_provador)
+
+                        if (ocupacao_provador[0].data_saida == null) {
+                            prov1.style.backgroundColor = 'salmon'
+                        } else {
+                            prov1.style.backgroundColor = 'rgb(34, 110, 110)'
+                        };
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro)
+                    }
+                )
+        }, 1000)
 
     }
 
@@ -778,6 +833,9 @@
         // quartis
         buscarQuartilFluxo();
         buscarQuartilPermanencia();
+
+        // -- Ocupação Provadores
+        validarProvador();
     };
 
     function provador1() {

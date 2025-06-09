@@ -8,7 +8,7 @@ function buscarHorarioPicoProvador(idEmpresa, data_entrada, data_saida) {
                 DATE_FORMAT(data_entrada, '%H horas') AS horario_de_pico,
                 COUNT(*) AS Registros
             FROM VW_Dashboard
-            WHERE idEmpresa = ${idEmpresa} AND data_saida BETWEEN '${data_saida} 00:00:00' AND '${data_entrada} 23:59:59' AND idProvador = 1
+            WHERE idEmpresa = ${idEmpresa} AND data_saida BETWEEN '${data_entrada} 00:00:00' AND '${data_saida} 23:59:59' AND idProvador = 1
             GROUP BY DATE_FORMAT(data_entrada, '%H horas')
             ORDER BY COUNT(*) DESC
             LIMIT 1;

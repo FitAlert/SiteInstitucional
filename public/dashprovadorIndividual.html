@@ -60,11 +60,11 @@
             <div class="totalKPIS" style="display: flex; justify-content: center; align-items: center; gap: 20px;">
                 <div class="kpi" style="border-left: 5px solid #ffd900;">
                     <h3 style="text-align: center; font-size: 15px;">HORÁRIO DE PICO</h3>
-                    <p id="horario_pico_kpi">null</p>
+                    <p id="horario_pico_kpi">Aguardando Cliente</p>
                 </div>
                 <div class="kpi" style="border-left: 5px solid #ffd900;">
                     <h3 style="text-align: center; font-size: 15px;">FLUXO MÉDIO DE VISITANTES</h3>
-                    <p id="fluxo_visitantes">null</p>
+                    <p id="fluxo_visitantes">Aguardando Cliente</p>
                 </div>
 
             </div>
@@ -98,12 +98,8 @@
 
     function filtrar() {
 
-        inicio = inputInicio.value
-        fim = inputFim.value
-
-        if (fim == '') {
-            fim = dataCincoDias()
-        }
+        fim = inputInicio.value
+        inicio = inputFim.value
 
         buscarHorarioPicoProvador();
         buscarFluxoProvador();
@@ -113,7 +109,8 @@
 
     // KPI 1
     function buscarHorarioPicoProvador() {
-        fetch(`/provadores/buscarHorarioPicoProvador/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+        setInterval(() => {
+            fetch(`/provadores/buscarHorarioPicoProvador/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -143,11 +140,13 @@
                 function (erro) {
                     console.log(erro);
                 })
+        }, 2000)
     };
 
     // KPI 2
     function buscarFluxoProvador() {
-        fetch(`/provadores/buscarFluxoProvador/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
+        setInterval(() => {
+            fetch(`/provadores/buscarFluxoProvador/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -177,6 +176,7 @@
                 function (erro) {
                     console.log(erro);
                 })
+        }, 2000)
     };
 
 // -------------------------------------------- GRÁFICO -------------------------------------------------

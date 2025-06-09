@@ -47,6 +47,13 @@ router.get("/buscarQuartilPermanencia/:idEmpresa", function (req, res) {
     metricasController.buscarQuartilPermanencia(req, res);
 });
 
+// ------- COR BOTÃO PROVADOR ----------
+
+
+router.get("/validarProvador/:idEmpresa", function (req, res) {
+    metricasController.validarProvador(req, res);
+});
+
 
 
 module.exports = router;

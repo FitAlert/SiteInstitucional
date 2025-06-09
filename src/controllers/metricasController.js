@@ -250,6 +250,32 @@ function buscarQuartilPermanencia(req, res) {
 };
 
 
+// ----------------- COR PROVADOR OCUPADO ------------------
+
+function validarProvador(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    if (idEmpresa == undefined) {
+        console.log('idEmpresa está indefinido');
+    } else {
+        metricasModel.validarProvador(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                        "\nHouve erro ao buscar dados da KPI 2",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
 module.exports = {
     // GRÁFICOs
     buscarFemininoMasculino,
@@ -263,8 +289,10 @@ module.exports = {
     buscarTempoParmanenciaKPI,
     buscarSecaoMaisVisitadaKPI,
 
-
     // quartis
     buscarQuartilFluxo,
-    buscarQuartilPermanencia
+    buscarQuartilPermanencia,
+
+    // Ocupação Provador
+    validarProvador
 }
