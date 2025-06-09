@@ -55,15 +55,15 @@
             </div>
         </header>
         <div class="identificador-provador">Provador 1</div>
-        <section style="margin-top: 25px;">
+        <section style="margin-top: 6%; height: 70vh;">
 
-            <div class="totalKPIS" style="display: flex; justify-content: center; align-items: center; gap: 60px;">
-                <div class="kpi">
-                    <h3>HORÁRIO DE PICO</h3>
+            <div class="totalKPIS" style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+                <div class="kpi" style="border-left: 5px solid #ffd900;">
+                    <h3 style="text-align: center; font-size: 15px;">HORÁRIO DE PICO</h3>
                     <p id="horario_pico_kpi">null</p>
                 </div>
-                <div class="kpi">
-                    <h3>FLUXO DE VISITANTES MÉDIO</h3>
+                <div class="kpi" style="border-left: 5px solid #ffd900;">
+                    <h3 style="text-align: center; font-size: 15px;">FLUXO MÉDIO DE VISITANTES</h3>
                     <p id="fluxo_visitantes">null</p>
                 </div>
 
@@ -73,7 +73,7 @@
 
 
                 <div class="graficos">
-                    <div class="linha l1" style="flex-direction: column; margin-top: -220px;">
+                    <div class="linha l1" style="height: 50vh;">
                         <div class="gg"><canvas id="provador1"></canvas></div>
                     </div>
 
@@ -348,3 +348,4 @@
         buscarDadosGrafico();
     };
 </script>
+<script src="./scripts/dashboard.js"></script>
