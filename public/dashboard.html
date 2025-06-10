@@ -134,6 +134,7 @@ let intervalKPI1, intervalKPI2, intervalKPI3, intervalKPI4;
     function sair() {
         window.location = 'index.html'
     }
+    
     const idUsuario = sessionStorage.ID_USUARIO;
     const idEmpresa = sessionStorage.ID_EMPRESA;
     const nomeUsuario = sessionStorage.NOME_USUARIO;
@@ -847,6 +848,12 @@ let intervalKPI1, intervalKPI2, intervalKPI3, intervalKPI4;
         buscarMediaSecao();
         buscarPermanencia();
         buscarHorarioPico();
+        setInterval(() => {
+            buscarFemininoMasculino();
+            buscarMediaSecao();
+            buscarPermanencia();
+            buscarHorarioPico();
+        }, 5000)
 
         // -- KPIs
         buscarHorarioPicoKPI();
