@@ -28,7 +28,7 @@
             <li><a href="./dashboard.html">Dashboard</a></li>
             <li id="li_alerta">Alertas
                 <span id="span_alerta">7</span>
-                <div class="boxAlerta" id="boxAlerta">
+                <div class="boxAlerta" id="boxAlerta" style="top: -90px;">
                     <div><b>1 </b>- Alertas loremns Lorem ipsum dolor</div>
                     <div><b>2</b> - Alertas loremns</div>
                     <div><b>3</b> - Alertas loremns</div>
@@ -61,10 +61,16 @@
                 <div class="kpi" style="border-left: 5px solid #ffd900;">
                     <h3 style="text-align: center; font-size: 15px;">HORÁRIO DE PICO</h3>
                     <p id="horario_pico_kpi">Aguardando Cliente</p>
+                    <div class="boxKPIIndividual1">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    </div>
                 </div>
                 <div class="kpi" style="border-left: 5px solid #ffd900;">
                     <h3 style="text-align: center; font-size: 15px;">FLUXO MÉDIO DE VISITANTES</h3>
                     <p id="fluxo_visitantes">Aguardando Cliente</p>
+                    <div class="boxKPIIndividual2">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    </div>
                 </div>
 
             </div>
@@ -88,7 +94,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
-
+    function sair(){
+        window.location = 'index.html'
+    }
     const idUsuario = sessionStorage.ID_USUARIO;
     const idEmpresa = sessionStorage.ID_EMPRESA;
     const nomeUsuario = sessionStorage.NOME_USUARIO;
