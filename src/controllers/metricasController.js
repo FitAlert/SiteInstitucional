@@ -276,6 +276,31 @@ function validarProvador(req, res) {
     }
 }
 
+// ----- alerta ----- //
+function puxarOcioso(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    if (idEmpresa == undefined) {
+        console.log('idEmpresa está indefinido');
+    } else {
+        metricasModel.puxarOcioso(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                        "\nHouve erro ao buscar dados da KPI 2",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
 module.exports = {
     // GRÁFICOs
     buscarFemininoMasculino,
@@ -294,5 +319,8 @@ module.exports = {
     buscarQuartilPermanencia,
 
     // Ocupação Provador
-    validarProvador
+    validarProvador,
+
+    // alerta
+    puxarOcioso
 }

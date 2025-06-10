@@ -184,6 +184,27 @@ function validarProvador(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+// ------- alertas -------  //
+
+function puxarOcioso(idEmpresa) {
+    console.log('Acessei o model para verificar a ocupação do provador 1');
+
+    var instrucaoSql = `
+        SELECT CASE WHEN COUNT(*) = SUM(CASE WHEN TIMESTAMPDIFF
+        (MINUTE, ultima_saida, NOW()) > 1 THEN 1 ELSE 0 END)
+        THEN 'Ociosos'
+        ELSE 'Em uso'END AS status
+        FROM ( SELECT idProvador, MAX(data_saida) AS ultima_saida
+        FROM VW_Dashboard
+        WHERE idEmpresa = ${idEmpresa}
+        GROUP BY idProvador
+        ) AS provadores;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     // GRÁFICOS
     buscarFemininoMasculino,
@@ -202,5 +223,8 @@ module.exports = {
     buscarQuartilPermanencia,
 
     // OCUPAÇÃO PROVADOR
-    validarProvador
+    validarProvador,
+
+    //alerta
+    puxarOcioso
 }

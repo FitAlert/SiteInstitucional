@@ -54,6 +54,11 @@ router.get("/validarProvador/:idEmpresa", function (req, res) {
     metricasController.validarProvador(req, res);
 });
 
+// ------------------ alerta ------------ //
+router.get("/puxarOcioso/:idEmpresa", function (req, res) {
+    metricasController.puxarOcioso(req, res);
+});
+
 
 
 module.exports = router;
