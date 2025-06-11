@@ -59,7 +59,7 @@
                     <h3>HORÁRIO DE PICO</h3>
                     <p id="horario_pico_kpi" class="descricao_kpi">Aguardando cliente</p>
                     <div class="boxKPI1">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     </div>
                 </div>
                 <div class="kpi" id="kpiFluxo">
@@ -67,7 +67,7 @@
                     <p id="fluxo_visitantes_kpi" class="descricao_kpi">Aguardando cliente</p>
                     <p id="fluxo_visitantes_quartil"></p>
                     <div class="boxKPI2">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     </div>
                 </div>
                 <div class="kpi" id="kpiPermanencia">
@@ -75,14 +75,14 @@
                     <p id="tempo_permanencia_kpi" class="descricao_kpi">Aguardando cliente</p>
                     <p id="tempo_permanencia_quartil"></p>
                     <div class="boxKPI3">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     </div>
                 </div>
                 <div class="kpi">
                     <h3>SEÇÃO MAIS VISITADA</h3>
                     <p id="secao_visitada_kpi" class="descricao_kpi">Aguardando cliente</p>
                     <div class="boxKPI4">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     </div>
                 </div>
             </div>
@@ -122,12 +122,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
 
-let intervalKPI1, intervalKPI2, intervalKPI3, intervalKPI4;
+    let intervalKPI1, intervalKPI2, intervalKPI3, intervalKPI4;
 
     function sair() {
         window.location = 'index.html'
     }
-    
+
     const idUsuario = sessionStorage.ID_USUARIO;
     const idEmpresa = sessionStorage.ID_EMPRESA;
     const nomeUsuario = sessionStorage.NOME_USUARIO;
@@ -157,38 +157,38 @@ let intervalKPI1, intervalKPI2, intervalKPI3, intervalKPI4;
         buscarQuartilPermanencia();
     }
 
-    
-    // alertas
-setInterval(() => {
-    function puxarOcioso() {
-        fetch(`/metricas/puxarOcioso/${idEmpresa}`)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                plotarAlerta(data);
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
-    }
 
-    puxarOcioso(); 
-},  1800000); //alerta a cada 30 minutos.
+    // alertas
+    setInterval(() => {
+        function puxarOcioso() {
+            fetch(`/metricas/puxarOcioso/${idEmpresa}`)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    plotarAlerta(data);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        }
+
+        puxarOcioso();
+    }, 1800000); //alerta a cada 30 minutos.
 
 
     function plotarAlerta(dados) {
-    const resultado = dados[0].status;
+        const resultado = dados[0].status;
 
-    if (resultado == 'Ociosos') {
-        const agora = new Date();
-        const dataHora = agora.toLocaleString();
+        if (resultado == 'Ociosos') {
+            const agora = new Date();
+            const dataHora = agora.toLocaleString();
 
-        const novoAlerta = document.createElement('div');
-        novoAlerta.textContent = `Cabines ociosas a mais de 30 minutos no dia e hora: (${dataHora})`;
-        boxAlerta.appendChild(novoAlerta);
+            const novoAlerta = document.createElement('div');
+            novoAlerta.textContent = `Cabines ociosas a mais de 30 minutos no dia e hora: (${dataHora})`;
+            boxAlerta.appendChild(novoAlerta);
+        }
     }
-}
 
 
     function buscarFemininoMasculino() {
@@ -207,6 +207,7 @@ setInterval(() => {
 
     }
 
+    // GRÁFICO 3
     function buscarMediaSecao() {
 
         fetch(`/metricas/buscarMediaSecao/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
@@ -222,6 +223,7 @@ setInterval(() => {
             })
     }
 
+    // GRÁFICO 2
     function buscarPermanencia() {
 
         fetch(`/metricas/buscarPermanencia/${idEmpresa}?inicio=${inicio}&fim=${fim}`)
@@ -257,7 +259,7 @@ setInterval(() => {
     // plotando os gráficos
 
     // 4
-    var graficoPizza;
+    var graficoPizza = undefined;
 
     function plotarGraficoPizza(dados) {
 
@@ -270,13 +272,13 @@ setInterval(() => {
         var percentualMasculino = ((masculino / total) * 100).toFixed(0);
         var percentualFeminino = ((feminino / total) * 100).toFixed(0);
 
-        const ctx = document.getElementById("usoSessao").getContext('2d');
-
         if (graficoPizza) {
-            graficoPizza.destroy(); // essa funcao é para nao duplicar gráficos
-        }
+            graficoPizza.data.datasets[0].data = [percentualMasculino, percentualFeminino];
+            graficoPizza.update();
+        } else {
+            const ctx = document.getElementById("usoSessao").getContext('2d');
 
-        graficoPizza = new Chart(ctx, {
+            graficoPizza = new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: [
@@ -335,13 +337,13 @@ setInterval(() => {
             },
             plugins: [ChartDataLabels]
         });
+        }
     }
 
     // 1
-    var graficoPico
-    function plotarHorarioPico(dados) {
-        const linhas = document.getElementById("HorarioPico");
+    var graficoPico = undefined
 
+    function plotarHorarioPico(dados) {
         var horario = []
         var visitas = []
 
@@ -352,57 +354,57 @@ setInterval(() => {
         }
 
         if (graficoPico) {
-            graficoPico.destroy(); // essa funcao é para nao duplicar gráficos
+            graficoPico.data.labels = horario;
+            graficoPico.data.datasets[0].data = visitas;
+            graficoPico.update();
+        } else {
+            const linhas = document.getElementById("HorarioPico");
+
+            graficoPico = new Chart(linhas, {
+                type: "line",
+                data: {
+                    labels: horario.map(h => h + 'h'),
+                    datasets: [
+                        {
+                            label: "Provadores ocupados",
+                            data: visitas,
+                            backgroundColor: "#ff9900",
+                            borderColor: "#7f7f7f",
+                            borderWidth: 2,
+                        },
+                    ],
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'TOTAL DE VISITAS POR HORA',
+                            color: 'rgb(0, 0, 0)',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: 'rgb(0, 0, 0)'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
         }
-
-
-        graficoPico = new Chart(linhas, {
-            type: "line",
-            data: {
-                labels: horario.map(h => h + 'h'),
-                datasets: [
-                    {
-                        label: "Provadores ocupados",
-                        data: visitas,
-                        backgroundColor: "#ff9900",
-                        borderColor: "#7f7f7f",
-                        borderWidth: 2,
-                    },
-                ],
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'TOTAL DE VISITAS POR HORA',
-                        color: 'rgb(0, 0, 0)',
-                        font: {
-                            size: 16
-                        }
-                    },
-                    legend: {
-                        labels: {
-                            color: 'rgb(0, 0, 0)'
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
-                },
-            },
-        });
     }
 
 
     // 2
-    var graficoPermanencia
+    var graficoPermanencia = undefined;
 
     function plotarGraficoPermanencia(dados) {
-        const barras = document.getElementById("cabine");
-
-
         var provador = []
         var permanencia = []
 
@@ -413,51 +415,54 @@ setInterval(() => {
         }
 
         if (graficoPermanencia) {
-            graficoPermanencia.destroy();
+            graficoPermanencia.data.labels = provador;
+            graficoPermanencia.data.datasets[0].data = permanencia;
+            graficoPermanencia.update();
+        } else {
+            const barras = document.getElementById("cabine");
+            graficoPermanencia = new Chart(barras, {
+                type: "bar",
+                data: {
+                    labels: provador,
+                    datasets: [
+                        {
+                            label: ["Minuto(s)",],
+                            data: permanencia,
+                            borderColor: "#7f7f7f",
+                            backgroundColor: ['#ffd900'],
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'TEMPO DE PERMANÊNCIA POR PROVADOR',
+                            color: 'rgb(0, 0, 0)',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: 'rgb(0, 0, 0)'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
         }
-
-        graficoPermanencia = new Chart(barras, {
-            type: "bar",
-            data: {
-                labels: provador,
-                datasets: [
-                    {
-                        label: ["Minuto(s)",],
-                        data: permanencia,
-                        borderColor: "#7f7f7f",
-                        backgroundColor: ['#ffd900'],
-                        borderWidth: 1,
-                    },
-                ],
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'TEMPO DE PERMANÊNCIA POR PROVADOR',
-                        color: 'rgb(0, 0, 0)',
-                        font: {
-                            size: 16
-                        }
-                    },
-                    legend: {
-                        labels: {
-                            color: 'rgb(0, 0, 0)'
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
-                },
-            },
-        });
     }
 
 
-
-    var graficoSecao;
+    // GRÁFICO 3
+    var graficoSecao = undefined;
 
     function plotarGraficoSecao(dados) {
 
@@ -467,55 +472,55 @@ setInterval(() => {
         for (var i = 0; i < dados.length; i++) {
             secao.push(dados[i].idProvador);
             mediaSecao.push(Number(dados[i].total_visitas));
-
         }
-
-        const cabine = document.getElementById("usoCabine").getContext('2d');;
 
         if (graficoSecao) {
-            graficoSecao.destroy();
+            graficoSecao.data.labels = secao;
+            graficoSecao.data.datasets[0].data = mediaSecao;
+            graficoSecao.update();
+        } else {
+            const cabine = document.getElementById("usoCabine").getContext('2d');;
+            graficoSecao = new Chart(cabine, {
+                type: "bar",
+                data: {
+                    labels: secao,
+                    datasets: [{
+                        label: 'Cliente(s)',
+                        data: mediaSecao,
+                        borderColor: "#7f7f7f",
+                        backgroundColor: [
+                            '#a4fc00'],
+                        borderWidth: 1,
+                    },
+                    ],
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'NÚMERO DE VISITANTES POR PROVADOR',
+                            color: 'rgb(0, 0, 0)',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: 'rgb(0, 0, 0)'
+                            }
+                        }
+                    },
+                    indexAxis: 'y',
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                },
+            });
         }
-
-        graficoSecao = new Chart(cabine, {
-            type: "bar",
-            data: {
-                labels: secao,
-                datasets: [{
-                    label: 'Visitante(s)',
-                    data: mediaSecao,
-                    borderColor: "#7f7f7f",
-                    backgroundColor: [
-                        '#a4fc00'],
-                    borderWidth: 1,
-                },
-                ],
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'NÚMERO DE VISITANTES POR PROVADOR',
-                        color: 'rgb(0, 0, 0)',
-                        font: {
-                            size: 16
-                        }
-                    },
-                    legend: {
-                        labels: {
-                            color: 'rgb(0, 0, 0)'
-                        }
-                    }
-                },
-                indexAxis: 'y',
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
-                },
-                responsive: true,
-                maintainAspectRatio: false
-            },
-        });
     };
 
 
@@ -527,38 +532,38 @@ setInterval(() => {
     function buscarHorarioPicoKPI() {
         setInterval(() => {
             fetch(`metricas/buscarHorarioPicoKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-            .then(function (resposta) {
-                console.log(resposta);
-
-                if (resposta.ok) {
-                    console.log('Busquei o horário de pico', resposta)
-                    return resposta.json();
-                } else {
-                    throw "Erro ao buscar dados no data base";
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
                 }
             })
-            .then(
-                function (dadoskpi1) {
-                    if(registroHorario != dadoskpi1[0].horario_de_pico){
-                    console.log(dadoskpi1);
-                    if (dadoskpi1[0].horario_de_pico == null) {
-                        horario_pico_kpi.innerHTML = 'Aguardando cliente';
+                .then(function (resposta) {
+                    console.log(resposta);
+
+                    if (resposta.ok) {
+                        console.log('Busquei o horário de pico', resposta)
+                        return resposta.json();
                     } else {
-                        horario_pico_kpi.innerHTML = dadoskpi1[0].horario_de_pico;
-                        registroHorario = dadoskpi1[0].horario_de_pico;
+                        throw "Erro ao buscar dados no data base";
                     }
-                }
                 })
-            .catch(
-                function (erro) {
-                    console.log(erro);
-                })
-        }, 2000)
+                .then(
+                    function (dadoskpi1) {
+                        if (registroHorario != dadoskpi1[0].horario_de_pico) {
+                            console.log(dadoskpi1);
+                            if (dadoskpi1[0].horario_de_pico == null) {
+                                horario_pico_kpi.innerHTML = 'Aguardando cliente';
+                            } else {
+                                horario_pico_kpi.innerHTML = dadoskpi1[0].horario_de_pico;
+                                registroHorario = dadoskpi1[0].horario_de_pico;
+                            }
+                        }
+                    })
+                .catch(
+                    function (erro) {
+                        console.log(erro);
+                    })
+        }, 1000)
     };
 
     var fluxoData;
@@ -566,42 +571,44 @@ setInterval(() => {
 
     // KPI 2
     function buscarFluxoVisitanteKPI() {
-        setInterval (() => {
+        setInterval(() => {
             fetch(`metricas/buscarFluxoVisitanteKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-            .then(function (resposta) {
-                console.log(resposta);
-
-                if (resposta.ok) {
-                    console.log('Busquei o fluxo de visitantes', resposta)
-                    return resposta.json();
-                } else {
-                    throw "Erro ao buscar dados no data base";
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
                 }
             })
-            .then(
-                function (dadoskpi2) {
-                    if(registroFluxo != dadoskpi2[0].fluxo_visitantes){
-                    console.log(dadoskpi2);
-                    if (dadoskpi2[0].fluxo_visitantes == null || dadoskpi2[0].fluxo_visitantes == 0) {
-                        fluxo_visitantes_kpi.innerHTML = 'Aguardando cliente';
+                .then(function (resposta) {
+                    console.log(resposta);
+
+                    if (resposta.ok) {
+                        console.log('Busquei o fluxo de visitantes', resposta)
+                        return resposta.json();
                     } else {
-                        fluxo_visitantes_kpi.innerHTML = dadoskpi2[0].fluxo_visitantes;
-                        fluxoData = dadoskpi2[0].fluxo_visitantes;
-                        registroFluxo = dadoskpi2[0].fluxo_visitantes;
+                        throw "Erro ao buscar dados no data base";
                     }
-                }
                 })
-            .catch(
-                function (erro) {
-                    console.log(erro);
-                })
-        }, 2000)
-        
+                .then(
+                    function (dadoskpi2) {
+                        if (registroFluxo != dadoskpi2[0].fluxo_visitantes) {
+                            console.log(dadoskpi2);
+                            if (dadoskpi2[0].fluxo_visitantes == null || dadoskpi2[0].fluxo_visitantes == 0) {
+                                fluxo_visitantes_kpi.innerHTML = 'Aguardando cliente';
+                                buscarQuartilFluxo();
+                            } else {
+                                fluxo_visitantes_kpi.innerHTML = dadoskpi2[0].fluxo_visitantes;
+                                fluxoData = dadoskpi2[0].fluxo_visitantes;
+                                registroFluxo = dadoskpi2[0].fluxo_visitantes;
+                                buscarQuartilFluxo();
+                            }
+                        }
+                    })
+                .catch(
+                    function (erro) {
+                        console.log(erro);
+                    })
+        }, 1000)
+
     };
 
     var permanencia;
@@ -611,40 +618,42 @@ setInterval(() => {
     function buscarTempoParmanenciaKPI() {
         setInterval(() => {
             fetch(`metricas/buscarTempoParmanenciaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-            .then(function (resposta) {
-                console.log(resposta);
-
-                if (resposta.ok) {
-                    console.log('Busquei o tempo de permanência', resposta)
-                    return resposta.json();
-                } else {
-                    throw "Erro ao buscar dados no data base";
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
                 }
             })
-            .then(
-                function (dadoskpi3) {
-                    if(registroPermanencia != dadoskpi3[0].tempo_medio){
-                    console.log(dadoskpi3);
-                    if (dadoskpi3[0].tempo_medio == null) {
-                        tempo_permanencia_kpi.innerHTML = 'Aguardando cliente';
+                .then(function (resposta) {
+                    console.log(resposta);
+
+                    if (resposta.ok) {
+                        console.log('Busquei o tempo de permanência', resposta)
+                        return resposta.json();
                     } else {
-                        tempo_permanencia_kpi.innerHTML = dadoskpi3[0].tempo_medio;
-                        permanencia = Number(dadoskpi3[0].tempo_medio.split('m')[0]);
-                        registroPermanencia = Number(dadoskpi3[0].tempo_medio.split('m')[0]);
+                        throw "Erro ao buscar dados no data base";
                     }
-                }
                 })
-            .catch(
-                function (erro) {
-                    console.log(erro);
-                })
-        }, 2000)
-        
+                .then(
+                    function (dadoskpi3) {
+                        if (registroPermanencia != dadoskpi3[0].tempo_medio) {
+                            console.log(dadoskpi3);
+                            if (dadoskpi3[0].tempo_medio == null) {
+                                tempo_permanencia_kpi.innerHTML = 'Aguardando cliente';
+                                buscarQuartilPermanencia();
+                            } else {
+                                tempo_permanencia_kpi.innerHTML = dadoskpi3[0].tempo_medio;
+                                permanencia = Number(dadoskpi3[0].tempo_medio.split('m')[0]);
+                                registroPermanencia = Number(dadoskpi3[0].tempo_medio.split('m')[0]);
+                                buscarQuartilPermanencia();
+                            }
+                        }
+                    })
+                .catch(
+                    function (erro) {
+                        console.log(erro);
+                    })
+        }, 1000)
+
     };
 
     let registroSecao = null;
@@ -653,38 +662,38 @@ setInterval(() => {
     function buscarSecaoMaisVisitadaKPI() {
         setInterval(() => {
             fetch(`metricas/buscarSecaoMaisVisitadaKPI/${idEmpresa}?inicio=${inicio}&fim=${fim}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-            .then(function (resposta) {
-                console.log(resposta);
-
-                if (resposta.ok) {
-                    console.log('Busquei a seção mais visitada', resposta)
-                    return resposta.json();
-                } else {
-                    throw "Erro ao buscar dados no data base";
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
                 }
             })
-            .then(
-                function (dadoskpi4) {
-                    if(registroSecao != dadoskpi4[0].secao){
-                    console.log(dadoskpi4);
-                    if (dadoskpi4[0].secao == null) {
-                        secao_visitada_kpi.innerHTML = 'Aguardando cliente';
+                .then(function (resposta) {
+                    console.log(resposta);
+
+                    if (resposta.ok) {
+                        console.log('Busquei a seção mais visitada', resposta)
+                        return resposta.json();
                     } else {
-                        secao_visitada_kpi.innerHTML = dadoskpi4[0].secao;
-                        registroSecao =  dadoskpi4[0].secao;
+                        throw "Erro ao buscar dados no data base";
                     }
-                }
                 })
-            .catch(
-                function (erro) {
-                    console.log(erro);
-                })
-        }, 2000)
+                .then(
+                    function (dadoskpi4) {
+                        if (registroSecao != dadoskpi4[0].secao) {
+                            console.log(dadoskpi4);
+                            if (dadoskpi4[0].secao == null) {
+                                secao_visitada_kpi.innerHTML = 'Aguardando cliente';
+                            } else {
+                                secao_visitada_kpi.innerHTML = dadoskpi4[0].secao;
+                                registroSecao = dadoskpi4[0].secao;
+                            }
+                        }
+                    })
+                .catch(
+                    function (erro) {
+                        console.log(erro);
+                    })
+        }, 1000)
     }
 
 
@@ -874,12 +883,6 @@ setInterval(() => {
         buscarMediaSecao();
         buscarPermanencia();
         buscarHorarioPico();
-        setInterval(() => {
-            buscarFemininoMasculino();
-            buscarMediaSecao();
-            buscarPermanencia();
-            buscarHorarioPico();
-        }, 5000)
 
         // -- KPIs
         buscarHorarioPicoKPI();
@@ -887,12 +890,16 @@ setInterval(() => {
         buscarTempoParmanenciaKPI();
         buscarSecaoMaisVisitadaKPI();
 
-        // quartis
-        buscarQuartilFluxo();
-        buscarQuartilPermanencia();
-
-        // -- Ocupação Provadores
+        // OCUPAÇÃO PROVADOR
         validarProvador();
+
+        // ATUALIZAR GRÁFICOS
+        setInterval(() => {
+            buscarFemininoMasculino();
+            buscarMediaSecao();
+            buscarPermanencia();
+            buscarHorarioPico();
+        }, 5000)
     };
 
     function provador1() {

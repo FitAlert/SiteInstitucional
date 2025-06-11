@@ -15,8 +15,8 @@ var mySqlConfig = {
  var mySqlConfig = {
      host: "localhost", //inserir host
      database: "DB_FitAlert", //inserir banco
-     user: "fitalert", // inserir usuario 
-     password: "fitalert", // inserir senha 
+     user: "FitAlert", // inserir usuario 
+     password: "admin123", // inserir senha 
      port: 3306
  };
 
