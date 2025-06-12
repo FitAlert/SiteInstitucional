@@ -12,18 +12,19 @@ function validarEmail() {
   divResultado.innerHTML = "";
   var email = inputEmail.value;
   var res = document.getElementById('divResultado');
+  res.style.display = 'none';
 
 
   for (i = 0; i < email.length; i++) {
-    if (email.includes('@')) {
+    if (email.includes('@') ) {
       res.style.display = 'none';
       temArroba = true;
       break;
     }
     else {
       res.style.display = 'flex'
-      divResultado.innerHTML = `Digite um email válido. <br>`;
-    }
+      divResultado.innerHTML = `Digite um email válido.`;
+    } 
   }
 }
 
@@ -38,7 +39,7 @@ function validacaoSenha() {
   for (i = 0; i < senha.length; i++) {
     if (senha.length < 8) {
       res.style.display = 'flex'
-      divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres. <br>`;
+      divResultado.innerHTML += `A senha deve conter pelo menos 8 caracteres.`;
       validacao = false;
       break;
     }
@@ -93,8 +94,8 @@ function cadastrar() {
         console.log("Código de ativação válido.");
         break;
       } else {
-        divResultado.style.display = "block";
-        divResultado.innerHTML = "Mensagem de erro para código inválido";
+        divResultado.style.display = "flex";
+        divResultado.innerHTML = "Código inválido";
       }
     }
 
@@ -119,8 +120,9 @@ function cadastrar() {
 
         if (resposta.ok) {
 
+          divResultado.style.display = 'flex'
           divResultado.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            "Cadastro realizado com sucesso!";
 
           setTimeout(() => {
             window.location = "login.html";
