@@ -30,20 +30,20 @@
             </a>
             <a href="#" id="li_alerta">
                 <li>Alertas
-                    <span id="span_alerta">70</span>
+                    <span id="span_alerta">7</span>
                 </li>
             </a>
             <div class="boxAlerta" id="boxAlerta">
                 <button style="width: 25px; border: none; background-color: transparent; align-self: flex-end;"
                     onclick="limparNotificacao()"><img src="images/sessaoDashboard/check.png" alt=""
                         width="20px"></button>
-                <div>ATENÇÃO: Provadores lotados</div>
-                <div>Fluxo abaixo da mediana no dia 20-06-2025</div>
+                <div>-----------------------ALERTAS-----------------------</div>
+                <!-- <div>Fluxo abaixo da mediana no dia 20-06-2025</div> -->
             </div>
             <a href="documentos/manualDeInstalacao.pdf" download="manualDeInstalacao.pdf" target="_blank">
                 <li>Manual</li>
             </a>
-            <a href="https://fitalert.atlassian.net/servicedesk/customer/portal/35/group/35/create/36" target="_blank">
+            <a href="https://www.atlassian.com/br/company/contact" target="_blank">
                 <li>Suporte</li>
             </a>
         </ul>
@@ -168,7 +168,6 @@
 
 
     // alertas
-    setInterval(() => {
         function puxarOcioso() {
             fetch(`/metricas/puxarOcioso/${idEmpresa}`)
                 .then(function (response) {
@@ -180,21 +179,22 @@
                 .catch(function (err) {
                     console.log(err);
                 });
+
+            setTimeout(() => puxarOcioso(), 300000)
         }
 
-        puxarOcioso();
-    }, 1800000); //alerta a cada 30 minutos.
-
-
+let contador = 0;
     function plotarAlerta(dados) {
-        const resultado = dados[0].status;
+        const resultado = dados[0].ocupacao_sensores;
 
-        if (resultado == 'Ociosos') {
+        if (resultado == 'Lotados') {
             const agora = new Date();
             const dataHora = agora.toLocaleString();
+            contador++
+            span_alerta.innerHTML = contador
 
             const novoAlerta = document.createElement('div');
-            novoAlerta.textContent = `Cabines ociosas a mais de 30 minutos no dia e hora: (${dataHora})`;
+            novoAlerta.textContent = `Todos os provadores estão em uso às ${dataHora}`;
             boxAlerta.appendChild(novoAlerta);
         }
     }
@@ -901,6 +901,9 @@
 
         // OCUPAÇÃO PROVADOR
         validarProvador();
+
+        // ALERTA
+        puxarOcioso();
 
         // ATUALIZAR GRÁFICOS
         setInterval(() => {

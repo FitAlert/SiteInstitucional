@@ -187,18 +187,18 @@ function validarProvador(idEmpresa) {
 // ------- alertas -------  //
 
 function puxarOcioso(idEmpresa) {
-    console.log('Acessei o model para verificar a ocupação do provador 1');
+    console.log('Acessei o model para verificar a ocupação dos provadores!');
 
     var instrucaoSql = `
-        SELECT CASE WHEN COUNT(*) = SUM(CASE WHEN TIMESTAMPDIFF
-        (MINUTE, ultima_saida, NOW()) > 1 THEN 1 ELSE 0 END)
-        THEN 'Ociosos'
-        ELSE 'Em uso'END AS status
-        FROM ( SELECT idProvador, MAX(data_saida) AS ultima_saida
-        FROM VW_Dashboard
-        WHERE idEmpresa = ${idEmpresa}
-        GROUP BY idProvador
-        ) AS provadores;
+        SELECT
+        CASE WHEN
+		    (SELECT data_saida FROM VW_Dashboard WHERE fkSensor = 1 ORDER BY data_entrada DESC LIMIT 1) IS NULL AND 
+		    (SELECT data_saida FROM VW_Dashboard WHERE fkSensor = 2 ORDER BY data_entrada DESC LIMIT 1) IS NULL THEN 'Lotados'
+            ELSE 'Vazios'
+	    END AS ocupacao_sensores
+	FROM VW_Dashboard
+    WHERE idEmpresa = ${idEmpresa}
+    LIMIT 1;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
