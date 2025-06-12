@@ -25,20 +25,27 @@
             <div id="cliente"><b>Bem vindo, <span id="span_usuario">user</span>!</b><br></div>
         </div>
         <ul>
-            <li><a href="./dashboard.html">Dashboard</a></li>
-            <li id="li_alerta">Alertas
-                <span id="span_alerta">7</span>
-                <div class="boxAlerta" id="boxAlerta" style="top: -90px;">
-                    <div><b>1 </b>- Alertas loremns Lorem ipsum dolor</div>
-                    <div><b>2</b> - Alertas loremns</div>
-                    <div><b>3</b> - Alertas loremns</div>
-                    <div><b>4</b> - Alertas loremns</div>
-                    <div><b>5</b> - Alertas loremns</div>
-                    <div><b>6</b> - Alertas loremns</div>
-                    <div><b>7</b> - Alertas loremns</div>
-                </div>
-            </li>
-            <li><a href="#">Configurações</a></li>
+            <a href="./dashboard.html">
+                <li>Dashboard</li>
+            </a>
+            <a href="#" id="li_alerta">
+                <li>Alertas
+                    <span id="span_alerta">7</span>
+                </li>
+            </a>
+            <div class="boxAlerta" id="boxAlerta">
+                <button style="width: 25px; border: none; background-color: transparent; align-self: flex-end;"
+                    onclick="limparNotificacao()"><img src="images/sessaoDashboard/check.png" alt=""
+                        width="20px"></button>
+                <div>ATENÇÃO: Provadores lotados</div>
+                <div>Fluxo abaixo da mediana no dia 20-06-2025</div>
+            </div>
+            <a href="documentos/manualDeInstalacao.pdf" download="manualDeInstalacao.pdf" target="_blank">
+                <li>Manual</li>
+            </a>
+            <a href="https://www.atlassian.com/br/company/contact" target="_blank">
+                <li>Suporte</li>
+            </a>
         </ul>
         <button class="sair" onclick="sair()">Sair</button>
     </nav>

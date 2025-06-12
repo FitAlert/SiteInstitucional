@@ -25,10 +25,14 @@
             <div id="cliente"><b>Bem vindo, <span id="span_usuario">user</span>!</b><br></div>
         </div>
         <ul>
-            <li><a href="./dashboard.html">Dashboard</a></li>
-            <li id="li_alerta">Alertas
-                <span id="span_alerta">7</span>
-            </li>
+            <a href="./dashboard.html">
+                <li>Dashboard</li>
+            </a>
+            <a href="#" id="li_alerta">
+                <li>Alertas
+                    <span id="span_alerta">7</span>
+                </li>
+            </a>
             <div class="boxAlerta" id="boxAlerta">
                 <button style="width: 25px; border: none; background-color: transparent; align-self: flex-end;"
                     onclick="limparNotificacao()"><img src="images/sessaoDashboard/check.png" alt=""
@@ -36,7 +40,12 @@
                 <div>ATENÇÃO: Provadores lotados</div>
                 <div>Fluxo abaixo da mediana no dia 20-06-2025</div>
             </div>
-            <li><a href="#">Configurações</a></li>
+            <a href="documentos/manualDeInstalacao.pdf" download="manualDeInstalacao.pdf" target="_blank">
+                <li>Manual</li>
+            </a>
+            <a href="https://www.atlassian.com/br/company/contact" target="_blank">
+                <li>Suporte</li>
+            </a>
         </ul>
         <button class="sair" onclick="sair()">Sair</button>
     </nav>
@@ -279,64 +288,64 @@
             const ctx = document.getElementById("usoSessao").getContext('2d');
 
             graficoPizza = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: [
-                    'Masculino',
-                    'Feminino'
-                ],
-                datasets: [
-                    {
-                        label: 'Porcentagem de Visitantes',
-                        data: [percentualMasculino, percentualFeminino],
-                        backgroundColor: [
-                            '#4c00ff',
-                            '#00ffbf',
-                        ],
-                        hoverOffset: 10
-                    }],
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'VISITANTES POR SEÇÃO',
-                        color: 'rgb(0, 0, 0)',
-                        font: {
-                            size: 16
-                        }
-                    },
-                    legend: {
-                        labels: {
-                            color: 'rgb(0, 0, 0)'
-                        }
-                    },
-                    datalabels: {
-                        color: '#fff',
-                        formatter: (value, context) => {
-                            return `${value}%`;
+                type: 'pie',
+                data: {
+                    labels: [
+                        'Masculino',
+                        'Feminino'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Porcentagem de Visitantes',
+                            data: [percentualMasculino, percentualFeminino],
+                            backgroundColor: [
+                                '#4c00ff',
+                                '#00ffbf',
+                            ],
+                            hoverOffset: 10
+                        }],
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'VISITANTES POR SEÇÃO',
+                            color: 'rgb(0, 0, 0)',
+                            font: {
+                                size: 16
+                            }
                         },
-                        font: {
-                            weight: 'bold',
-                            size: 14
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (context) {
-                                var idx = context.dataIndex;
-                                var labels = ['Masculino', 'Feminino'];
-                                var valoresAbsolutos = [masculino, feminino];
-                                return `${labels[idx]}: ${valoresAbsolutos[idx]} visitante(s)`;
+                        legend: {
+                            labels: {
+                                color: 'rgb(0, 0, 0)'
+                            }
+                        },
+                        datalabels: {
+                            color: '#fff',
+                            formatter: (value, context) => {
+                                return `${value}%`;
+                            },
+                            font: {
+                                weight: 'bold',
+                                size: 14
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    var idx = context.dataIndex;
+                                    var labels = ['Masculino', 'Feminino'];
+                                    var valoresAbsolutos = [masculino, feminino];
+                                    return `${labels[idx]}: ${valoresAbsolutos[idx]} visitante(s)`;
+                                }
                             }
                         }
-                    }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
                 },
-                responsive: true,
-                maintainAspectRatio: false,
-            },
-            plugins: [ChartDataLabels]
-        });
+                plugins: [ChartDataLabels]
+            });
         }
     }
 
