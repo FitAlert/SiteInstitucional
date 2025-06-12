@@ -283,6 +283,7 @@
 
         if (graficoPizza) {
             graficoPizza.data.datasets[0].data = [percentualMasculino, percentualFeminino];
+            graficoPizza.data.datasets[0].absolutos = [masculino, feminino];
             graficoPizza.update();
         } else {
             const ctx = document.getElementById("usoSessao").getContext('2d');
@@ -333,10 +334,9 @@
                         tooltip: {
                             callbacks: {
                                 label: function (context) {
-                                    var idx = context.dataIndex;
-                                    var labels = ['Masculino', 'Feminino'];
-                                    var valoresAbsolutos = [masculino, feminino];
-                                    return `${labels[idx]}: ${valoresAbsolutos[idx]} visitante(s)`;
+                                    var label = context.chart.data.labels[context.dataIndex];
+                                    var absolutos = context.chart.data.datasets[0].absolutos;
+                                    return `${label}: ${absolutos[context.dataIndex]} visitante(s)`;
                                 }
                             }
                         }
