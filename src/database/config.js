@@ -17,7 +17,7 @@ var mySqlConfig = {
      database: "DB_FitAlert", //inserir banco
      user: "aluno", // inserir usuario 
      password: "Sptech#2024", // inserir senha 
-     port: 3307
+     port: 3306
  };
 
 function executar(instrucao) {
