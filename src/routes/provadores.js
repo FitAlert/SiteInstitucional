@@ -19,4 +19,8 @@ router.get("/atualizarTempoReal/:idEmpresa", function (req, res) {
     provadorController.atualizarTempoReal(req, res);
 });
 
+router.get("/sensorInativo/:idEmpresa", function (req, res) {
+    provadorController.sensorInativo(req, res);
+})
+
 module.exports = router;

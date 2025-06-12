@@ -99,9 +99,9 @@
                 <div class="ocupacao">
                     <h3>Provadores</h3>
                     <div class="prov" id="prov1" onclick="provador1()">1</div>
-                    <div class="prov">2</div>
-                    <div class="prov" style="background-color: gray; cursor:default">3</div>
-                    <div class="prov" style="background-color: gray; cursor:default">4</div>
+                    <div class="prov" id="prov2">2</div>
+                    <div class="prov" id="prov3" style="cursor:default">3</div>
+                    <div class="prov" id="prov4" style="cursor:default">4</div>
                 </div>
 
                 <div class="graficos">
@@ -867,6 +867,26 @@ let contador = 0;
                 )
         }, 1000)
 
+    };
+
+    function buscarSensorInativo() {
+        fetch(`/provadores/sensorInativo/${idEmpresa}`)
+
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (sensores) {
+                for (let i = 0; i < sensores.length; i++) {
+                    if (sensores[i].status_sensor == 'Inativo') {
+                        index = i + 1;
+                        var provador_inativo = document.getElementById('prov' + index);
+                        provador_inativo.style.backgroundColor = 'Gray';
+                    }
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
     }
 
 
@@ -884,6 +904,9 @@ let contador = 0;
         // Valores dinâmicos no filtro
         inputInicio.value = dataAtual();
         inputFim.value = dataAtual();
+
+        // VERIFICAR SENSORES
+        buscarSensorInativo();
 
         // -- GRÁFICOS
         buscarFemininoMasculino();
