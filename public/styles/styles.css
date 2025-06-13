@@ -456,6 +456,7 @@ input#s2:checked~.navigation label[for="s2"] {
 
 .cont-2 {
     max-width: 80%;
+    height: 50vh;
     display: flex;
     align-items: center;
     gap: 150px;
@@ -465,7 +466,9 @@ input#s2:checked~.navigation label[for="s2"] {
 }
 .grafico {
     width: 50%;
+    height: 50vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -477,6 +480,7 @@ input#s2:checked~.navigation label[for="s2"] {
     background-repeat: no-repeat;
     width: 600px;
     height: 400px;
+    margin-right: 50px;
 }
 
 /*FOOTER*/
