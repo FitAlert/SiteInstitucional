@@ -145,6 +145,53 @@ WHERE idRegistro = 1;
 
 -- Consulta completa dos registros
 SELECT * FROM TB_Registros;
+ 
+ -- Adidionado registros valiados do sensor 1 e 2 
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-09 08:00:00', '2025-06-09 10:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-09 09:30:00', '2025-06-09 12:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-09 11:00:00', '2025-06-09 13:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-09 13:15:00', '2025-06-09 15:45:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-09 16:00:00', '2025-06-09 18:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-09 17:30:00', '2025-06-09 20:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-09 19:00:00', '2025-06-09 21:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-09 20:00:00', '2025-06-09 22:00:00');
+
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-10 07:45:00', '2025-06-10 09:45:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-10 10:00:00', '2025-06-10 12:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-10 12:30:00', '2025-06-10 14:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-10 15:00:00', '2025-06-10 17:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-10 16:00:00', '2025-06-10 18:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-10 17:00:00', '2025-06-10 19:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-10 19:00:00', '2025-06-10 21:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-10 20:00:00', '2025-06-10 22:00:00');
+
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-11 08:15:00', '2025-06-11 11:15:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-11 09:00:00', '2025-06-11 11:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-11 13:00:00', '2025-06-11 15:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-11 14:30:00', '2025-06-11 16:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-11 16:00:00', '2025-06-11 18:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-11 17:30:00', '2025-06-11 20:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-11 19:00:00', '2025-06-11 21:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-11 20:00:00', '2025-06-11 22:00:00');
+
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-12 07:30:00', '2025-06-12 09:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-12 10:45:00', '2025-06-12 13:15:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-12 11:30:00', '2025-06-12 13:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-12 13:45:00', '2025-06-12 16:15:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-12 16:00:00', '2025-06-12 18:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-12 17:30:00', '2025-06-12 19:30:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-12 19:00:00', '2025-06-12 21:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-12 20:00:00', '2025-06-12 22:00:00');
+
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-13 08:00:00', '2025-06-13 11:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-13 09:15:00', '2025-06-13 11:45:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-13 12:00:00', '2025-06-13 14:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-13 14:30:00', '2025-06-13 17:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-13 16:00:00', '2025-06-13 18:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-13 17:30:00', '2025-06-13 20:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (1, '1', '2025-06-13 19:00:00', '2025-06-13 21:00:00');
+INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES (2, '1', '2025-06-13 20:00:00', '2025-06-13 22:00:00');
+
 
 INSERT INTO TB_Registros (fkSensor, ativo, data_entrada, data_saida) VALUES
 (1, '1', '2025-05-28 09:00:00', '2025-05-28 09:15:00'),
