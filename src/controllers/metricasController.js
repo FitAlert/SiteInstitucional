@@ -267,14 +267,36 @@ function validarProvador(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log(
-                        "\nHouve erro ao buscar dados da KPI 2",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
             }
         )
     }
-}
+};
+
+function validarProvador2(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    if (idEmpresa == undefined) {
+        console.log('idEmpresa está indefinido');
+    } else {
+        metricasModel.validarProvador2(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+};
 
 // ----- alerta ----- //
 function puxarOcioso(req, res) {
@@ -320,6 +342,7 @@ module.exports = {
 
     // Ocupação Provador
     validarProvador,
+    validarProvador2,
 
     // alerta
     puxarOcioso

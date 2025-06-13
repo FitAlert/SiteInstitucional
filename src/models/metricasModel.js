@@ -182,7 +182,23 @@ function validarProvador(idEmpresa) {
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
-}
+};
+
+function validarProvador2(idEmpresa) {
+    console.log('Acessei o model para verificar a ocupação do provador 1');
+
+    var instrucaoSql = `
+        SELECT 
+            data_saida 
+        FROM VW_Dashboard 
+        WHERE idEmpresa = ${idEmpresa} AND fkSensor = 2
+        ORDER BY data_entrada DESC 
+        LIMIT 1;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+};
 
 // ------- alertas -------  //
 
@@ -224,6 +240,7 @@ module.exports = {
 
     // OCUPAÇÃO PROVADOR
     validarProvador,
+    validarProvador2,
 
     //alerta
     puxarOcioso

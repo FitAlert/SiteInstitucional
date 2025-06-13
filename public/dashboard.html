@@ -875,6 +875,45 @@ var alertou = false
 
     };
 
+    function validarProvador2() {
+        setInterval(() => {
+            fetch(`/metricas/validarProvador2/${idEmpresa}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .then(
+                    function (resposta) {
+                        console.log(resposta);
+
+                        if (resposta.ok) {
+                            console.log('Busquei a lista de fluxo de visitantes por dia', resposta)
+                            return resposta.json();
+                        } else {
+                            throw "Erro ao buscar dados no data base";
+                        }
+                    }
+                )
+                .then(
+                    function (ocupacao_provador2) {
+                        console.log(ocupacao_provador2)
+
+                        if (ocupacao_provador2[0].data_saida == null) {
+                            prov2.style.backgroundColor = 'salmon'
+                        } else {
+                            prov2.style.backgroundColor = 'rgb(34, 110, 110)'
+                        };
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro)
+                    }
+                )
+        }, 1000)
+
+    };
+
     function buscarSensorInativo() {
         fetch(`/provadores/sensorInativo/${idEmpresa}`)
 
@@ -928,6 +967,7 @@ var alertou = false
 
         // OCUPAÇÃO PROVADOR
         validarProvador();
+        validarProvador2();
 
         // ALERTA
         puxarOcioso();
