@@ -386,7 +386,6 @@ main section .geral .ocupacao .prov {
     background-color: rgb(34, 110, 110);
     color: white;
     cursor: pointer;
-
 }
 
 main section .geral .ocupacao .prov:hover {

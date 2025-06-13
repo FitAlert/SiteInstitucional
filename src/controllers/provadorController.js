@@ -123,11 +123,36 @@ function atualizarTempoReal(req, res) {
             );
     }
 
+};
+
+function sensorInativo(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    if (idEmpresa == undefined) {
+        console.log('idEmpresa está indefinido!');
+    } else {
+        provadorModel.sensorInativo(idEmpresa)
+
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 }
 
 module.exports = {
     buscarHorarioPicoProvador,
     buscarFluxoProvador,
     buscarDadosGrafico,
-    atualizarTempoReal
+    atualizarTempoReal,
+    sensorInativo
 };

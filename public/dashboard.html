@@ -37,8 +37,7 @@
                 <button style="width: 25px; border: none; background-color: transparent; align-self: flex-end;"
                     onclick="limparNotificacao()"><img src="images/sessaoDashboard/check.png" alt=""
                         width="20px"></button>
-                <div>-----------------------ALERTAS-----------------------</div>
-                <!-- <div>Fluxo abaixo da mediana no dia 20-06-2025</div> -->
+                <div>ALERTAS</div>
             </div>
             <a href="documentos/manualDeInstalacao.pdf" download="manualDeInstalacao.pdf" target="_blank">
                 <li>Manual</li>
@@ -67,32 +66,32 @@
                 <div class="kpi">
                     <h3>HORÁRIO DE PICO</h3>
                     <p id="horario_pico_kpi" class="descricao_kpi">Aguardando cliente</p>
-                    <div class="boxKPI1">
+                    <!-- <div class="boxKPI1">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    </div>
+                    </div> -->
                 </div>
                 <div class="kpi" id="kpiFluxo">
                     <h3>FLUXO DE VISITANTES</h3>
                     <p id="fluxo_visitantes_kpi" class="descricao_kpi">Aguardando cliente</p>
                     <p id="fluxo_visitantes_quartil"></p>
-                    <div class="boxKPI2">
+                    <!-- <div class="boxKPI2">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    </div>
+                    </div> -->
                 </div>
                 <div class="kpi" id="kpiPermanencia">
                     <h3>TEMPO PERMANÊNCIA</h3>
                     <p id="tempo_permanencia_kpi" class="descricao_kpi">Aguardando cliente</p>
                     <p id="tempo_permanencia_quartil"></p>
-                    <div class="boxKPI3">
+                    <!-- <div class="boxKPI3">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    </div>
+                    </div> -->
                 </div>
                 <div class="kpi">
                     <h3>SEÇÃO MAIS VISITADA</h3>
                     <p id="secao_visitada_kpi" class="descricao_kpi">Aguardando cliente</p>
-                    <div class="boxKPI4">
+                    <!-- <div class="boxKPI4">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -100,10 +99,9 @@
                 <div class="ocupacao">
                     <h3>Provadores</h3>
                     <div class="prov" id="prov1" onclick="provador1()">1</div>
-                    <div class="prov">2</div>
-                    <div class="prov">3</div>
-                    <div class="prov">4</div>
-                    <div class="prov">5</div>
+                    <div class="prov" id="prov2">2</div>
+                    <div class="prov" id="prov3" style="cursor:default">3</div>
+                    <div class="prov" id="prov4" style="cursor:default">4</div>
                 </div>
 
                 <div class="graficos">
@@ -180,7 +178,7 @@
                     console.log(err);
                 });
 
-            setTimeout(() => puxarOcioso(), 300000)
+            setTimeout(() => puxarOcioso(), 60000)
         }
 
 let contador = 0;
@@ -869,6 +867,26 @@ let contador = 0;
                 )
         }, 1000)
 
+    };
+
+    function buscarSensorInativo() {
+        fetch(`/provadores/sensorInativo/${idEmpresa}`)
+
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (sensores) {
+                for (let i = 0; i < sensores.length; i++) {
+                    if (sensores[i].status_sensor == 'Inativo') {
+                        index = i + 1;
+                        var provador_inativo = document.getElementById('prov' + index);
+                        provador_inativo.style.backgroundColor = 'Gray';
+                    }
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
     }
 
 
@@ -886,6 +904,9 @@ let contador = 0;
         // Valores dinâmicos no filtro
         inputInicio.value = dataAtual();
         inputFim.value = dataAtual();
+
+        // VERIFICAR SENSORES
+        buscarSensorInativo();
 
         // -- GRÁFICOS
         buscarFemininoMasculino();

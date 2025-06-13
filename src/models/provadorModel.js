@@ -68,9 +68,20 @@ function atualizarTempoReal(idEmpresa, data_entrada, data_saida) {
     return database.executar(instrucaoSql);
 }
 
+function sensorInativo(idEmpresa) {
+    console.log('Acessei o model! Sensores inativos');
+
+    var instrucaoSql = `
+        SELECT idSensor, status_sensor FROM TB_Sensores s JOIN TB_Provadores p ON s.idSensor = p.fkSensor WHERE idEmpresa = ${idEmpresa}; 
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarHorarioPicoProvador,
     buscarFluxoProvador,
     buscarDadosGrafico,
-    atualizarTempoReal
+    atualizarTempoReal,
+    sensorInativo
 };
