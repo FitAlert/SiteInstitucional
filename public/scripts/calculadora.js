@@ -26,7 +26,7 @@ function calcular() {
 
 
     // faturamento sem monitoramneto
-    var faturamentoSemMonitoramento = ticket * clientes;
+    var faturamentoSemMonitoramento = ticket * visitantesConvertidosSemProvador;
     // Potencial de aumento no faturamento
     var aumentoFaturamento = ticketComMonitoramento * visitantesConvertidosComProvador;
 
