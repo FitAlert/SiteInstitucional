@@ -178,22 +178,28 @@
                     console.log(err);
                 });
 
-            setTimeout(() => puxarOcioso(), 60000)
+            setTimeout(() => puxarOcioso(), 1000)
         }
 
 let contador = 0;
+var alertou = false
     function plotarAlerta(dados) {
         const resultado = dados[0].ocupacao_sensores;
 
-        if (resultado == 'Lotados') {
+        if (resultado == 'Lotados' && alertou == false) {
             const agora = new Date();
             const dataHora = agora.toLocaleString();
             contador++
             span_alerta.innerHTML = contador
+            alertou = true
 
             const novoAlerta = document.createElement('div');
             novoAlerta.textContent = `Todos os provadores estão em uso às ${dataHora}`;
             boxAlerta.appendChild(novoAlerta);
+        }
+
+        else if (resultado == 'Vazios'){
+            alertou = false
         }
     }
 
